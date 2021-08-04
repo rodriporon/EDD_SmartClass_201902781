@@ -1,53 +1,19 @@
 #include <iostream>
-#include <cstdlib>
+#include "ListaDoble.h"
 
 using namespace std;
 
-int main()
-{
-    int option;
-    bool rep = true;
+int main(){
 
-    do {
+    int d;
+    ListaDoble lista;
 
-        
+    lista.insert(1);
+    lista.insert(2);
+    lista.insert(3);
+    lista.insert(4);
 
-        cout << "\n\n Menú " << endl;
+    lista.getList();
 
-        cout << "1- Carga de Usuarios" << endl;
-        cout << "2- Carga de Tareas" << endl;
-        cout << "3- Ingreso Manual" << endl;
-        cout << "4- Reportes" << endl;
-        cout << "5- Salir" << endl;
-
-        cout << "Seleccione una opción: ";
-        cin >> option;
-
-        switch (option) {
-            case 1:
-
-
-            break;
-            
-            case 2:
-
-            break;
-
-            case 3:
-
-            break;
-
-            case 4:
-
-            break;
-
-            case 5:
-
-            rep = false;
-            break;
-
-        }
-    } while (rep);
-    system("pause");
-
+    return 0;
 }
