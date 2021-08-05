@@ -17,8 +17,10 @@ public:
     }
 
     bool isEmpty();
-    void insert(int value);
+    void insert(int carnet, long long int DPI, string nombre, string carrera, string password, int creditos, int edad);
+    NodoDoble* getNode();
     void getList();
+    
 };
 
 bool ListaDoble::isEmpty()
@@ -26,9 +28,14 @@ bool ListaDoble::isEmpty()
     return first == NULL;
 }
 
-void ListaDoble::insert(int value)
+NodoDoble* ListaDoble::getNode()
 {
-    NodoDoble *newNode = new NodoDoble(value);
+    return NULL;
+}
+
+void ListaDoble::insert(int carnet, long long int DPI, string nombre, string carrera, string password, int creditos, int edad)
+{
+    NodoDoble *newNode = new NodoDoble(carnet, DPI, nombre, carrera, password, creditos, edad);
 
     if (isEmpty())
     {
@@ -56,13 +63,13 @@ void ListaDoble::getList()
     {
         do
         {
-            cout <<"["<<aux->getValue()<<"] ";
+            cout <<"["<< "Nombre: " << aux->getCarnet() << " Carrera: " << aux->getCarrera() << "] ";
             aux = aux->siguienteNodo();
         } while (aux != first);
         
     }
     else
     {
-        cout << "List Empty";
+        cout << "Empty List";
     }
 }

@@ -5,13 +5,10 @@ using namespace std;
 
 int main(){
 
-    int d;
     ListaDoble lista;
 
-    lista.insert(1);
-    lista.insert(2);
-    lista.insert(3);
-    lista.insert(4);
+    lista.insert(201902781, 3065713820401, "Rodrigo Porón", "Ingeniería en Sistemas", "password123", 120, 22);
+    lista.insert(201902245, 3065713820401, "Rodolfo Porón", "Ingeniería Industrial", "password123", 120, 22);
 
     lista.getList();
 
