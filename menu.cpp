@@ -33,11 +33,6 @@ int main()
         case 1:
         {
 
-            ifstream archivo;
-            string rutaUsuarios;
-            string texto;
-            string value;
-
             int carnet = 0;
             string DPI = "";
             string nombre = "";
@@ -46,6 +41,11 @@ int main()
             string password = "";
             int creditos = 0;
             int edad = 0;
+
+            ifstream archivo;
+            string rutaUsuarios;
+            string texto;
+            string value;
 
             cout << "Ingrese la ruta del archivo de Usuarios" << endl;
             cin >> rutaUsuarios;
@@ -149,8 +149,8 @@ int main()
             do
             {
                 cout << "\n\n ---Ingreso Manual--- " << endl;
-                cout << "1- Ingreso de Estudiante" << endl;
-                cout << "2- Ingreso de Tarea" << endl;
+                cout << "1- Usuarios" << endl;
+                cout << "2- Tareas" << endl;
                 cout << "3- Salir" << endl;
 
                 cout << "Seleccione una opción: " << endl;
@@ -176,10 +176,52 @@ int main()
                         switch (optionStudent)
                         {
                         case 1:
+                        {
+
+                            int carnet = 0;
+                            string DPI = "";
+                            string nombre;
+                            string carrera;
+                            string correo;
+                            string password;
+                            int creditos = 0;
+                            int edad = 0;
 
                             cout << "\n\n ---Ingresar---" << endl;
 
-                            break;
+                            cout << "Carnet: ";
+                            cin >> carnet;
+                            cin.ignore();
+
+                            cout << "DPI: ";
+                            getline(cin, DPI, '\n');
+
+                            cout << "Nombre: ";
+                            getline(cin, nombre, '\n');
+
+                            cout << "Carrera: ";
+                            getline(cin, carrera, '\n');
+
+                            cout << "Correo: ";
+                            getline(cin, correo, '\n');
+
+                            cout << "Password: ";
+                            getline(cin, password, '\n');
+
+                            cout << "Creditos: ";
+                            cin >> creditos;
+
+                            cout << "Edad: ";
+                            cin >> edad;
+                            cin.ignore();
+
+
+                            listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
+
+                            listaUsuarios->getList();
+                        }
+
+                        break;
 
                         case 2:
 
