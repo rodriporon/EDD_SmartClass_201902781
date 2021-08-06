@@ -6,15 +6,14 @@ class NodoDoble
 {
     protected:
         int carnet, creditos, edad;
-        long long int DPI;
-        string nombre, carrera, password;
+        string nombre, carrera, correo, password, DPI;
 
         NodoDoble* siguiente;
         NodoDoble* anterior;
 
     public:
-        NodoDoble(int carnet, int DPI, string nombre, string carrera, string password, int creditos, int edad):
-        carnet(carnet), DPI(DPI), nombre(nombre), carrera(carrera), password(password), creditos(creditos), edad(edad), siguiente(NULL), anterior(NULL)
+        NodoDoble(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad):
+        carnet(carnet), DPI(DPI), nombre(nombre), carrera(carrera), correo(correo), password(password), creditos(creditos), edad(edad), siguiente(NULL), anterior(NULL)
         {}
 
         int getCarnet() const
@@ -22,7 +21,7 @@ class NodoDoble
             return carnet;
         }
 
-        long long int getDPI() const
+        string getDPI() const
         {
             return DPI;
         }
@@ -35,6 +34,11 @@ class NodoDoble
         string getCarrera() const
         {
             return carrera;
+        }
+
+        string getCorreo() const
+        {
+            return correo;
         }
 
         string getPassword() const

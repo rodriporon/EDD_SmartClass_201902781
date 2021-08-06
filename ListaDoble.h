@@ -17,7 +17,7 @@ public:
     }
 
     bool isEmpty();
-    void insert(int carnet, long long int DPI, string nombre, string carrera, string password, int creditos, int edad);
+    void insert(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad);
     NodoDoble* getNode();
     void getList();
     
@@ -33,9 +33,9 @@ NodoDoble* ListaDoble::getNode()
     return NULL;
 }
 
-void ListaDoble::insert(int carnet, long long int DPI, string nombre, string carrera, string password, int creditos, int edad)
+void ListaDoble::insert(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad)
 {
-    NodoDoble *newNode = new NodoDoble(carnet, DPI, nombre, carrera, password, creditos, edad);
+    NodoDoble *newNode = new NodoDoble(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
 
     if (isEmpty())
     {

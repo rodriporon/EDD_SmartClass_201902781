@@ -1,10 +1,17 @@
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include "ListaDoble.h"
 
 using namespace std;
 
 int main()
 {
+
+    ListaDoble *listaUsuarios = new ListaDoble();
+
     int option;
     bool rep = true;
 
@@ -24,10 +31,109 @@ int main()
         switch (option)
         {
         case 1:
+        {
+
+            ifstream archivo;
+            string rutaUsuarios;
+            string texto;
+            string value;
+
+            int carnet = 0;
+            string DPI = "";
+            string nombre = "";
+            string carrera = "";
+            string correo = "";
+            string password = "";
+            int creditos = 0;
+            int edad = 0;
 
             cout << "Ingrese la ruta del archivo de Usuarios" << endl;
+            cin >> rutaUsuarios;
 
-            break;
+            cout << "La ruta es: " << rutaUsuarios << endl;
+
+            archivo.open(rutaUsuarios, ios::in);
+
+            if (archivo.fail())
+            {
+                cout << "No se puedo abrir el archivo" << endl;
+                exit(1);
+            }
+
+            int contador = 0;
+
+            int contador_value;
+
+            while (!archivo.eof())
+            {
+
+                getline(archivo, texto);
+                //cout << "..........." << endl;
+
+                stringstream input_stringstream(texto);
+
+                contador_value = 0;
+
+                if (contador != 0)
+                {
+
+                    while (getline(input_stringstream, value, ','))
+                    {
+                        //cout << value << endl;
+
+                        switch (contador_value)
+                        {
+                        case 0:
+                            carnet = atoi(value.c_str());
+                            break;
+
+                        case 1:
+                            DPI = value;
+                            break;
+
+                        case 2:
+                            nombre = value;
+                            break;
+
+                        case 3:
+                            carrera = value;
+                            break;
+
+                        case 4:
+                            correo = value;
+                            break;
+
+                        case 5:
+                            password = value;
+                            break;
+
+                        case 6:
+                            creditos = atoi(value.c_str());
+                            break;
+
+                        case 7:
+                            edad = atoi(value.c_str());
+                            break;
+
+                        default:
+                            break;
+                        }
+
+                        contador_value++;
+                    }
+
+                    listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
+                }
+
+                contador++;
+            }
+
+            listaUsuarios->getList();
+
+            archivo.close();
+        }
+
+        break;
 
         case 2:
 
