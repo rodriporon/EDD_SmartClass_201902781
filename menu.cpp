@@ -165,7 +165,7 @@ int main()
 
                     do
                     {
-                        cout << "1- Ingresar" << endl;
+                        cout << "\n\n1- Ingresar" << endl;
                         cout << "2- Modificar" << endl;
                         cout << "3- Eliminar" << endl;
                         cout << "4- Regresar" << endl;
@@ -215,7 +215,6 @@ int main()
                             cin >> edad;
                             cin.ignore();
 
-
                             listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
 
                             listaUsuarios->getList();
@@ -224,15 +223,38 @@ int main()
                         break;
 
                         case 2:
+                        {
+                            cin.ignore();
+
+                            string search_DPI;
 
                             cout << "\n\n ---Modificar---" << endl;
+                            cout << "Ingrese el DPI: ";
+                            getline(cin, search_DPI, '\n');
 
-                            break;
+                            listaUsuarios->modify(search_DPI);
+
+                            listaUsuarios->getList();
+                        }
+
+                        break;
                         case 3:
 
-                            cout << "\n\n ---Eliminar---" << endl;
+                        {
+                            cin.ignore();
+                            
+                            string delete_DPI;
 
-                            break;
+                            cout << "\n\n ---Eliminar---" << endl;
+                            cout << "Ingrese el DPI: ";
+                            getline(cin, delete_DPI, '\n');
+
+                            listaUsuarios->deleteUser(delete_DPI);
+
+                            listaUsuarios->getList();
+                        }
+
+                        break;
 
                         case 4:
 

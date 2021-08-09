@@ -16,6 +16,8 @@ class NodoDoble
         carnet(carnet), DPI(DPI), nombre(nombre), carrera(carrera), correo(correo), password(password), creditos(creditos), edad(edad), siguiente(NULL), anterior(NULL)
         {}
 
+        // getters
+
         int getCarnet() const
         {
             return carnet;
@@ -66,6 +68,8 @@ class NodoDoble
             return anterior;
         }
 
+        // setters
+
         void setSiguiente(NodoDoble* s)
         {
             siguiente = s;
@@ -74,5 +78,45 @@ class NodoDoble
         void setAnterior(NodoDoble* a)
         {
             anterior = a;
+        }
+
+        void setCarnet(int c)
+        {
+            carnet = c;
+        }
+
+        void setDPI(string d)
+        {
+            DPI = d;
+        }
+
+        void setNombre(string n)
+        {
+            nombre = n;
+        }
+
+        void setCarrera(string c)
+        {
+            carrera = c;
+        }
+
+        void setCorreo(string c)
+        {
+            correo = c;
+        }
+
+        void setPassword(string p)
+        {
+            password = p;
+        }
+
+        void setCreditos(int c)
+        {
+            creditos = c;
+        }
+
+        void setEdad(int e)
+        {
+            edad = e;
         }
 };
