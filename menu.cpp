@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 #include "ListaDoble.h"
+#include "cola.h"
+#include "verify.h"
 
 using namespace std;
 
@@ -11,6 +13,8 @@ int main()
 {
 
     ListaDoble *listaUsuarios = new ListaDoble();
+
+    Cola *colaErrores = new Cola();
 
     int option;
     bool rep = true;
@@ -33,7 +37,7 @@ int main()
         case 1:
         {
 
-            int carnet = 0;
+            string carnet = "";
             string DPI = "";
             string nombre = "";
             string carrera = "";
@@ -61,7 +65,7 @@ int main()
             }
 
             int contador = 0;
-
+            int id_errores = 0;
             int contador_value;
 
             while (!archivo.eof())
@@ -84,11 +88,24 @@ int main()
                         switch (contador_value)
                         {
                         case 0:
-                            carnet = atoi(value.c_str());
+                            carnet = value;
+                            if (isCarnet(carnet) == false)
+                            {
+                                cout << "El carnet " << carnet << " no es válido" << endl;
+                                colaErrores->encolar(id_errores, "Estudiante", "Carnet inválido");
+                                break;
+                            }
                             break;
 
                         case 1:
                             DPI = value;
+                            if (isDPI(DPI) == false)
+                            {
+                                cout << "El DPI " << DPI << " no es válido" << endl;
+                                colaErrores->encolar(id_errores, "Estudiante", "DPI inválido");
+                                break;
+                            }
+
                             break;
 
                         case 2:
@@ -100,19 +117,27 @@ int main()
                             break;
 
                         case 4:
-                            correo = value;
-                            break;
-
-                        case 5:
                             password = value;
                             break;
 
-                        case 6:
+                        case 5:
+
                             creditos = atoi(value.c_str());
                             break;
 
-                        case 7:
+                        case 6:
                             edad = atoi(value.c_str());
+                            break;
+
+                        case 7:
+                            correo = value;
+                            if (isCorreo(correo) == false)
+                            {
+                                cout << "El Correo " << correo << " no es válido" << endl;
+                                colaErrores->encolar(id_errores, "Estudiante", "Correo inválido");
+                                break;
+                            }
+
                             break;
 
                         default:
@@ -123,6 +148,7 @@ int main()
                     }
 
                     listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
+                    id_errores++;
                 }
 
                 contador++;
@@ -178,7 +204,7 @@ int main()
                         case 1:
                         {
 
-                            int carnet = 0;
+                            string carnet = "";
                             string DPI = "";
                             string nombre;
                             string carrera;
@@ -190,7 +216,7 @@ int main()
                             cout << "\n\n ---Ingresar---" << endl;
 
                             cout << "Carnet: ";
-                            cin >> carnet;
+                            getline(cin, carnet, '\n');
                             cin.ignore();
 
                             cout << "DPI: ";
@@ -242,7 +268,7 @@ int main()
 
                         {
                             cin.ignore();
-                            
+
                             string delete_DPI;
 
                             cout << "\n\n ---Eliminar---" << endl;

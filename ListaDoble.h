@@ -17,7 +17,7 @@ public:
     }
 
     bool isEmpty();
-    void insert(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad);
+    void insert(string carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad);
     NodoDoble *getNode();
     void modify(string modify_DPI);
     void deleteUser(string delete_DPI);
@@ -49,7 +49,7 @@ void ListaDoble::modify(string modify_DPI)
             {
                 cout << "\n\n DPI encontrado " << endl;
 
-                int carnet = 0;
+                string carnet = "";
                 string DPI = "";
                 string nombre;
                 string carrera;
@@ -84,7 +84,7 @@ void ListaDoble::modify(string modify_DPI)
                     case 1:
                     {
                         cout << "Carnet: ";
-                        cin >> carnet;
+                        getline(cin, carnet, '\n');
                         cin.ignore();
 
                         search->setCarnet(carnet);
@@ -184,7 +184,7 @@ void ListaDoble::modify(string modify_DPI)
         cout << "Empty List";
     }
 }
-void ListaDoble::insert(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad)
+void ListaDoble::insert(string carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad)
 {
     NodoDoble *newNode = new NodoDoble(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
 
@@ -290,7 +290,7 @@ void ListaDoble::getList()
         do
         {
             cout << "["
-                 << "Carnet: " << aux->getCarnet() << " Carrera: " << aux->getCarrera() << "] ";
+                 << "Carnet: " << aux->getCarnet() << "DPI: " << aux->getDPI() << "Nombre: " << aux->getNombre() << " Carrera: " << aux->getCarrera() << "Password: " << aux->getPassword() << "Creditos: " << aux->getCreditos() << "Edad: " << aux->getEdad() << "Correo: " << aux->getCorreo() << "]" << endl;
             aux = aux->siguienteNodo();
         } while (aux != first);
     }

@@ -5,20 +5,20 @@ using namespace std;
 class NodoDoble
 {
     protected:
-        int carnet, creditos, edad;
-        string nombre, carrera, correo, password, DPI;
+        int creditos, edad;
+        string  carnet, nombre, carrera, correo, password, DPI;
 
         NodoDoble* siguiente;
         NodoDoble* anterior;
 
     public:
-        NodoDoble(int carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad):
+        NodoDoble(string carnet, string DPI, string nombre, string carrera, string correo, string password, int creditos, int edad):
         carnet(carnet), DPI(DPI), nombre(nombre), carrera(carrera), correo(correo), password(password), creditos(creditos), edad(edad), siguiente(NULL), anterior(NULL)
         {}
 
         // getters
 
-        int getCarnet() const
+        string getCarnet() const
         {
             return carnet;
         }
@@ -80,7 +80,7 @@ class NodoDoble
             anterior = a;
         }
 
-        void setCarnet(int c)
+        void setCarnet(string c)
         {
             carnet = c;
         }
