@@ -4,8 +4,10 @@
 #include <string>
 #include <sstream>
 #include "ListaDoble.h"
-#include "cola.h"
-#include "verify.h"
+#include "Cola.h"
+#include "Verify.h"
+#include "NodoMatriz.h"
+#include "GetIndex.h"
 
 using namespace std;
 
@@ -15,6 +17,18 @@ int main()
     ListaDoble *listaUsuarios = new ListaDoble();
 
     Cola *colaErrores = new Cola();
+
+    NodoMatriz *matriz[5][30][9];
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            for (int k = 0; k < 9; k++)
+            {
+                matriz[i][j][k] = NULL;
+            }
+        }
+    }
 
     int option;
     bool rep = true;
@@ -51,8 +65,10 @@ int main()
             string texto;
             string value;
 
+            cin.ignore();
+
             cout << "Ingrese la ruta del archivo de Usuarios" << endl;
-            cin >> rutaUsuarios;
+            getline(cin, rutaUsuarios, '\n');
 
             cout << "La ruta es: " << rutaUsuarios << endl;
 
@@ -148,7 +164,7 @@ int main()
                     }
 
                     listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
-                    id_errores++;
+                    //id_errores++;
                 }
 
                 contador++;
@@ -163,9 +179,140 @@ int main()
 
         case 2:
 
-            cout << "Ingrese la ruta del archivo de Tareas" << endl;
+        {
+            string mes = "";
+            string dia = "";
+            string hora = "";
+            string carnet = "";
+            string nombre = "";
+            string descripcion = "";
+            string materia = "";
+            string fecha = "";
+            string estado = "";
 
-            break;
+            ifstream archivo;
+            string rutaTareas;
+            string texto;
+            string value;
+
+            cin.ignore();
+
+            cout << "Ingrese la ruta del archivo de Tareas" << endl;
+            getline(cin, rutaTareas, '\n');
+
+            cout << "La ruta es: " << rutaTareas << endl;
+
+            archivo.open(rutaTareas, ios::in);
+
+            if (archivo.fail())
+            {
+                cout << "No se pudo abrir el archivo" << endl;
+                exit(1);
+            }
+
+            int contador = 0;
+            int id_errores = 0;
+            int contador_value;
+
+            while (!archivo.eof())
+            {
+
+                getline(archivo, texto);
+                //cout << "..........." << endl;
+
+                stringstream input_stringstream(texto);
+
+                contador_value = 0;
+
+                if (contador != 0)
+                {
+
+                    while (getline(input_stringstream, value, ','))
+                    {
+                        //cout << value << endl;
+
+                        switch (contador_value)
+                        {
+                        case 0:
+                            mes = value;
+                            break;
+
+                        case 1:
+                            dia = value;
+                            break;
+
+                        case 2:
+                            hora = value;
+                            break;
+
+                        case 3:
+                            carnet = value;
+                            break;
+
+                        case 4:
+                            nombre = value;
+                            break;
+
+                        case 5:
+
+                            descripcion = value;
+                            break;
+
+                        case 6:
+                            materia = value;
+                            break;
+
+                        case 7:
+                            fecha = value;
+                            break;
+
+                        case 8:
+                            estado = value;
+                            break;
+
+                        default:
+                            break;
+                        }
+
+                        contador_value++;
+                    }
+
+                    //Insertar valores en la matriz
+                    cout << "Indices ingresados a la matriz: "
+                         << "mes: " << mes << " dia: " << dia << " hora: " << hora << endl;
+                    cout << "Valores devueltos por función getIndex: "
+                         << "mes: " << getIndexMonth(mes) << " dia: " << getIndexDay(dia) << " hora: " << getIndexHour(hora) << endl;
+                    matriz[getIndexMonth(mes)][getIndexDay(dia)][getIndexHour(hora)] = new NodoMatriz(mes, dia, hora, carnet, nombre, descripcion, materia, fecha, estado);
+                    //id_errores++;
+                }
+
+                contador++;
+            }
+
+            //Inicializando la matriz de 3 dimensiones
+
+            archivo.close();
+
+            /* cout << matriz[0][0][0]->getCarnet() << endl;
+            cout << matriz[0][0][0]->getMes() << endl; */
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 30; j++)
+                {
+                    for (int k = 0; k < 9; k++)
+                    {
+                        if (matriz[i][j][k] != NULL)
+                        {
+                            cout << matriz[i][j][k]->getCarnet() << endl;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        break;
 
         case 3:
         {

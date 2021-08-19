@@ -6,7 +6,7 @@ using namespace std;
 
 class NodoMatriz
 {
-    protected:
+    private:
         int id;
         string mes, dia, hora, carnet, nombre, descripcion, materia, fecha, estado;
 
@@ -38,15 +38,15 @@ class NodoMatriz
 
 NodoMatriz::NodoMatriz()
 {
-    this->mes = "";
-    this->dia = "";
-    this->hora = "";
-    this->carnet = "";
-    this->nombre = "";
-    this->descripcion = "";
-    this->materia = "";
-    this->fecha = "";
-    this->estado = "";
+    this->mes = "-1";
+    this->dia = "-1";
+    this->hora = "-1";
+    this->carnet = "-1";
+    this->nombre = "-1";
+    this->descripcion = "-1";
+    this->materia = "-1";
+    this->fecha = "-1";
+    this->estado = "-1";
 }
 
 NodoMatriz::NodoMatriz(string mes, string dia, string hora, string carnet, string nombre, string descripcion, string materia, string fecha, string estado)
@@ -79,7 +79,7 @@ string NodoMatriz::getHora()
 
 string NodoMatriz::getCarnet()
 {
-    return this->carnet;
+    return carnet;
 }
 
 string NodoMatriz::getNombre()
