@@ -516,12 +516,12 @@ int main()
 
                         case 2:
 
-{
+                        {
 
                             cout << "\n\n ---Modificar---" << endl;
                             cin.ignore();
 
-                            int search_cj;
+                            int index_cj;
                             string mes_b, dia_b, hora_b;
 
                             cout << "\n\n ---Modificar---" << endl;
@@ -535,15 +535,33 @@ int main()
                             cout << "Hora: ";
                             getline(cin, hora_b, '\n');
 
-                            listaUsuarios->modify(search_DPI);
-}
+                            index_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                            listaTareas->modify(index_cj, mes_b, dia_b, hora_b);
+                        }
 
-                            break;
+                        break;
                         case 3:
+                        {
+                            cin.ignore();
+                            int index_cj;
+                            string mes_b, dia_b, hora_b;
 
                             cout << "\n\n ---Eliminar---" << endl;
+                            cout << "Ingrese los siguientes datos: ";
+                            cout << "Mes: ";
+                            getline(cin, mes_b, '\n');
 
-                            break;
+                            cout << "Día: ";
+                            getline(cin, dia_b, '\n');
+
+                            cout << "Hora: ";
+                            getline(cin, hora_b, '\n');
+
+                            index_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                            listaTareas->deleteTask(index_cj);
+                            cin.ignore();
+                        }
+                        break;
 
                         case 4:
 

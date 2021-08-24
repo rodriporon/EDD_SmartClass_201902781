@@ -1,5 +1,6 @@
 #include <iostream>
 #include "NodoD.h"
+#include "GetIndex.h"
 
 using namespace std;
 
@@ -18,10 +19,10 @@ public:
 
     bool isEmpty();
     void insert(int index, string mes, string dia, string hora, string carnet, string nombre, string descripcion, string materia, string fecha, string estado);
-    void modify(string modify_DPI);
+    void modify(int index, string mes, string dia, string hora);
     bool searchIndex(int search_index);
     bool isNull(int index, string mes, string dia, string hora);
-    void deleteUser(string delete_DPI);
+    void deleteTask(int index);
     void getList();
 };
 
@@ -30,10 +31,10 @@ bool ListaD::isEmpty()
     return first == NULL;
 }
 
-/* void ListaD::modify(string modify_DPI)
+void ListaD::modify(int index, string mes, string dia, string hora)
 {
     int cfinded = 0;
-    NodoDoble *search;
+    NodoD *search;
 
     search = first;
 
@@ -41,18 +42,15 @@ bool ListaD::isEmpty()
     {
         do
         {
-            if (search->getDPI() == modify_DPI)
+            if (search->getIndex() == index)
             {
-                cout << "\n\n DPI encontrado " << endl;
+                cout << "\n\n Tarea encontrada " << endl;
 
-                string carnet = "";
-                string DPI = "";
-                string nombre;
-                string carrera;
-                string correo;
-                string password;
-                int creditos = 0;
-                int edad = 0;
+                int index_cj;
+                string mes_b = mes;
+                string dia_b = dia;
+                string hora_b = hora;
+                string carnet, nombre, descripcion, materia, fecha, estado;
 
                 int opt_modify;
                 bool rep_modify = true;
@@ -60,15 +58,16 @@ bool ListaD::isEmpty()
                 do
                 {
 
-                    cout << "1- Carnet" << endl;
-                    cout << "2- DPI" << endl;
-                    cout << "3- Nombre" << endl;
-                    cout << "4- Carrera" << endl;
-                    cout << "5- Correo" << endl;
-                    cout << "6- Password" << endl;
-                    cout << "7- Créditos" << endl;
-                    cout << "8- Edad" << endl;
-                    cout << "9- SALIR" << endl;
+                    cout << "1- Mes" << endl;
+                    cout << "2- Día" << endl;
+                    cout << "3- Hora" << endl;
+                    cout << "4- Carnet" << endl;
+                    cout << "5- Nombre" << endl;
+                    cout << "6- Descripción" << endl;
+                    cout << "7- Materia" << endl;
+                    cout << "8- Fecha" << endl;
+                    cout << "9- Estado" << endl;
+                    cout << "10- SALIR" << endl;
 
                     cout << "\n\n Seleccione la opción que desea modificar: ";
                     cin >> opt_modify;
@@ -79,24 +78,48 @@ bool ListaD::isEmpty()
                     {
                     case 1:
                     {
-                        cout << "Carnet: ";
-                        getline(cin, carnet, '\n');
+                        cout << "Mes: ";
+                        getline(cin, mes_b, '\n');
                         cin.ignore();
 
-                        search->setCarnet(carnet);
+                        search->setMes(mes);
+                        index_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                        search->setIndex(index_cj);
                     }
                     break;
 
                     case 2:
                     {
-                        cout << "DPI: ";
-                        getline(cin, DPI, '\n');
+                        cout << "Día: ";
+                        getline(cin, dia_b, '\n');
 
-                        search->setDPI(DPI);
+                        search->setDia(dia);
+                        index_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                        search->setIndex(index_cj);
                     }
                     break;
 
                     case 3:
+                    {
+                        cout << "Hora: ";
+                        getline(cin, hora_b, '\n');
+
+                        search->setHora(hora);
+                        index_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                        search->setIndex(index_cj);
+                    }
+                    break;
+
+                    case 4:
+                    {
+                        cout << "Carnet: ";
+                        getline(cin, carnet, '\n');
+
+                        search->setCarnet(carnet);
+                    }
+                    break;
+
+                    case 5:
                     {
                         cout << "Nombre: ";
                         getline(cin, nombre, '\n');
@@ -105,53 +128,43 @@ bool ListaD::isEmpty()
                     }
                     break;
 
-                    case 4:
-                    {
-                        cout << "Carrera: ";
-                        getline(cin, carrera, '\n');
-
-                        search->setCarrera(carrera);
-                    }
-                    break;
-
-                    case 5:
-                    {
-                        cout << "Correo: ";
-                        getline(cin, correo, '\n');
-
-                        search->setCorreo(correo);
-                    }
-                    break;
-
                     case 6:
                     {
-                        cout << "Password: ";
-                        getline(cin, password, '\n');
+                        cout << "Descripción: ";
+                        getline(cin, descripcion, '\n');
 
-                        search->setPassword(password);
+                        search->setDescripcion(descripcion);
                     }
                     break;
 
                     case 7:
                     {
-                        cout << "Creditos: ";
-                        cin >> creditos;
+                        cout << "Materia: ";
+                        getline(cin, materia, '\n');
 
-                        search->setCreditos(creditos);
+                        search->setMateria(materia);
                     }
                     break;
 
                     case 8:
                     {
-                        cout << "Edad: ";
-                        cin >> edad;
-                        cin.ignore();
+                        cout << "Fecha: ";
+                        getline(cin, fecha, '\n');
 
-                        search->setEdad(edad);
+                        search->setFecha(fecha);
                     }
                     break;
 
                     case 9:
+                    {
+                        cout << "Estado: ";
+                        getline(cin, estado, '\n');
+
+                        search->setEstado(estado);
+                    }
+                    break;
+
+                    case 10:
 
                         opt_modify = false;
 
@@ -172,14 +185,14 @@ bool ListaD::isEmpty()
         } while (search != first && cfinded == 0);
         if (cfinded == 0)
         {
-            cout << "El DPI ingresado no se encontró" << endl;
+            cout << "No se encontró la Tarea en la posición seleccionada." << endl;
         }
     }
     else
     {
         cout << "Empty List";
     }
-} */
+}
 
 void ListaD::insert(int index, string mes, string dia, string hora, string carnet, string nombre, string descripcion, string materia, string fecha, string estado)
 {
@@ -243,7 +256,7 @@ bool ListaD::isNull(int index, string mes, string dia, string hora)
                     cin.ignore();
                     string carnet, nombre, descripcion, materia, fecha, estado;
 
-/*                     cout << "Mes: ";
+                    /*                     cout << "Mes: ";
                     getline(cin, mes, '\n');
                     search->setMes(mes);
 
@@ -283,11 +296,6 @@ bool ListaD::isNull(int index, string mes, string dia, string hora)
                     search->setEstado(estado);
                     cin.ignore();
 
-                    
-                    
-                    
-                    
-                    
                     return true;
                 }
             }
@@ -298,13 +306,11 @@ bool ListaD::isNull(int index, string mes, string dia, string hora)
     return false;
 }
 
-/* void ListaD::deleteUser(string delete_DPI)
+void ListaD::deleteTask(int index)
 {
-    NodoDoble *search;
-    NodoDoble *delete_User;
+    NodoD *search;
 
     search = first;
-    delete_User = NULL;
     int cfinded = 0;
     int confirm;
 
@@ -312,34 +318,26 @@ bool ListaD::isNull(int index, string mes, string dia, string hora)
     {
         do
         {
-            if (search->getDPI() == delete_DPI)
+            if (search->getIndex() == index)
             {
-                cout << "DPI encontrado" << endl;
+                cout << "Tarea encontrada" << endl;
 
                 cout << "\n1- Sí" << endl;
                 cout << "2- No" << endl;
-                cout << "¿Está seguro que desea eliminar a " << search->getNombre() << "?: ";
+                cout << "¿Está seguro que desea eliminar la tarea con nombre " << search->getNombre() << "?: ";
                 cin >> confirm;
 
                 if (confirm == 1)
                 {
-                    if (search == first)
-                    {
-                        first = first->siguienteNodo();
-                        first->setAnterior(last);
-                        last->setSiguiente(first);
-                    }
-                    else if (search == last)
-                    {
-                        last = last->anteriorNodo();
-                        first->setAnterior(last);
-                        last->setSiguiente(first);
-                    }
-                    else
-                    {
-                        delete_User->setSiguiente(search->siguienteNodo());
-                        search->siguienteNodo()->setAnterior(delete_User);
-                    }
+                    search->setMes("-1");
+                    search->setDia("-1");
+                    search->setHora("-1");
+                    search->setCarnet("-1");
+                    search->setNombre("-1");
+                    search->setDescripcion("-1");
+                    search->setMateria("-1");
+                    search->setFecha("-1");
+                    search->setEstado("-1");
 
                     cfinded = -1;
                 } else if (confirm == 2)
@@ -352,26 +350,24 @@ bool ListaD::isNull(int index, string mes, string dia, string hora)
 
                 
             }
-            delete_User = search;
             search = search->siguienteNodo();
 
         } while (search != first && cfinded == 0);
 
         if (cfinded == 0)
         {
-            cout << "El DPI ingresado no se encontró" << endl;
+            cout << "La posición ingresada no se encontró" << endl;
         }
         else
         {
-            free(delete_User);
-            cout << "Usuario eliminado" << endl;
+            cout << "Tarea eliminada" << endl;
         }
     }
     else
     {
         cout << "Empty list" << endl;
     }
-} */
+}
 
 void ListaD::getList()
 {
