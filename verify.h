@@ -33,3 +33,13 @@ bool isCorreo(string correo)
     return false;
     
 }
+
+bool isHora(string hora)
+{
+    if (stoi(hora) >= 8 && stoi(hora) <= 16)
+    {
+        return true;
+    }
+    return false;
+    
+}

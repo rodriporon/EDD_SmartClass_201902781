@@ -38,9 +38,6 @@ class NodoMatriz
 
 NodoMatriz::NodoMatriz()
 {
-    this->mes = "-1";
-    this->dia = "-1";
-    this->hora = "-1";
     this->carnet = "-1";
     this->nombre = "-1";
     this->descripcion = "-1";
@@ -51,6 +48,7 @@ NodoMatriz::NodoMatriz()
 
 NodoMatriz::NodoMatriz(string mes, string dia, string hora, string carnet, string nombre, string descripcion, string materia, string fecha, string estado)
 {
+
     this->mes = mes;
     this->dia = dia;
     this->hora = hora;
@@ -64,19 +62,16 @@ NodoMatriz::NodoMatriz(string mes, string dia, string hora, string carnet, strin
 
 string NodoMatriz::getMes()
 {
-    return this->mes;
+    return mes;
 }
-
 string NodoMatriz::getDia()
 {
-    return this->dia;
+    return dia;
 }
-
 string NodoMatriz::getHora()
 {
-    return this->hora;
+    return hora;
 }
-
 string NodoMatriz::getCarnet()
 {
     return carnet;
@@ -111,17 +106,14 @@ void NodoMatriz::setMes(string mes)
 {
     this->mes = mes;
 }
-
 void NodoMatriz::setDia(string dia)
 {
     this->dia = dia;
 }
-
 void NodoMatriz::setHora(string hora)
 {
     this->hora = hora;
 }
-
 void NodoMatriz::setCarnet(string carnet)
 {
     this->carnet = carnet;

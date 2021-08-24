@@ -3,8 +3,10 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "ListaDoble.h"
+#include "ListaDobleCircular.h"
+#include "ListaD.h"
 #include "Cola.h"
+#include "LinkedList.h"
 #include "Verify.h"
 #include "NodoMatriz.h"
 #include "GetIndex.h"
@@ -15,6 +17,8 @@ int main()
 {
 
     ListaDoble *listaUsuarios = new ListaDoble();
+
+    ListaD *listaTareas = new ListaD();
 
     Cola *colaErrores = new Cola();
 
@@ -30,6 +34,10 @@ int main()
         }
     }
 
+    /*     listaTareas->insert("201902781", "Rodrigo Porón", "Nada", "mate", "212", "no");
+    listaTareas->getList(); */
+
+    int id_errores = 0;
     int option;
     bool rep = true;
 
@@ -81,7 +89,6 @@ int main()
             }
 
             int contador = 0;
-            int id_errores = 0;
             int contador_value;
 
             while (!archivo.eof())
@@ -109,6 +116,7 @@ int main()
                             {
                                 cout << "El carnet " << carnet << " no es válido" << endl;
                                 colaErrores->encolar(id_errores, "Estudiante", "Carnet inválido");
+                                id_errores++;
                                 break;
                             }
                             break;
@@ -119,6 +127,7 @@ int main()
                             {
                                 cout << "El DPI " << DPI << " no es válido" << endl;
                                 colaErrores->encolar(id_errores, "Estudiante", "DPI inválido");
+                                id_errores++;
                                 break;
                             }
 
@@ -151,6 +160,7 @@ int main()
                             {
                                 cout << "El Correo " << correo << " no es válido" << endl;
                                 colaErrores->encolar(id_errores, "Estudiante", "Correo inválido");
+                                id_errores++;
                                 break;
                             }
 
@@ -164,7 +174,6 @@ int main()
                     }
 
                     listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
-                    //id_errores++;
                 }
 
                 contador++;
@@ -211,11 +220,12 @@ int main()
             }
 
             int contador = 0;
-            int id_errores = 0;
             int contador_value;
 
             while (!archivo.eof())
             {
+
+                bool carnetFinded = false;
 
                 getline(archivo, texto);
                 //cout << "..........." << endl;
@@ -247,6 +257,7 @@ int main()
 
                         case 3:
                             carnet = value;
+                            carnetFinded = listaUsuarios->searchCarnet(carnet);
                             break;
 
                         case 4:
@@ -278,38 +289,49 @@ int main()
                     }
 
                     //Insertar valores en la matriz
-                    cout << "Indices ingresados a la matriz: "
-                         << "mes: " << mes << " dia: " << dia << " hora: " << hora << endl;
-                    cout << "Valores devueltos por función getIndex: "
-                         << "mes: " << getIndexMonth(mes) << " dia: " << getIndexDay(dia) << " hora: " << getIndexHour(hora) << endl;
-                    matriz[getIndexMonth(mes)][getIndexDay(dia)][getIndexHour(hora)] = new NodoMatriz(mes, dia, hora, carnet, nombre, descripcion, materia, fecha, estado);
-                    //id_errores++;
+                    if (carnetFinded)
+                    {
+                        //             i=mes              j=dia            z=hora
+                        matriz[getIndexMonth(mes)][getIndexDay(dia)][getIndexHour(hora)] = new NodoMatriz(mes, dia, hora, carnet, nombre, descripcion, materia, fecha, estado);
+                    }
+                    else
+                    {
+                        colaErrores->encolar(id_errores, "Tarea", "Carnet no registrado previamente");
+                        id_errores++;
+                    }
                 }
 
                 contador++;
             }
 
-            //Inicializando la matriz de 3 dimensiones
-
             archivo.close();
 
             /* cout << matriz[0][0][0]->getCarnet() << endl;
             cout << matriz[0][0][0]->getMes() << endl; */
-
+            int column_major;
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 30; j++)
                 {
                     for (int k = 0; k < 9; k++)
                     {
+                        column_major = j + 30 * (k + 9 * i);
+                        cout << column_major << endl;
+                        //m   d  h
                         if (matriz[i][j][k] != NULL)
                         {
-                            cout << matriz[i][j][k]->getCarnet() << endl;
+
+                            listaTareas->insert(column_major, matriz[i][j][k]->getMes(), matriz[i][j][k]->getDia(), matriz[i][j][k]->getHora(), matriz[i][j][k]->getCarnet(), matriz[i][j][k]->getNombre(), matriz[i][j][k]->getDescripcion(), matriz[i][j][k]->getMateria(), matriz[i][j][k]->getFecha(), matriz[i][j][k]->getEstado());
+                            cout << "Entró al if" << endl;
                         }
-                        
+                        else
+                        {
+                            listaTareas->insert(column_major, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1");
+                        }
                     }
                 }
             }
+            listaTareas->getList();
         }
 
         break;
@@ -464,14 +486,57 @@ int main()
                         switch (optionTasks)
                         {
                         case 1:
-
+                        {
                             cout << "\n\n ---Ingresar---" << endl;
+                            int index;
 
-                            break;
+                            string mes_b, dia_b, hora_b;
+                            int insertar_cj;
+                            cin.ignore();
+                            cout << "Ingrese las posiciones en los que desea guardar la tarea: " << endl;
+                            cout << "Mes: ";
+                            getline(cin, mes_b, '\n');
+                            cout << "Dia: ";
+                            getline(cin, dia_b, '\n');
+                            cout << "Hora: ";
+                            getline(cin, hora_b, '\n');
+
+                            insertar_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                            if (listaTareas->isNull(insertar_cj, mes_b, dia_b, hora_b))
+                            {
+                                cout << "Tarea agregada con éxito" << endl;
+                            }
+                            else
+                            {
+                                cout << "La tarea no se pudo agregar" << endl;
+                            }
+                        }
+
+                        break;
 
                         case 2:
 
+{
+
                             cout << "\n\n ---Modificar---" << endl;
+                            cin.ignore();
+
+                            int search_cj;
+                            string mes_b, dia_b, hora_b;
+
+                            cout << "\n\n ---Modificar---" << endl;
+                            cout << "Ingrese los siguientes datos: ";
+                            cout << "Mes: ";
+                            getline(cin, mes_b, '\n');
+
+                            cout << "Día: ";
+                            getline(cin, dia_b, '\n');
+
+                            cout << "Hora: ";
+                            getline(cin, hora_b, '\n');
+
+                            listaUsuarios->modify(search_DPI);
+}
 
                             break;
                         case 3:
@@ -510,8 +575,22 @@ int main()
         break;
 
         case 4:
+        {
 
-            break;
+            string mes_b, dia_b, hora_b = "";
+            int buscar_cj;
+            cin.ignore();
+            cout << "Mes: ";
+            getline(cin, mes_b, '\n');
+            cout << "Dia: ";
+            getline(cin, dia_b, '\n');
+            cout << "Hora: ";
+            getline(cin, hora_b, '\n');
+
+            buscar_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+            listaTareas->searchIndex(buscar_cj);
+        }
+        break;
 
         case 5:
 
