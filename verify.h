@@ -34,6 +34,17 @@ bool isCorreo(string correo)
     
 }
 
+bool isFecha(string fecha)
+{
+        const regex refecha("([0-9]{4}/[0-9]{2}/[0-9]{2})");
+
+    if (regex_match(fecha, refecha))
+    {
+        return true;
+    }
+    return false;
+}
+
 bool isHora(string hora)
 {
     if (stoi(hora) >= 8 && stoi(hora) <= 16)

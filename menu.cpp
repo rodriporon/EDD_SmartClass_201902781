@@ -49,7 +49,8 @@ int main()
         cout << "2- Carga de Tareas" << endl;
         cout << "3- Ingreso Manual" << endl;
         cout << "4- Reportes" << endl;
-        cout << "5- Salir" << endl;
+        cout << "5- Cola Errores" << endl;
+        cout << "6- Salir" << endl;
 
         cout << "Seleccione una opción: ";
         cin >> option;
@@ -179,7 +180,7 @@ int main()
                 contador++;
             }
 
-            listaUsuarios->getList();
+            //listaUsuarios->getList();
 
             archivo.close();
         }
@@ -275,6 +276,13 @@ int main()
 
                         case 7:
                             fecha = value;
+                            if (isFecha(fecha) == false)
+                            {
+                                cout << "La fecha " << fecha << " no es válida" << endl;
+                                colaErrores->encolar(id_errores, "Tarea", "Fecha inválida");
+                                id_errores++;
+                                break;
+                            }
                             break;
 
                         case 8:
@@ -316,13 +324,12 @@ int main()
                     for (int k = 0; k < 9; k++)
                     {
                         column_major = j + 30 * (k + 9 * i);
-                        cout << column_major << endl;
+                        //cout << column_major << endl;
                         //m   d  h
                         if (matriz[i][j][k] != NULL)
                         {
 
                             listaTareas->insert(column_major, matriz[i][j][k]->getMes(), matriz[i][j][k]->getDia(), matriz[i][j][k]->getHora(), matriz[i][j][k]->getCarnet(), matriz[i][j][k]->getNombre(), matriz[i][j][k]->getDescripcion(), matriz[i][j][k]->getMateria(), matriz[i][j][k]->getFecha(), matriz[i][j][k]->getEstado());
-                            cout << "Entró al if" << endl;
                         }
                         else
                         {
@@ -331,7 +338,7 @@ int main()
                     }
                 }
             }
-            listaTareas->getList();
+            //listaTareas->graficar();
         }
 
         break;
@@ -412,7 +419,7 @@ int main()
 
                             listaUsuarios->insert(carnet, DPI, nombre, carrera, correo, password, creditos, edad);
 
-                            listaUsuarios->getList();
+                            //listaUsuarios->getList();
                         }
 
                         break;
@@ -594,23 +601,186 @@ int main()
 
         case 4:
         {
+            int optionReports;
+            bool repReports = true;
 
-            string mes_b, dia_b, hora_b = "";
-            int buscar_cj;
-            cin.ignore();
-            cout << "Mes: ";
-            getline(cin, mes_b, '\n');
-            cout << "Dia: ";
-            getline(cin, dia_b, '\n');
-            cout << "Hora: ";
-            getline(cin, hora_b, '\n');
+            do
+            {
+                cout << "\n\n ---Reportes---" << endl;
+                cout << "1- Reporte sobre la Lista de Estudiantes" << endl;
+                cout << "2- Reporte sobre la Lista de Tareas Linealizadas" << endl;
+                cout << "3- Búsqueda en Estructura Linealizada" << endl;
+                cout << "4- Búsqueda de Posición en Lista Linealizada" << endl;
+                cout << "5- Cola Errores" << endl;
+                cout << "6- Código generado de Salida" << endl;
+                cout << "7- Salir" << endl;
 
-            buscar_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
-            listaTareas->searchIndex(buscar_cj);
+                cout << "Seleccione una opción: ";
+                cin >> optionReports;
+
+                switch (optionReports)
+                {
+                case 1:
+                {
+                    cout << "\n\n ---Lista de Estudiantes---" << endl;
+                    listaUsuarios->graficar();
+                    break;
+                }
+
+                case 2:
+                {
+                    cout << "\n\n ---Lista de Tareas Linealizadas---" << endl;
+                    listaTareas->graficar();
+
+                    break;
+                }
+
+                case 3:
+                {
+                    cout << "\n\n ---Búsqueda en Estructura Linealizada ---" << endl;
+                    cin.ignore();
+                    string mes_b, dia_b, hora_b;
+                    int buscar_cj;
+
+                    cout << "Mes: ";
+                    getline(cin, mes_b, '\n');
+                    cout << "Dia: ";
+                    getline(cin, dia_b, '\n');
+                    cout << "Hora: ";
+                    getline(cin, hora_b, '\n');
+
+                    buscar_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                    listaTareas->searchIndex(buscar_cj);
+                }
+                break;
+
+                case 4:
+                {
+                    cout << "\n\n ---Búsqueda de Posición en Lista Linealizada---" << endl;
+                    cin.ignore();
+                    string mes_b, dia_b, hora_b;
+                    int buscar_cj;
+
+                    cout << "Mes: ";
+                    getline(cin, mes_b, '\n');
+                    cout << "Dia: ";
+                    getline(cin, dia_b, '\n');
+                    cout << "Hora: ";
+                    getline(cin, hora_b, '\n');
+
+                    buscar_cj = getIndexDay(dia_b) + 30 * (getIndexHour(hora_b) + 9 * getIndexMonth(mes_b));
+                    cout << "La posición linealizada es: " << buscar_cj << endl;
+                }
+
+                break;
+
+                case 5:
+                {
+                    cout << "\n\n ---Cola de Errores---" << endl;
+                    colaErrores->graficar();
+                    break;
+                }
+
+                case 6:
+                {
+                    cout << "\n\n ---Código Generado de Salida---" << endl;
+                    if (colaErrores->vacia())
+                    {
+                        int cantidad;
+                        string Texto = "";
+                        string Texto_t = "";
+                        string carnet;
+                        cantidad = listaUsuarios->getCantidad();
+
+                        listaUsuarios->getList();
+                        string nombreArchivo = "Reportes\\Estudiantes.txt";
+                        ofstream archivo;
+                        archivo.open(nombreArchivo.c_str(), fstream::out);
+                        archivo << "¿Elements?" << endl;
+
+                        for (int i = 0; i <= cantidad; i++)
+                        {
+                            carnet = listaUsuarios->getCarnet(i);
+                            Texto = listaUsuarios->getText(carnet);
+                            archivo << Texto;
+                            Texto_t = listaTareas->getText(carnet);
+                            archivo << Texto_t;
+                        }
+
+                        archivo << "¿$Elements?" << endl;
+
+                        archivo.close();
+                        cout << "Archivo escrito correctamente" << endl;
+                    }
+                    else
+                    {
+                        cout << "Tiene errores en su archivo" << endl;
+                    }
+
+                    break;
+                }
+
+                case 7:
+                    repReports = false;
+                    break;
+
+                default:
+                    break;
+                }
+
+            } while (repReports);
         }
+
         break;
 
         case 5:
+        {
+            int optionErrores;
+            bool repErrores = true;
+
+            do
+            {
+                cin.ignore();
+                cout << "\n\n ---Los errores en la cola son los siguientes: ---" << endl;
+                colaErrores->mostrar();
+
+                cout << "\n\n: Opciones de la cola:" << endl;
+                cout << "1- Desencolar error" << endl;
+                cout << "2- Salir" << endl;
+
+                cout << "Seleccione la opción que desee efectuar: ";
+                cin >> optionErrores;
+
+                switch (optionErrores)
+                {
+                case 1:
+                {
+                    colaErrores->desencolar();
+                    break;
+                }
+
+                case 2:
+                    repErrores = false;
+                    break;
+                default:
+                    cout << "Seleccione una opción correcta" << endl;
+                    break;
+                }
+            } while (repErrores);
+
+            cout << "\n\n ---Los errores en la cola son los siguientes: ---" << endl;
+            colaErrores->mostrar();
+
+            cout << "\n\n: ---" << endl;
+            cout << "1- Desencolar error" << endl;
+
+            cout << "Seleccione la opción que desee efectuar: ";
+            cin >> optionErrores;
+
+            break;
+        }
+
+        case 6:
 
             rep = false;
             break;

@@ -1,0 +1,32 @@
+digraph {
+ rankdir=TB;
+	Nodo0->Nodo1; 
+
+ 	Nodo0[shape=box, style=filled, color=skyblue, label= "-Id: 0
+-Tipo: Estudiante
+-Descripcion: Carnet inválido"] 
+	Nodo1->Nodo2; 
+
+ 	Nodo1[shape=box, style=filled, color=skyblue, label= "-Id: 1
+-Tipo: Estudiante
+-Descripcion: DPI inválido"] 
+	Nodo2->Nodo3; 
+
+ 	Nodo2[shape=box, style=filled, color=skyblue, label= "-Id: 2
+-Tipo: Estudiante
+-Descripcion: Correo inválido"] 
+	Nodo3->Nodo4; 
+
+ 	Nodo3[shape=box, style=filled, color=skyblue, label= "-Id: 3
+-Tipo: Tarea
+-Descripcion: Carnet no registrado previamente"] 
+	Nodo4->Nodo5; 
+
+ 	Nodo4[shape=box, style=filled, color=skyblue, label= "-Id: 4
+-Tipo: Tarea
+-Descripcion: Fecha inválida"] 
+
+ 	Nodo5[shape=box, style=filled, color=skyblue, label= "-Id: 5
+-Tipo: Tarea
+-Descripcion: Carnet no registrado previamente"] 
+}

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "NodoD.h"
 #include "GetIndex.h"
@@ -24,6 +25,9 @@ public:
     bool isNull(int index, string mes, string dia, string hora);
     void deleteTask(int index);
     void getList();
+    void graficar();
+    string recorrer();
+    string getText(string carnet);
 };
 
 bool ListaD::isEmpty()
@@ -228,7 +232,7 @@ bool ListaD::searchIndex(int search_index)
             if (search->getIndex() == search_index)
             {
                 cfinded = -1;
-                cout << search->getCarnet() << " " << search->getMes() << endl;
+                cout << "[Mes: " << search->getMes() << " Día: " << search->getDia() << " Hora: " << search->getHora() << " Carnet: " << search->getCarnet() << " Nombre: " << search->getNombre() << " Descripción: " << search->getDescripcion() << " Materia: " << search->getMateria() << " Fecha: " << search->getFecha() << " Estado: " << search->getEstado() << endl;
                 return true;
             }
             search = search->siguienteNodo();
@@ -340,15 +344,15 @@ void ListaD::deleteTask(int index)
                     search->setEstado("-1");
 
                     cfinded = -1;
-                } else if (confirm == 2)
+                }
+                else if (confirm == 2)
                 {
                     cout << "No se eliminó al usuario" << endl;
-                } else {
+                }
+                else
+                {
                     cout << "Elija una opción correcta" << endl;
                 }
-
-
-                
             }
             search = search->siguienteNodo();
 
@@ -387,4 +391,71 @@ void ListaD::getList()
     {
         cout << "Empty List";
     }
+}
+
+string ListaD::getText(string carnet)
+{
+    string Texto = "";
+    NodoD *aux;
+    aux = first;
+
+    if (first != NULL)
+    {
+        do
+        {
+            if (aux->getCarnet() == carnet)
+            {
+                Texto += "\t¿element type=\"task\"?\n";
+                Texto += "\t\t5¿item Carnet = \"" + aux->getCarnet() + "\" $?\n";
+                Texto += "\t\t¿item Nombre = \"" + aux->getNombre() + "\" $?\n";
+                Texto += "\t\t¿item Descripcion = \"" + aux->getDescripcion() + "\" $?\n";
+                Texto += "\t\t¿item Materia = \"" + aux->getMateria() + "\" $?\n";
+                Texto += "\t\t¿item Fecha = \"" + aux->getFecha() + "\" $?\n";
+                Texto += "\t\t¿item Hora = \"" + aux->getHora() + ":00\" $?\n";
+                Texto += "\t\t¿item Estado = \"" + aux->getEstado() + "\" $?\n";
+                Texto += "\t¿element?\n";
+                return Texto;
+            }
+            aux = aux->siguienteNodo();
+        } while (aux != first);
+    }
+    return Texto;
+}
+
+void ListaD::graficar()
+{
+    string grafica = "";
+    ofstream archivo;
+    archivo.open("Reportes\\ListaDoble.dot");
+    archivo << "digraph {\n rankdir=TB;\n";
+    grafica = recorrer();
+    archivo << grafica;
+    archivo << "}\n";
+    archivo.close();
+
+    system("dot -Tsvg Reportes\\ListaDoble.dot -o Reportes\\ListaDoble.svg -Gcharset=latin1");
+    system("Reportes\\ListaDoble.svg");
+}
+
+string ListaD::recorrer()
+{
+    string grafo = "";
+    NodoD *aux = first;
+    if (first != NULL)
+    {
+        do
+        {
+            if (aux->anteriorNodo() != last)
+            {
+
+                grafo += "\tNodo" + to_string(aux->getIndex()) + "->" + "\tNodo" + to_string(aux->siguienteNodo()->getIndex()) + "[constraint=false]; \n";
+
+                grafo += "\tNodo" + to_string(aux->getIndex()) + "->" + "\tNodo" + to_string(aux->siguienteNodo()->getIndex()) + "[dir=back, constraint=false]; \n";
+            }
+
+            grafo += "\n \tNodo" + to_string(aux->getIndex()) + "[shape=box,style=filled,color=yellow , label = \"-Id: " + to_string(aux->getIndex()) + "\n -Carnet: " + aux->getCarnet() + "\n -Nombre: " + aux->getNombre() + "\n -Descripcion: " + aux->getDescripcion() + "\n -Materia: " + aux->getMateria() + "\n -Fecha: " + aux->getFecha() + "\n -Estado: " + aux->getEstado() + " \"] \n";
+            aux = aux->siguienteNodo();
+        } while (aux != first);
+    }
+    return grafo;
 }

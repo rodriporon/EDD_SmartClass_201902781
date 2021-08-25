@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "NodoDoble.h"
 
@@ -23,6 +24,11 @@ public:
     bool searchCarnet(string search_carnet);
     void deleteUser(string delete_DPI);
     void getList();
+    string getText(string carnet);
+    void graficar();
+    int getCantidad();
+    string recorrer();
+    string getCarnet(int pos);
 };
 
 bool ListaDoble::isEmpty()
@@ -325,4 +331,108 @@ void ListaDoble::getList()
     {
         cout << "Empty List";
     }
+}
+
+int ListaDoble::getCantidad()
+{
+    int cantidad = 0;
+    NodoDoble *aux;
+    aux = first;
+
+    if (first != NULL)
+    {
+        do
+        {
+            cantidad++;
+            aux = aux->siguienteNodo();
+        } while (aux != first);
+    }
+    return cantidad;
+}
+
+string ListaDoble::getCarnet(int pos)
+{
+    NodoDoble *aux;
+    aux = first;
+    int position = 0;
+    if (first != NULL)
+    {
+        do
+        {
+            if (position == pos)
+            {
+                return aux->getCarnet();
+            }
+            aux = aux->siguienteNodo();
+            position++;
+        } while (aux != first);
+        
+    }
+    return "-0";
+}
+
+string ListaDoble::getText(string carnet)
+{
+    string Texto = "";
+    NodoDoble *aux;
+    aux = first;
+
+    if (first != NULL)
+    {
+        do
+        {
+            if (aux->getCarnet() == carnet)
+            {
+                Texto += "\t¿element type=\"user\"?\n";
+                Texto+= "\t\t¿item Carnet = \""+aux->getCarnet() +"\" $?\n";
+                Texto+= "\t\t¿item DPI = \""+aux->getDPI() +"\" $?\n";
+                Texto+= "\t\t¿item Nombre = \""+aux->getNombre() +"\" $?\n";
+                Texto+= "\t\t¿item Carrera = \""+aux->getCarrera() +"\" $?\n";
+                Texto+= "\t\t¿item Password = \""+aux->getPassword() +"\" $?\n";
+                Texto+= "\t\t¿item Creditos = "+ to_string(aux->getCreditos())  +" $?\n";
+                Texto+= "\t\t¿item Edad = "+ to_string(aux->getEdad())  +" $?\n";
+                Texto+="\t¿element?\n";
+                return Texto;
+            }
+            
+            aux = aux->siguienteNodo();
+        } while (aux != first);
+    }
+    return Texto;
+}
+
+void ListaDoble::graficar()
+{
+    string grafica = "";
+    ofstream archivo;
+    archivo.open("Reportes\\ListaDobleCircular.dot");
+    archivo << "digraph {\n rankdir=TB;\n";
+    grafica = recorrer();
+    archivo << grafica;
+    archivo << "}\n";
+    archivo.close();
+
+    system("dot -Tpng Reportes\\ListaDobleCircular.dot -o Reportes\\ListaDobleCircular.png -Gcharset=latin1");
+    system("Reportes\\ListaDobleCircular.png");
+    
+}
+
+string ListaDoble::recorrer()
+{
+    string grafo = "";
+    NodoDoble *aux = first;
+    if (first != NULL)
+    {
+        do
+        {
+                
+            grafo += "\tNodo" + aux->getDPI() + "->" + "\tNodo" + aux->siguienteNodo()->getDPI() + "[constraint=false]; \n";
+
+            grafo += "\tNodo" + aux->getDPI() + "->" + "\tNodo" + aux->siguienteNodo()->getDPI() + "[dir=back, constraint=false]; \n";
+
+            grafo += "\n \tNodo" + aux->getDPI() + "[shape=box,style=filled,color=skyblue , label = \"-Carnet: " + aux->getCarnet() + "\n -DPI: " + aux->getDPI() + "\n -Nombre: " + aux->getNombre() + "\n -Carrera: " + aux->getCarrera() + "\n -Password: " + aux->getPassword() + "\n -Creditos: " + to_string(aux->getCreditos()) + "\n -Edad: " + to_string(aux->getEdad()) + "\n -Edad: " + aux->getCorreo() + " \"] \n";
+            aux = aux->siguienteNodo();
+        } while (aux != first);
+    }
+    return grafo;
 }
