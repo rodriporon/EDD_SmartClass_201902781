@@ -333,7 +333,7 @@ int main()
                         }
                         else
                         {
-                            listaTareas->insert(column_major, "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1");
+                            listaTareas->insert(column_major, "Calificacion", "Calificacion", "Calificacion", "Calificacion", "Calificacion", "Calificacion", "Calificacion", "Calificacion", "Calificacion");
                         }
                     }
                 }

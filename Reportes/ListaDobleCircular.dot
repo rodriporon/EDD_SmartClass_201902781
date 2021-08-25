@@ -1,113 +1,828 @@
 digraph {
  rankdir=TB;
-	Nodo3502451230508->	Nodo7249529279753[constraint=false]; 
-	Nodo3502451230508->	Nodo7249529279753[dir=back, constraint=false]; 
+	Nodo2050740201006->	Nodo5970926381748[constraint=false]; 
+	Nodo2050740201006->	Nodo5970926381748[dir=back, constraint=false]; 
 
- 	Nodo3502451230508[shape=box,style=filled,color=skyblue , label = "-Carnet: 2019027810
- -DPI: 3502451230508
- -Nombre: Emilia Miramontes
- -Carrera: Ingeniería en Ciencias y Sistemas
- -Password: roxodiciqi
- -Creditos: 205
- -Edad: 21
- -Edad: nicols36@hotmail.com "] 
-	Nodo7249529279753->	Nodo9298434863898[constraint=false]; 
-	Nodo7249529279753->	Nodo9298434863898[dir=back, constraint=false]; 
-
- 	Nodo7249529279753[shape=box,style=filled,color=skyblue , label = "-Carnet: 201501786
- -DPI: 7249529279753
- -Nombre: Juan Curiel
- -Carrera: Ingeniería Industrial
- -Password: zanolexima
- -Creditos: 245
- -Edad: 24
- -Edad: jernimo.caballero@yahoo.com "] 
-	Nodo9298434863898->	Nodo4131766125532[constraint=false]; 
-	Nodo9298434863898->	Nodo4131766125532[dir=back, constraint=false]; 
-
- 	Nodo9298434863898[shape=box,style=filled,color=skyblue , label = "-Carnet: 201822186
- -DPI: 9298434863898
- -Nombre: Eloisa Rincón
- -Carrera: Ingeniería Civil
- -Password: toqelijanu
- -Creditos: 95
- -Edad: 19
- -Edad: carolinaelizondo85@yahoo.com "] 
-	Nodo4131766125532->	Nodo854919176635435345348[constraint=false]; 
-	Nodo4131766125532->	Nodo854919176635435345348[dir=back, constraint=false]; 
-
- 	Nodo4131766125532[shape=box,style=filled,color=skyblue , label = "-Carnet: 201901425
- -DPI: 4131766125532
- -Nombre: Bernardo Hinojosa
- -Carrera: Ingeniería Mecánica
- -Password: wosopumano
- -Creditos: 100
+ 	Nodo2050740201006[shape=box,style=filled,color=skyblue , label = "-Carnet: 201183728
+ -DPI: 2050740201006
+ -Nombre: Alvin Huckett
+ -Carrera: Ingenieria Quimica
+ -Password: DGHS2Xi
+ -Creditos: 222
  -Edad: 20
- -Edad: alfonso03@hotmail.com "] 
-	Nodo854919176635435345348->	Nodo9616636196552[constraint=false]; 
-	Nodo854919176635435345348->	Nodo9616636196552[dir=back, constraint=false]; 
+ -Edad: AlvinHuckett_60@outlook.org "] 
+	Nodo5970926381748->	Nodo1111111111111[constraint=false]; 
+	Nodo5970926381748->	Nodo1111111111111[dir=back, constraint=false]; 
 
- 	Nodo854919176635435345348[shape=box,style=filled,color=skyblue , label = "-Carnet: 201503186
- -DPI: 854919176635435345348
- -Nombre: Manuel Manzanares
- -Carrera: Ingeniería Eléctrica
- -Password: rejumudore
- -Creditos: 226
- -Edad: 24
- -Edad: benitoarmas92@gmail.hola "] 
-	Nodo9616636196552->	Nodo4778315315575[constraint=false]; 
-	Nodo9616636196552->	Nodo4778315315575[dir=back, constraint=false]; 
-
- 	Nodo9616636196552[shape=box,style=filled,color=skyblue , label = "-Carnet: 201123146
- -DPI: 9616636196552
- -Nombre: Julia Corona
- -Carrera: Ingeniería Electrónica
- -Password: xojobavuji
- -Creditos: 237
- -Edad: 26
- -Edad: ngela.solorio86@yahoo.com "] 
-	Nodo4778315315575->	Nodo7382344774121[constraint=false]; 
-	Nodo4778315315575->	Nodo7382344774121[dir=back, constraint=false]; 
-
- 	Nodo4778315315575[shape=box,style=filled,color=skyblue , label = "-Carnet: 201704186
- -DPI: 4778315315575
- -Nombre: Berta Carrasco
- -Carrera: Ingeniería Ambiental
- -Password: gayahizatu
- -Creditos: 210
- -Edad: 22
- -Edad: carmen.montenegro@yahoo.com "] 
-	Nodo7382344774121->	Nodo2511893949443[constraint=false]; 
-	Nodo7382344774121->	Nodo2511893949443[dir=back, constraint=false]; 
-
- 	Nodo7382344774121[shape=box,style=filled,color=skyblue , label = "-Carnet: 202000786
- -DPI: 7382344774121
- -Nombre: Lola Delapaz
- -Carrera: Ingeniería Química
- -Password: hujocikimi
- -Creditos: 45
+ 	Nodo5970926381748[shape=box,style=filled,color=skyblue , label = "-Carnet: 201902781
+ -DPI: 5970926381748
+ -Nombre: Nertie Laurenzi
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: 198yxel
+ -Creditos: 139
  -Edad: 19
- -Edad: adriana56@gmail.com "] 
-	Nodo2511893949443->	Nodo3423442386382[constraint=false]; 
-	Nodo2511893949443->	Nodo3423442386382[dir=back, constraint=false]; 
+ -Edad: NertieLaurenzi.75@hotmail.es "] 
+	Nodo1111111111111->	Nodo5531711621404[constraint=false]; 
+	Nodo1111111111111->	Nodo5531711621404[dir=back, constraint=false]; 
 
- 	Nodo2511893949443[shape=box,style=filled,color=skyblue , label = "-Carnet: 201611446
- -DPI: 2511893949443
- -Nombre: Sonia Arteaga
- -Carrera: Ingeniería Mecánica Industrial
- -Password: rezutafila
- -Creditos: 195
+ 	Nodo1111111111111[shape=box,style=filled,color=skyblue , label = "-Carnet: 201210811
+ -DPI: 1111111111111
+ -Nombre: Lamont Barthrup
+ -Carrera: Ingenieria Mecanica
+ -Password: j60uy9
+ -Creditos: 53
+ -Edad: 25
+ -Edad: LamontBarthrup_34@outlook.org "] 
+	Nodo5531711621404->	Nodo8429519350118[constraint=false]; 
+	Nodo5531711621404->	Nodo8429519350118[dir=back, constraint=false]; 
+
+ 	Nodo5531711621404[shape=box,style=filled,color=skyblue , label = "-Carnet: 201315898
+ -DPI: 5531711621404
+ -Nombre: Bernadette Pescud
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: TXz6b
+ -Creditos: 190
+ -Edad: 28
+ -Edad: calificacion@gmail.com "] 
+	Nodo8429519350118->	Nodo9029374304090[constraint=false]; 
+	Nodo8429519350118->	Nodo9029374304090[dir=back, constraint=false]; 
+
+ 	Nodo8429519350118[shape=box,style=filled,color=skyblue , label = "-Carnet: 201115140
+ -DPI: 8429519350118
+ -Nombre: Pebrook Gircke
+ -Carrera: Ingenieria Mecanica
+ -Password: Ysgy3Vt
+ -Creditos: 172
+ -Edad: 19
+ -Edad: PebrookGircke93@undefined.org "] 
+	Nodo9029374304090->	Nodo8010354636352[constraint=false]; 
+	Nodo9029374304090->	Nodo8010354636352[dir=back, constraint=false]; 
+
+ 	Nodo9029374304090[shape=box,style=filled,color=skyblue , label = "-Carnet: 201350393
+ -DPI: 9029374304090
+ -Nombre: Laurie Tumilty
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: UKazTS0
+ -Creditos: 124
+ -Edad: 20
+ -Edad: LaurieTumilty58@undefined.com "] 
+	Nodo8010354636352->	Nodo3594915493584[constraint=false]; 
+	Nodo8010354636352->	Nodo3594915493584[dir=back, constraint=false]; 
+
+ 	Nodo8010354636352[shape=box,style=filled,color=skyblue , label = "-Carnet: 201698163
+ -DPI: 8010354636352
+ -Nombre: Barn Killingbeck
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 38KWHL
+ -Creditos: 130
+ -Edad: 20
+ -Edad: BarnKillingbeck33@gmail.org "] 
+	Nodo3594915493584->	Nodo9692561360208[constraint=false]; 
+	Nodo3594915493584->	Nodo9692561360208[dir=back, constraint=false]; 
+
+ 	Nodo3594915493584[shape=box,style=filled,color=skyblue , label = "-Carnet: 201402462
+ -DPI: 3594915493584
+ -Nombre: Joscelin Fewings
+ -Carrera: Ingenieria Mecanica
+ -Password: tF7ZroZ
+ -Creditos: 202
+ -Edad: 25
+ -Edad: JoscelinFewings_56@outlook.es "] 
+	Nodo9692561360208->	Nodo0714796787404[constraint=false]; 
+	Nodo9692561360208->	Nodo0714796787404[dir=back, constraint=false]; 
+
+ 	Nodo9692561360208[shape=box,style=filled,color=skyblue , label = "-Carnet: 201643353
+ -DPI: 9692561360208
+ -Nombre: Llywellyn Woodnutt
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: ui708GE
+ -Creditos: 44
+ -Edad: 27
+ -Edad: LlywellynWoodnutt_83@gmail.es "] 
+	Nodo0714796787404->	Nodo3310894947855[constraint=false]; 
+	Nodo0714796787404->	Nodo3310894947855[dir=back, constraint=false]; 
+
+ 	Nodo0714796787404[shape=box,style=filled,color=skyblue , label = "-Carnet: 201043689
+ -DPI: 0714796787404
+ -Nombre: Ardene Benediktovich
+ -Carrera: Ingenieria Mecanica
+ -Password: muiPC17
+ -Creditos: 13
  -Edad: 23
- -Edad: esperanza.meza41@hotmail.com "] 
-	Nodo3423442386382->	Nodo3502451230508[constraint=false]; 
-	Nodo3423442386382->	Nodo3502451230508[dir=back, constraint=false]; 
+ -Edad: ArdeneBenediktovich72@outlook.org "] 
+	Nodo3310894947855->	Nodo2689202578134[constraint=false]; 
+	Nodo3310894947855->	Nodo2689202578134[dir=back, constraint=false]; 
 
- 	Nodo3423442386382[shape=box,style=filled,color=skyblue , label = "-Carnet: 201819852
- -DPI: 3423442386382
- -Nombre: Benjamín Asencio
- -Carrera: Ingeniería Mecánica Eléctrica
- -Password: runoqozepo
- -Creditos: 117
+ 	Nodo3310894947855[shape=box,style=filled,color=skyblue , label = "-Carnet: 201489697
+ -DPI: 3310894947855
+ -Nombre: Judye Rossborough
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: k9oGtrw
+ -Creditos: 3
+ -Edad: 26
+ -Edad: JudyeRossborough_49@yahoo.com "] 
+	Nodo2689202578134->	Nodo0154497044345[constraint=false]; 
+	Nodo2689202578134->	Nodo0154497044345[dir=back, constraint=false]; 
+
+ 	Nodo2689202578134[shape=box,style=filled,color=skyblue , label = "-Carnet: 201818908
+ -DPI: 2689202578134
+ -Nombre: Wilbur Alberts
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: SSeRj8d
+ -Creditos: 64
+ -Edad: 18
+ -Edad: WilburAlberts45@hotmail.org "] 
+	Nodo0154497044345->	Nodo3762365704505[constraint=false]; 
+	Nodo0154497044345->	Nodo3762365704505[dir=back, constraint=false]; 
+
+ 	Nodo0154497044345[shape=box,style=filled,color=skyblue , label = "-Carnet: 201816850
+ -DPI: 0154497044345
+ -Nombre: Emili Palleske
+ -Carrera: Ingenieria Mecanica
+ -Password: 17x8L
+ -Creditos: 28
+ -Edad: 21
+ -Edad: EmiliPalleske.89@gmail.com "] 
+	Nodo3762365704505->	Nodo3347258005328[constraint=false]; 
+	Nodo3762365704505->	Nodo3347258005328[dir=back, constraint=false]; 
+
+ 	Nodo3762365704505[shape=box,style=filled,color=skyblue , label = "-Carnet: 201232485
+ -DPI: 3762365704505
+ -Nombre: Vivian Currer
+ -Carrera: Ingenieria Quimica
+ -Password: xe7yeho
+ -Creditos: 218
+ -Edad: 28
+ -Edad: VivianCurrer_25@outlook.org "] 
+	Nodo3347258005328->	Nodo4293824642888[constraint=false]; 
+	Nodo3347258005328->	Nodo4293824642888[dir=back, constraint=false]; 
+
+ 	Nodo3347258005328[shape=box,style=filled,color=skyblue , label = "-Carnet: 201131811
+ -DPI: 3347258005328
+ -Nombre: Eloise Trevarthen
+ -Carrera: Ingenieria Mecanica
+ -Password: B8FP4
+ -Creditos: 201
+ -Edad: 22
+ -Edad: EloiseTrevarthen91@hotmail.es "] 
+	Nodo4293824642888->	Nodo5648266954532[constraint=false]; 
+	Nodo4293824642888->	Nodo5648266954532[dir=back, constraint=false]; 
+
+ 	Nodo4293824642888[shape=box,style=filled,color=skyblue , label = "-Carnet: 201476680
+ -DPI: 4293824642888
+ -Nombre: Kim Westphal
+ -Carrera: Ingenieria Quimica
+ -Password: qtry5
+ -Creditos: 159
+ -Edad: 19
+ -Edad: KimWestphal38@yahoo.com "] 
+	Nodo5648266954532->	Nodo7672150791181[constraint=false]; 
+	Nodo5648266954532->	Nodo7672150791181[dir=back, constraint=false]; 
+
+ 	Nodo5648266954532[shape=box,style=filled,color=skyblue , label = "-Carnet: 201511649
+ -DPI: 5648266954532
+ -Nombre: Aylmar Raubenheimer
+ -Carrera: Ingenieria Mecanica
+ -Password: 76816q
+ -Creditos: 163
+ -Edad: 23
+ -Edad: AylmarRaubenheimer.27@hotmail.es "] 
+	Nodo7672150791181->	Nodo1430797138430[constraint=false]; 
+	Nodo7672150791181->	Nodo1430797138430[dir=back, constraint=false]; 
+
+ 	Nodo7672150791181[shape=box,style=filled,color=skyblue , label = "-Carnet: 201255643
+ -DPI: 7672150791181
+ -Nombre: Alvin Huckett
+ -Carrera: Ingenieria Industrial
+ -Password: g4X4Ak
+ -Creditos: 65
+ -Edad: 29
+ -Edad: AlvinHuckett_63@undefined.org "] 
+	Nodo1430797138430->	Nodo3235002226847[constraint=false]; 
+	Nodo1430797138430->	Nodo3235002226847[dir=back, constraint=false]; 
+
+ 	Nodo1430797138430[shape=box,style=filled,color=skyblue , label = "-Carnet: 201947729
+ -DPI: 1430797138430
+ -Nombre: Camila Dibbert
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: b4wdeP
+ -Creditos: 188
+ -Edad: 21
+ -Edad: CamilaDibbert.81@gmail.com "] 
+	Nodo3235002226847->	Nodo3379162068993[constraint=false]; 
+	Nodo3235002226847->	Nodo3379162068993[dir=back, constraint=false]; 
+
+ 	Nodo3235002226847[shape=box,style=filled,color=skyblue , label = "-Carnet: 201173540
+ -DPI: 3235002226847
+ -Nombre: Alvin Huckett
+ -Carrera: Ingenieria Industrial
+ -Password: ITrpSM0
+ -Creditos: 104
+ -Edad: 22
+ -Edad: AlvinHuckett_65@outlook.org "] 
+	Nodo3379162068993->	Nodo9302712249273[constraint=false]; 
+	Nodo3379162068993->	Nodo9302712249273[dir=back, constraint=false]; 
+
+ 	Nodo3379162068993[shape=box,style=filled,color=skyblue , label = "-Carnet: 201704168
+ -DPI: 3379162068993
+ -Nombre: Tim Goldspink
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: Cmg7g
+ -Creditos: 137
+ -Edad: 19
+ -Edad: TimGoldspink.71@aol.com "] 
+	Nodo9302712249273->	Nodo6364119505269[constraint=false]; 
+	Nodo9302712249273->	Nodo6364119505269[dir=back, constraint=false]; 
+
+ 	Nodo9302712249273[shape=box,style=filled,color=skyblue , label = "-Carnet: 201661519
+ -DPI: 9302712249273
+ -Nombre: Harvey Darbyshire
+ -Carrera: Ingenieria Mecanica
+ -Password: Asv30
+ -Creditos: 55
+ -Edad: 26
+ -Edad: HarveyDarbyshire_63@gmail.com "] 
+	Nodo6364119505269->	Nodo2625352358554[constraint=false]; 
+	Nodo6364119505269->	Nodo2625352358554[dir=back, constraint=false]; 
+
+ 	Nodo6364119505269[shape=box,style=filled,color=skyblue , label = "-Carnet: 201309890
+ -DPI: 6364119505269
+ -Nombre: Grayce Poltone
+ -Carrera: Ingenieria Industrial
+ -Password: bCp3F57
+ -Creditos: 133
+ -Edad: 18
+ -Edad: GraycePoltone_20@hotmail.es "] 
+	Nodo2625352358554->	Nodo8696013129504[constraint=false]; 
+	Nodo2625352358554->	Nodo8696013129504[dir=back, constraint=false]; 
+
+ 	Nodo2625352358554[shape=box,style=filled,color=skyblue , label = "-Carnet: 201740604
+ -DPI: 2625352358554
+ -Nombre: Llywellyn Woodnutt
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: Bk8jU
+ -Creditos: 3
+ -Edad: 19
+ -Edad: LlywellynWoodnutt.46@gmail.org "] 
+	Nodo8696013129504->	Nodo3780452896411[constraint=false]; 
+	Nodo8696013129504->	Nodo3780452896411[dir=back, constraint=false]; 
+
+ 	Nodo8696013129504[shape=box,style=filled,color=skyblue , label = "-Carnet: 201646518
+ -DPI: 8696013129504
+ -Nombre: Aylmar Raubenheimer
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 3j9MHF
+ -Creditos: 192
+ -Edad: 22
+ -Edad: AylmarRaubenheimer31@aol.com "] 
+	Nodo3780452896411->	Nodo6000394094296[constraint=false]; 
+	Nodo3780452896411->	Nodo6000394094296[dir=back, constraint=false]; 
+
+ 	Nodo3780452896411[shape=box,style=filled,color=skyblue , label = "-Carnet: 201766242
+ -DPI: 3780452896411
+ -Nombre: Franky Viney
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: UC1hKp
+ -Creditos: 164
  -Edad: 20
- -Edad: horacio.tejada15@yahoo.com "] 
+ -Edad: FrankyViney72@aol.com "] 
+	Nodo6000394094296->	Nodo5005953751371[constraint=false]; 
+	Nodo6000394094296->	Nodo5005953751371[dir=back, constraint=false]; 
+
+ 	Nodo6000394094296[shape=box,style=filled,color=skyblue , label = "-Carnet: 201537627
+ -DPI: 6000394094296
+ -Nombre: Aylmar Raubenheimer
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 82MID7
+ -Creditos: 3
+ -Edad: 24
+ -Edad: AylmarRaubenheimer82@undefined.com "] 
+	Nodo5005953751371->	Nodo2193345266141[constraint=false]; 
+	Nodo5005953751371->	Nodo2193345266141[dir=back, constraint=false]; 
+
+ 	Nodo5005953751371[shape=box,style=filled,color=skyblue , label = "-Carnet: 201327675
+ -DPI: 5005953751371
+ -Nombre: Lamont Barthrup
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: CAt1n
+ -Creditos: 171
+ -Edad: 20
+ -Edad: LamontBarthrup.75@hotmail.org "] 
+	Nodo2193345266141->	Nodo7040168688236[constraint=false]; 
+	Nodo2193345266141->	Nodo7040168688236[dir=back, constraint=false]; 
+
+ 	Nodo2193345266141[shape=box,style=filled,color=skyblue , label = "-Carnet: 201897987
+ -DPI: 2193345266141
+ -Nombre: Michelle Glanister
+ -Carrera: Ingenieria Quimica
+ -Password: 8cIUD
+ -Creditos: 226
+ -Edad: 25
+ -Edad: MichelleGlanister.13@aol.org "] 
+	Nodo7040168688236->	Nodo6474775706799[constraint=false]; 
+	Nodo7040168688236->	Nodo6474775706799[dir=back, constraint=false]; 
+
+ 	Nodo7040168688236[shape=box,style=filled,color=skyblue , label = "-Carnet: 201500866
+ -DPI: 7040168688236
+ -Nombre: Claybourne Nelmes
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: 4xCS04
+ -Creditos: 121
+ -Edad: 19
+ -Edad: ClaybourneNelmes_2@aol.com "] 
+	Nodo6474775706799->	Nodo2496399691941[constraint=false]; 
+	Nodo6474775706799->	Nodo2496399691941[dir=back, constraint=false]; 
+
+ 	Nodo6474775706799[shape=box,style=filled,color=skyblue , label = "-Carnet: 201359507
+ -DPI: 6474775706799
+ -Nombre: Olly Brunelleschi
+ -Carrera: Ingenieria Quimica
+ -Password: rdjy6j
+ -Creditos: 52
+ -Edad: 22
+ -Edad: OllyBrunelleschi_86@aol.com "] 
+	Nodo2496399691941->	Nodo3239472177167[constraint=false]; 
+	Nodo2496399691941->	Nodo3239472177167[dir=back, constraint=false]; 
+
+ 	Nodo2496399691941[shape=box,style=filled,color=skyblue , label = "-Carnet: 201954202
+ -DPI: 2496399691941
+ -Nombre: Eloise Trevarthen
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: 6RNgz
+ -Creditos: 196
+ -Edad: 29
+ -Edad: EloiseTrevarthen.4@undefined.org "] 
+	Nodo3239472177167->	Nodo9082300809939[constraint=false]; 
+	Nodo3239472177167->	Nodo9082300809939[dir=back, constraint=false]; 
+
+ 	Nodo3239472177167[shape=box,style=filled,color=skyblue , label = "-Carnet: 201412244
+ -DPI: 3239472177167
+ -Nombre: Eba Keitley
+ -Carrera: Ingenieria Industrial
+ -Password: BRdQj
+ -Creditos: 238
+ -Edad: 22
+ -Edad: EbaKeitley73@undefined.com "] 
+	Nodo9082300809939->	Nodo2831630574772[constraint=false]; 
+	Nodo9082300809939->	Nodo2831630574772[dir=back, constraint=false]; 
+
+ 	Nodo9082300809939[shape=box,style=filled,color=skyblue , label = "-Carnet: 201234795
+ -DPI: 9082300809939
+ -Nombre: Wilbur Alberts
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: 0oXnv
+ -Creditos: 80
+ -Edad: 29
+ -Edad: WilburAlberts_86@yahoo.com "] 
+	Nodo2831630574772->	Nodo3168522176927[constraint=false]; 
+	Nodo2831630574772->	Nodo3168522176927[dir=back, constraint=false]; 
+
+ 	Nodo2831630574772[shape=box,style=filled,color=skyblue , label = "-Carnet: 201594265
+ -DPI: 2831630574772
+ -Nombre: Ardene Benediktovich
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: 15Asd
+ -Creditos: 242
+ -Edad: 26
+ -Edad: ArdeneBenediktovich_57@hotmail.org "] 
+	Nodo3168522176927->	Nodo8311431297185[constraint=false]; 
+	Nodo3168522176927->	Nodo8311431297185[dir=back, constraint=false]; 
+
+ 	Nodo3168522176927[shape=box,style=filled,color=skyblue , label = "-Carnet: 201790782
+ -DPI: 3168522176927
+ -Nombre: Claybourne Nelmes
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: d70Vi
+ -Creditos: 0
+ -Edad: 22
+ -Edad: ClaybourneNelmes_82@aol.com "] 
+	Nodo8311431297185->	Nodo4245428187625[constraint=false]; 
+	Nodo8311431297185->	Nodo4245428187625[dir=back, constraint=false]; 
+
+ 	Nodo8311431297185[shape=box,style=filled,color=skyblue , label = "-Carnet: 201374369
+ -DPI: 8311431297185
+ -Nombre: Lionel Messi
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: cVzaR8
+ -Creditos: 93
+ -Edad: 20
+ -Edad: LionelMessi.17@aol.es "] 
+	Nodo4245428187625->	Nodo2702608963916[constraint=false]; 
+	Nodo4245428187625->	Nodo2702608963916[dir=back, constraint=false]; 
+
+ 	Nodo4245428187625[shape=box,style=filled,color=skyblue , label = "-Carnet: 201709702
+ -DPI: 4245428187625
+ -Nombre: Dillon Blandamere
+ -Carrera: Ingenieria Industrial
+ -Password: 3f5qj
+ -Creditos: 84
+ -Edad: 20
+ -Edad: DillonBlandamere_33@undefined.com "] 
+	Nodo2702608963916->	Nodo1332692632257[constraint=false]; 
+	Nodo2702608963916->	Nodo1332692632257[dir=back, constraint=false]; 
+
+ 	Nodo2702608963916[shape=box,style=filled,color=skyblue , label = "-Carnet: 201635991
+ -DPI: 2702608963916
+ -Nombre: Boycie Langlais
+ -Carrera: Ingenieria Industrial
+ -Password: vCGgb2
+ -Creditos: 113
+ -Edad: 29
+ -Edad: BoycieLanglais24@aol.es "] 
+	Nodo1332692632257->	Nodo3164173770900[constraint=false]; 
+	Nodo1332692632257->	Nodo3164173770900[dir=back, constraint=false]; 
+
+ 	Nodo1332692632257[shape=box,style=filled,color=skyblue , label = "-Carnet: 201389879
+ -DPI: 1332692632257
+ -Nombre: Darn Studdal
+ -Carrera: Ingenieria Industrial
+ -Password: r80ja
+ -Creditos: 244
+ -Edad: 23
+ -Edad: DarnStuddal88@gmail.com "] 
+	Nodo3164173770900->	Nodo8783633019549[constraint=false]; 
+	Nodo3164173770900->	Nodo8783633019549[dir=back, constraint=false]; 
+
+ 	Nodo3164173770900[shape=box,style=filled,color=skyblue , label = "-Carnet: 201375524
+ -DPI: 3164173770900
+ -Nombre: Tim Goldspink
+ -Carrera: Ingenieria Quimica
+ -Password: Nu96Sq3
+ -Creditos: 1
+ -Edad: 20
+ -Edad: TimGoldspink_27@yahoo.es "] 
+	Nodo8783633019549->	Nodo6467642780621[constraint=false]; 
+	Nodo8783633019549->	Nodo6467642780621[dir=back, constraint=false]; 
+
+ 	Nodo8783633019549[shape=box,style=filled,color=skyblue , label = "-Carnet: 201428558
+ -DPI: 8783633019549
+ -Nombre: Llywellyn Woodnutt
+ -Carrera: Ingenieria Mecanica
+ -Password: qWlnP7
+ -Creditos: 5
+ -Edad: 24
+ -Edad: LlywellynWoodnutt.12@gmail.es "] 
+	Nodo6467642780621->	Nodo6327689577005[constraint=false]; 
+	Nodo6467642780621->	Nodo6327689577005[dir=back, constraint=false]; 
+
+ 	Nodo6467642780621[shape=box,style=filled,color=skyblue , label = "-Carnet: 201933753
+ -DPI: 6467642780621
+ -Nombre: Bobina Delacroux
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: 8DGPFmN
+ -Creditos: 147
+ -Edad: 25
+ -Edad: BobinaDelacroux_64@gmail.com "] 
+	Nodo6327689577005->	Nodo4820546644233[constraint=false]; 
+	Nodo6327689577005->	Nodo4820546644233[dir=back, constraint=false]; 
+
+ 	Nodo6327689577005[shape=box,style=filled,color=skyblue , label = "-Carnet: 201774497
+ -DPI: 6327689577005
+ -Nombre: Llywellyn Woodnutt
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: RN1Dgbd
+ -Creditos: 90
+ -Edad: 26
+ -Edad: LlywellynWoodnutt_44@aol.org "] 
+	Nodo4820546644233->	Nodo3761268073554[constraint=false]; 
+	Nodo4820546644233->	Nodo3761268073554[dir=back, constraint=false]; 
+
+ 	Nodo4820546644233[shape=box,style=filled,color=skyblue , label = "-Carnet: 201145786
+ -DPI: 4820546644233
+ -Nombre: Harvey Darbyshire
+ -Carrera: Ingenieria Mecanica
+ -Password: uJW2Q
+ -Creditos: 88
+ -Edad: 22
+ -Edad: HarveyDarbyshire.56@outlook.com "] 
+	Nodo3761268073554->	Nodo7207003476187[constraint=false]; 
+	Nodo3761268073554->	Nodo7207003476187[dir=back, constraint=false]; 
+
+ 	Nodo3761268073554[shape=box,style=filled,color=skyblue , label = "-Carnet: 201509061
+ -DPI: 3761268073554
+ -Nombre: Tim Goldspink
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: DPx0LQ0
+ -Creditos: 108
+ -Edad: 23
+ -Edad: TimGoldspink.36@aol.com "] 
+	Nodo7207003476187->	Nodo7437219208336[constraint=false]; 
+	Nodo7207003476187->	Nodo7437219208336[dir=back, constraint=false]; 
+
+ 	Nodo7207003476187[shape=box,style=filled,color=skyblue , label = "-Carnet: 201068965
+ -DPI: 7207003476187
+ -Nombre: Tim Goldspink
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: MF4vc6
+ -Creditos: 112
+ -Edad: 26
+ -Edad: TimGoldspink.1@yahoo.org "] 
+	Nodo7437219208336->	Nodo3995410773680[constraint=false]; 
+	Nodo7437219208336->	Nodo3995410773680[dir=back, constraint=false]; 
+
+ 	Nodo7437219208336[shape=box,style=filled,color=skyblue , label = "-Carnet: 201991578
+ -DPI: 7437219208336
+ -Nombre: Olly Brunelleschi
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: H1xi3
+ -Creditos: 102
+ -Edad: 29
+ -Edad: OllyBrunelleschi.78@yahoo.org "] 
+	Nodo3995410773680->	Nodo5042024988582[constraint=false]; 
+	Nodo3995410773680->	Nodo5042024988582[dir=back, constraint=false]; 
+
+ 	Nodo3995410773680[shape=box,style=filled,color=skyblue , label = "-Carnet: 201803912
+ -DPI: 3995410773680
+ -Nombre: Emili Palleske
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: ODYgI
+ -Creditos: 205
+ -Edad: 26
+ -Edad: EmiliPalleske.68@gmail.com "] 
+	Nodo5042024988582->	Nodo2503385887437[constraint=false]; 
+	Nodo5042024988582->	Nodo2503385887437[dir=back, constraint=false]; 
+
+ 	Nodo5042024988582[shape=box,style=filled,color=skyblue , label = "-Carnet: 201921767
+ -DPI: 5042024988582
+ -Nombre: Consolata Reskelly
+ -Carrera: Ingenieria Mecanica
+ -Password: cBP1bt7
+ -Creditos: 200
+ -Edad: 27
+ -Edad: ConsolataReskelly.30@undefined.com "] 
+	Nodo2503385887437->	Nodo5372214388411[constraint=false]; 
+	Nodo2503385887437->	Nodo5372214388411[dir=back, constraint=false]; 
+
+ 	Nodo2503385887437[shape=box,style=filled,color=skyblue , label = "-Carnet: 201157605
+ -DPI: 2503385887437
+ -Nombre: Alonzo Seagrove
+ -Carrera: Ingenieria Industrial
+ -Password: 92V6h
+ -Creditos: 226
+ -Edad: 22
+ -Edad: AlonzoSeagrove_35@undefined.org "] 
+	Nodo5372214388411->	Nodo6772854332066[constraint=false]; 
+	Nodo5372214388411->	Nodo6772854332066[dir=back, constraint=false]; 
+
+ 	Nodo5372214388411[shape=box,style=filled,color=skyblue , label = "-Carnet: 201761573
+ -DPI: 5372214388411
+ -Nombre: Alonzo Seagrove
+ -Carrera: Ingenieria Quimica
+ -Password: 24ldm
+ -Creditos: 51
+ -Edad: 22
+ -Edad: AlonzoSeagrove_54@hotmail.es "] 
+	Nodo6772854332066->	Nodo0579054127201[constraint=false]; 
+	Nodo6772854332066->	Nodo0579054127201[dir=back, constraint=false]; 
+
+ 	Nodo6772854332066[shape=box,style=filled,color=skyblue , label = "-Carnet: 201825364
+ -DPI: 6772854332066
+ -Nombre: Phillis Syrie
+ -Carrera: Ingenieria Quimica
+ -Password: rU2QYr
+ -Creditos: 111
+ -Edad: 28
+ -Edad: PhillisSyrie_17@hotmail.es "] 
+	Nodo0579054127201->	Nodo6483009710551[constraint=false]; 
+	Nodo0579054127201->	Nodo6483009710551[dir=back, constraint=false]; 
+
+ 	Nodo0579054127201[shape=box,style=filled,color=skyblue , label = "-Carnet: 201022466
+ -DPI: 0579054127201
+ -Nombre: Wash Sedgemore
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 1E8vp8
+ -Creditos: 130
+ -Edad: 29
+ -Edad: WashSedgemore_70@outlook.com "] 
+	Nodo6483009710551->	Nodo7247421869888[constraint=false]; 
+	Nodo6483009710551->	Nodo7247421869888[dir=back, constraint=false]; 
+
+ 	Nodo6483009710551[shape=box,style=filled,color=skyblue , label = "-Carnet: 201006295
+ -DPI: 6483009710551
+ -Nombre: Roderigo Gomme
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: w1E8BW
+ -Creditos: 23
+ -Edad: 24
+ -Edad: RoderigoGomme_92@yahoo.org "] 
+	Nodo7247421869888->	Nodo1563507262381[constraint=false]; 
+	Nodo7247421869888->	Nodo1563507262381[dir=back, constraint=false]; 
+
+ 	Nodo7247421869888[shape=box,style=filled,color=skyblue , label = "-Carnet: 201116100
+ -DPI: 7247421869888
+ -Nombre: Franky Viney
+ -Carrera: Ingenieria Quimica
+ -Password: 5K0p7N
+ -Creditos: 42
+ -Edad: 26
+ -Edad: FrankyViney_42@hotmail.es "] 
+	Nodo1563507262381->	Nodo9030770152211[constraint=false]; 
+	Nodo1563507262381->	Nodo9030770152211[dir=back, constraint=false]; 
+
+ 	Nodo1563507262381[shape=box,style=filled,color=skyblue , label = "-Carnet: 201773473
+ -DPI: 1563507262381
+ -Nombre: Krystal Crellin
+ -Carrera: Ingenieria Mecanica
+ -Password: 3KgBk
+ -Creditos: 88
+ -Edad: 26
+ -Edad: KrystalCrellin.48@outlook.org "] 
+	Nodo9030770152211->	Nodo3126321523297[constraint=false]; 
+	Nodo9030770152211->	Nodo3126321523297[dir=back, constraint=false]; 
+
+ 	Nodo9030770152211[shape=box,style=filled,color=skyblue , label = "-Carnet: 201119966
+ -DPI: 9030770152211
+ -Nombre: Michelle Glanister
+ -Carrera: Ingenieria Industrial
+ -Password: J9Tq39
+ -Creditos: 225
+ -Edad: 23
+ -Edad: MichelleGlanister87@outlook.com "] 
+	Nodo3126321523297->	Nodo9093933675701[constraint=false]; 
+	Nodo3126321523297->	Nodo9093933675701[dir=back, constraint=false]; 
+
+ 	Nodo3126321523297[shape=box,style=filled,color=skyblue , label = "-Carnet: 201669286
+ -DPI: 3126321523297
+ -Nombre: Tim Goldspink
+ -Carrera: Ingenieria Mecanica
+ -Password: QQNPe8
+ -Creditos: 187
+ -Edad: 21
+ -Edad: TimGoldspink_45@gmail.es "] 
+	Nodo9093933675701->	Nodo8208413026556[constraint=false]; 
+	Nodo9093933675701->	Nodo8208413026556[dir=back, constraint=false]; 
+
+ 	Nodo9093933675701[shape=box,style=filled,color=skyblue , label = "-Carnet: 201147451
+ -DPI: 9093933675701
+ -Nombre: Ellerey Sherwyn
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 20H3Hx
+ -Creditos: 80
+ -Edad: 23
+ -Edad: EllereySherwyn.51@gmail.es "] 
+	Nodo8208413026556->	Nodo9443025623424[constraint=false]; 
+	Nodo8208413026556->	Nodo9443025623424[dir=back, constraint=false]; 
+
+ 	Nodo8208413026556[shape=box,style=filled,color=skyblue , label = "-Carnet: 201864201
+ -DPI: 8208413026556
+ -Nombre: Claybourne Nelmes
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: 69548z
+ -Creditos: 25
+ -Edad: 25
+ -Edad: ClaybourneNelmes.78@hotmail.com "] 
+	Nodo9443025623424->	Nodo6435886693765[constraint=false]; 
+	Nodo9443025623424->	Nodo6435886693765[dir=back, constraint=false]; 
+
+ 	Nodo9443025623424[shape=box,style=filled,color=skyblue , label = "-Carnet: 201667272
+ -DPI: 9443025623424
+ -Nombre: Adriaens Timms
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: Pe8Ucp
+ -Creditos: 237
+ -Edad: 21
+ -Edad: AdriaensTimms43@aol.org "] 
+	Nodo6435886693765->	Nodo6773833243077[constraint=false]; 
+	Nodo6435886693765->	Nodo6773833243077[dir=back, constraint=false]; 
+
+ 	Nodo6435886693765[shape=box,style=filled,color=skyblue , label = "-Carnet: 201668149
+ -DPI: 6435886693765
+ -Nombre: Harvey Darbyshire
+ -Carrera: Ingenieria Mecanica
+ -Password: u4jxe57
+ -Creditos: 31
+ -Edad: 27
+ -Edad: HarveyDarbyshire_31@gmail.org "] 
+	Nodo6773833243077->	Nodo4062043125856[constraint=false]; 
+	Nodo6773833243077->	Nodo4062043125856[dir=back, constraint=false]; 
+
+ 	Nodo6773833243077[shape=box,style=filled,color=skyblue , label = "-Carnet: 201764124
+ -DPI: 6773833243077
+ -Nombre: Harvey Darbyshire
+ -Carrera: Ingenieria Industrial
+ -Password: 0DDF8
+ -Creditos: 219
+ -Edad: 21
+ -Edad: HarveyDarbyshire.59@gmail.es "] 
+	Nodo4062043125856->	Nodo8292286385716[constraint=false]; 
+	Nodo4062043125856->	Nodo8292286385716[dir=back, constraint=false]; 
+
+ 	Nodo4062043125856[shape=box,style=filled,color=skyblue , label = "-Carnet: 201516603
+ -DPI: 4062043125856
+ -Nombre: Aylmar Raubenheimer
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: Sv4HFP
+ -Creditos: 168
+ -Edad: 19
+ -Edad: AylmarRaubenheimer.85@aol.com "] 
+	Nodo8292286385716->	Nodo2245119831085[constraint=false]; 
+	Nodo8292286385716->	Nodo2245119831085[dir=back, constraint=false]; 
+
+ 	Nodo8292286385716[shape=box,style=filled,color=skyblue , label = "-Carnet: 201327079
+ -DPI: 8292286385716
+ -Nombre: Franky Viney
+ -Carrera: Ingenieria Industrial
+ -Password: GhhLi
+ -Creditos: 179
+ -Edad: 21
+ -Edad: FrankyViney.59@aol.es "] 
+	Nodo2245119831085->	Nodo8579079230016[constraint=false]; 
+	Nodo2245119831085->	Nodo8579079230016[dir=back, constraint=false]; 
+
+ 	Nodo2245119831085[shape=box,style=filled,color=skyblue , label = "-Carnet: 201906670
+ -DPI: 2245119831085
+ -Nombre: Franky Viney
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: PCAanL
+ -Creditos: 198
+ -Edad: 23
+ -Edad: FrankyViney_49@yahoo.es "] 
+	Nodo8579079230016->	Nodo1962623323417[constraint=false]; 
+	Nodo8579079230016->	Nodo1962623323417[dir=back, constraint=false]; 
+
+ 	Nodo8579079230016[shape=box,style=filled,color=skyblue , label = "-Carnet: 201461415
+ -DPI: 8579079230016
+ -Nombre: Roderigo Gomme
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: 6GEfOg
+ -Creditos: 113
+ -Edad: 20
+ -Edad: RoderigoGomme_55@aol.org "] 
+	Nodo1962623323417->	Nodo4264540703955[constraint=false]; 
+	Nodo1962623323417->	Nodo4264540703955[dir=back, constraint=false]; 
+
+ 	Nodo1962623323417[shape=box,style=filled,color=skyblue , label = "-Carnet: 201009015
+ -DPI: 1962623323417
+ -Nombre: Afton Hounson
+ -Carrera: Ingenieria Mecanica
+ -Password: PQvEC5
+ -Creditos: 12
+ -Edad: 23
+ -Edad: AftonHounson.43@aol.com "] 
+	Nodo4264540703955->	Nodo1169570189320[constraint=false]; 
+	Nodo4264540703955->	Nodo1169570189320[dir=back, constraint=false]; 
+
+ 	Nodo4264540703955[shape=box,style=filled,color=skyblue , label = "-Carnet: 201137248
+ -DPI: 4264540703955
+ -Nombre: Eba Keitley
+ -Carrera: Ingenieria Mecanica
+ -Password: K8ZY0mI
+ -Creditos: 35
+ -Edad: 22
+ -Edad: EbaKeitley83@outlook.org "] 
+	Nodo1169570189320->	Nodo7882408800987[constraint=false]; 
+	Nodo1169570189320->	Nodo7882408800987[dir=back, constraint=false]; 
+
+ 	Nodo1169570189320[shape=box,style=filled,color=skyblue , label = "-Carnet: 201339503
+ -DPI: 1169570189320
+ -Nombre: Drusilla Louca
+ -Carrera: Ingenieria Mecanica Industrial
+ -Password: xW0NS
+ -Creditos: 41
+ -Edad: 29
+ -Edad: DrusillaLouca1@outlook.com "] 
+	Nodo7882408800987->	Nodo1846903502498[constraint=false]; 
+	Nodo7882408800987->	Nodo1846903502498[dir=back, constraint=false]; 
+
+ 	Nodo7882408800987[shape=box,style=filled,color=skyblue , label = "-Carnet: 201110247
+ -DPI: 7882408800987
+ -Nombre: Aylmar Raubenheimer
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: oKlY9O7
+ -Creditos: 171
+ -Edad: 19
+ -Edad: AylmarRaubenheimer_82@yahoo.org "] 
+	Nodo1846903502498->	Nodo7044319749868[constraint=false]; 
+	Nodo1846903502498->	Nodo7044319749868[dir=back, constraint=false]; 
+
+ 	Nodo1846903502498[shape=box,style=filled,color=skyblue , label = "-Carnet: 201125580
+ -DPI: 1846903502498
+ -Nombre: Boycie Langlais
+ -Carrera: Ingenieria en Ciencias y Sistemas
+ -Password: MhBaUtl
+ -Creditos: 190
+ -Edad: 21
+ -Edad: BoycieLanglais.61@hotmail.com "] 
+	Nodo7044319749868->	Nodo02011111[constraint=false]; 
+	Nodo7044319749868->	Nodo02011111[dir=back, constraint=false]; 
+
+ 	Nodo7044319749868[shape=box,style=filled,color=skyblue , label = "-Carnet: 201315288
+ -DPI: 7044319749868
+ -Nombre: Joscelin Fewings
+ -Carrera: Ingenieria Mecanica Electrica
+ -Password: 3htilF
+ -Creditos: 89
+ -Edad: 27
+ -Edad: JoscelinFewings.27@yahoo.es "] 
+	Nodo02011111->	Nodo2050740201006[constraint=false]; 
+	Nodo02011111->	Nodo2050740201006[dir=back, constraint=false]; 
+
+ 	Nodo02011111[shape=box,style=filled,color=skyblue , label = "-Carnet: 
+ -DPI: 02011111
+ -Nombre: Rodrigo
+ -Carrera: Sistemas
+ -Password: 1234567
+ -Creditos: 203
+ -Edad: 20
+ -Edad: calificacions@gmail.com "] 
 }

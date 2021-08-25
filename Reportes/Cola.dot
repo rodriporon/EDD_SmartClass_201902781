@@ -19,14 +19,19 @@ digraph {
 
  	Nodo3[shape=box, style=filled, color=skyblue, label= "-Id: 3
 -Tipo: Tarea
--Descripcion: Carnet no registrado previamente"] 
+-Descripcion: Fecha inválida"] 
 	Nodo4->Nodo5; 
 
  	Nodo4[shape=box, style=filled, color=skyblue, label= "-Id: 4
 -Tipo: Tarea
--Descripcion: Fecha inválida"] 
+-Descripcion: Carnet no registrado previamente"] 
+	Nodo5->Nodo6; 
 
  	Nodo5[shape=box, style=filled, color=skyblue, label= "-Id: 5
+-Tipo: Tarea
+-Descripcion: Carnet no registrado previamente"] 
+
+ 	Nodo6[shape=box, style=filled, color=skyblue, label= "-Id: 6
 -Tipo: Tarea
 -Descripcion: Carnet no registrado previamente"] 
 }
