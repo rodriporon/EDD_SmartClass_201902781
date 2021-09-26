@@ -1,5 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
+from Analizadores.Sintactico import parser
+from Analizadores.Sintactico import user_list, task_list
 
 app = Flask(__name__)
 CORS(app)
@@ -13,6 +15,8 @@ def carga():
     data = request.get_json()
     tipo = data['tipo']
     path = data['path']
+    if (tipo == 'estudiante' or 'recordatorio'):
+
     return (f'Carga Masiva. Tipo: {tipo}, path: {path}')
 
 

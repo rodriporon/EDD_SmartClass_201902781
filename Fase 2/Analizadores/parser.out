@@ -1,0 +1,78 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DATE
+    HOUR
+    ID
+    QUOTATION_MARKS
+    TELEMENT
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> LQUESTION TELEMENTS RQUESTION elementos LQUESTION DOLAR TELEMENTS RQUESTION
+Rule 2     elementos -> elementos elemento
+Rule 3     elementos -> elemento
+Rule 4     tipoElemento -> TTYPE EQUALS NORMSTRING
+Rule 5     items -> items item
+Rule 6     items -> item
+Rule 7     item -> LQUESTION TITEM tipeItem EQUALS valueItem DOLAR RQUESTION
+Rule 8     valueItem -> NORMSTRING
+Rule 9     valueItem -> NUMBER
+Rule 10    tipeItem -> TCARNET
+Rule 11    tipeItem -> TDPI
+Rule 12    tipeItem -> TNOMBRE
+Rule 13    tipeItem -> TCARRERA
+Rule 14    tipeItem -> TPASSWORD
+Rule 15    tipeItem -> TCREDITOS
+Rule 16    tipeItem -> TEDAD
+Rule 17    tipeItem -> TDESCRIPCION
+Rule 18    tipeItem -> TMATERIA
+Rule 19    tipeItem -> TFECHA
+Rule 20    tipeItem -> THORA
+Rule 21    tipeItem -> TESTADO
+Rule 22    tipeItem -> TCORREO
+
+Terminals, with rules where they appear
+
+DATE                 : 
+DOLAR                : 1 7
+EQUALS               : 4 7
+HOUR                 : 
+ID                   : 
+LQUESTION            : 1 1 7
+NORMSTRING           : 4 8
+NUMBER               : 9
+QUOTATION_MARKS      : 
+RQUESTION            : 1 1 7
+TCARNET              : 10
+TCARRERA             : 13
+TCORREO              : 22
+TCREDITOS            : 15
+TDESCRIPCION         : 17
+TDPI                 : 11
+TEDAD                : 16
+TELEMENT             : 
+TELEMENTS            : 1 1
+TESTADO              : 21
+TFECHA               : 19
+THORA                : 20
+TITEM                : 7
+TMATERIA             : 18
+TNOMBRE              : 12
+TPASSWORD            : 14
+TTYPE                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+elemento             : 2 3
+elementos            : 1 2
+item                 : 5 6
+items                : 5
+statement            : 0
+tipeItem             : 7
+tipoElemento         : 
+valueItem            : 7
+

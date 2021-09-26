@@ -18,7 +18,7 @@
 		¿item Estado = "Incumplido" $?
 	¿element?
 	¿element type="user"?
-		¿item Carnet = "201902781" $?
+		¿item Carnet = "2010244" $?
 		¿item DPI = "5970926381748" $?
 		¿item Nombre = "Nertie Laurenzi" $?
 		¿item Carrera = "Ingenieria Mecanica Industrial" $?
@@ -28,7 +28,7 @@
 	¿element?
 	¿element type="user"?
 		¿item Carnet = "201210811" $?
-		¿item DPI = "1111111111111" $?
+		¿item DPI = "879575888" $?
 		¿item Nombre = "Lamont Barthrup" $?
 		¿item Carrera = "Ingenieria Mecanica" $?
 		¿item Password = "j60uy9" $?
@@ -61,6 +61,24 @@
 		¿item Fecha = "2021/08/22" $?
 		¿item Hora = "8:00" $?
 		¿item Estado = "Pendiente" $?
+	¿element?
+	¿element type="user"?
+		¿item Carnet = "201582352" $?
+		¿item DPI = "4172564417242" $?
+		¿item Nombre = "Bobina Delacroux" $?
+		¿item Carrera = "Ingenieria Mecanica Industrial" $?
+		¿item Password = "m6ILxd" $?
+		¿item Creditos = 113 $?
+		¿item Edad = 23 $?
+	¿element?
+	¿element type="task"?
+		5¿item Carnet = "201582352" $?
+		¿item Nombre = "Hoja de trabajo 3 de Fisica 3" $?
+		¿item Descripcion = "Terminar la Hoja de trabajo 3 de Fisica 3" $?
+		¿item Materia = "Fisica 3" $?
+		¿item Fecha = "2021/07/03" $?
+		¿item Hora = "9:00" $?
+		¿item Estado = "Incumplido" $?
 	¿element?
 	¿element type="user"?
 		¿item Carnet = "201115140" $?
@@ -1294,14 +1312,5 @@
 		¿item Password = "3htilF" $?
 		¿item Creditos = 89 $?
 		¿item Edad = 27 $?
-	¿element?
-	¿element type="user"?
-		¿item Carnet = "" $?
-		¿item DPI = "02011111" $?
-		¿item Nombre = "Rodrigo" $?
-		¿item Carrera = "Sistemas" $?
-		¿item Password = "1234567" $?
-		¿item Creditos = 203 $?
-		¿item Edad = 20 $?
 	¿element?
 ¿$Elements?
