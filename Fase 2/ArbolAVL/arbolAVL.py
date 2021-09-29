@@ -1,167 +1,126 @@
 from ArbolAVL.nodoAVL import NodoAVL
 from graphviz import Digraph
 
+
 class ArbolAVL:
     def __init__(self):
+
         self.raiz = None
 
-    #metodos del arbol
-    def insertar(self,carnet,DPI,nombre,carrera,correo,password,creditos,edad):
-        nuevo = NodoAVL(carnet,DPI,nombre,carrera,correo,password,creditos,edad)
-        if self.raiz == None:
-            self.raiz = nuevo
-            return nuevo
+    def insertar(self, carnet, DPI, nombre, carrera, correo, password, creditos, edad):
+        nuevo_nodo = NodoAVL(carnet, DPI, nombre, carrera,
+                        correo, password, creditos, edad)
+        if self.raiz is None:
+            self.raiz = nuevo_nodo
+            return nuevo_nodo
         else:
-            self.raiz = self.nodo_insertar(nuevo,self.raiz)
-            return nuevo
+            self.raiz = self._insertar(nuevo_nodo, self.raiz)
+            return nuevo_nodo
 
-    def nodo_insertar(self,nuevo,raiz_actual):
-        if raiz_actual:
-            if raiz_actual.carnet > nuevo.carnet:
-                raiz_actual.izquierda = self.nodo_insertar(nuevo,raiz_actual.izquierda)
-                #validar si necesita rotacion
-                if (self.altura(raiz_actual.derecha)-self.altura(raiz_actual.izquierda)== -2):
-                    if nuevo.carnet < raiz_actual.izquierda.carnet:
-                        raiz_actual = self.R_izquierda(raiz_actual)
+    def _insertar(self, new_nodo, cu_raiz):
+        if cu_raiz is not None:
+            if cu_raiz.carnet > new_nodo.carnet:
+                cu_raiz.izquierda = self._insertar(
+                    new_nodo, cu_raiz.izquierda)
+                if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == -2):
+                    if (new_nodo.carnet < cu_raiz.izquierda.carnet):
+                        cu_raiz = self.RI(cu_raiz)
                     else:
-                        raiz_actual = self.R_izquierda_derecha(raiz_actual)
+                        cu_raiz = self.RID(cu_raiz)
 
-            elif raiz_actual.carnet < nuevo.carnet:
-                raiz_actual.derecha = self.nodo_insertar(nuevo,raiz_actual.derecha)
-                #validar si necesita rotacion
-                if (self.altura(raiz_actual.derecha)-self.altura(raiz_actual.izquierda)== 2):
-                    if nuevo.carnet > raiz_actual.derecha.carnet:
-                        raiz_actual = self.R_derecha(raiz_actual)
+            elif cu_raiz.carnet < new_nodo.carnet:
+                cu_raiz.derecha = self._insertar(
+                    new_nodo, cu_raiz.derecha)
+                if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == 2):
+                    if new_nodo.carnet > cu_raiz.derecha.carnet:
+                        cu_raiz = self.RD(cu_raiz)
                     else:
-                        raiz_actual = self.R_derecha_izquierda(raiz_actual)
+                        cu_raiz = self.RDI(cu_raiz)
 
-            #calcular nueva altura
-            raiz_actual.altura = self.max(self.altura(raiz_actual.derecha),self.altura(raiz_actual.izquierda)) + 1
-            return raiz_actual
+            cu_raiz.altura = self.datoMayor(self.verAltura(
+                cu_raiz.derecha), self.verAltura(cu_raiz.izquierda)) + 1
+            return cu_raiz
         else:
-            raiz_actual = nuevo
-            return raiz_actual
+            cu_raiz = new_nodo
+            return cu_raiz
 
-    #Concatenar la lista años a los estudiantes
-    def insert_años(self,raiz_actual, carnet, año):
-        if raiz_actual:
-            if str(raiz_actual.carnet) == str(carnet):
-                raiz_actual.años.insertar(año)
+    def datoMayor(self, a, b):
+        if a > b:
+            return a
+        return b
 
-    def inorden(self,raiz_actual):
-        if raiz_actual:
-            self.inorden(raiz_actual.izquierda)
-            print(raiz_actual.carnet)
-            print(raiz_actual.DPI)
-            print(raiz_actual.nombre)
-            print(raiz_actual.correo)
-            print(raiz_actual.password)
-            print(raiz_actual.creditos)
-            print(raiz_actual.edad)
-            print("... List años")
-            print(raiz_actual.años.MostrarAños())
+    def inOrden(self, cu_raiz):
+        if cu_raiz is not None:
+            self.inOrden(cu_raiz.izquierda)
+            print(cu_raiz.carnet)
+            print(cu_raiz.DPI)
+            print(cu_raiz.nombre)
+            print(cu_raiz.correo)
+            print(cu_raiz.password)
+            print(cu_raiz.creditos)
+            print(cu_raiz.edad)
+            print("... Lista años")
+            print(cu_raiz.años.showAños())
             print(".....................................")
-            
-            self.inorden(raiz_actual.derecha)
 
-    #metodos para alturas
-    def max(self, v1, v2):
-        if v1> v2:
-            return v1
-        else:
-            return v2
+            self.inOrden(cu_raiz.derecha)
 
-    def altura(self, nodo):
+    def verAltura(self, nodo):
         if nodo:
             return nodo.altura
         else:
             return -1
 
-
-    #ROTACIONES
-    #SIMPLE izquierda 
-    def R_izquierda(self, nodo):
+    def RI(self, nodo): #Rotación por la izquierda
         aux = nodo.izquierda
         nodo.izquierda = aux.derecha
         aux.derecha = nodo
-        nodo.altura = self.max(self.altura(nodo.derecha), self.altura(nodo.izquierda)) +1
-        aux.altura = self.max(nodo.altura, self.altura(nodo.izquierda)) +1
+        nodo.altura = self.datoMayor(self.verAltura(nodo.derecha),
+                               self.verAltura(nodo.izquierda)) + 1
+        aux.altura = self.datoMayor(nodo.altura, self.verAltura(nodo.izquierda)) + 1
         return aux
 
-    #SIMPLE derecha
-    def R_derecha(self, nodo):
+    def RD(self, nodo): #Rotación por la derecha
         aux = nodo.derecha
         nodo.derecha = aux.izquierda
         aux.izquierda = nodo
-        nodo.altura = self.max(self.altura(nodo.derecha), self.altura(nodo.izquierda)) +1
-        aux.altura = self.max(nodo.altura, self.altura(nodo.derecha)) +1
+        nodo.altura = self.datoMayor(self.verAltura(nodo.derecha),
+                               self.verAltura(nodo.izquierda)) + 1
+        aux.altura = self.datoMayor(nodo.altura, self.verAltura(nodo.derecha)) + 1
         return aux
 
-    #izquierda-derecha
-    def R_izquierda_derecha(self, nodo):
-        nodo.izquierda = self.R_derecha(nodo.izquierda)
-        aux = self.R_izquierda(nodo)
+    def RID(self, nodo): #Rotación izquierda-derecha
+        nodo.izquierda = self.RD(nodo.izquierda)
+        aux = self.RI(nodo)
         return aux
 
-    #derecha-izquierda
-    def R_derecha_izquierda(self, nodo):
-        nodo.derecha = self.R_izquierda(nodo.derecha)
-        aux = self.R_derecha(nodo)
+    def RDI(self, nodo): #Rotación derecha-izquierda
+        nodo.derecha = self.RI(nodo.derecha)
+        aux = self.RD(nodo)
         return aux
+
 
     def graficar(self):
-        cadena = "digraph arbol {\n"
-        if(self.raiz != None):
-            cadena += self.listar(self.raiz)
-            cadena += "\n"
-            cadena += self.enlazar(self.raiz)
-        cadena += "}"
-        Archivo = open("ejemplo.dot","w+")
-        Archivo.write(cadena)
-        Archivo.close()
-
-    def listar(self, raiz_actual):
-        if raiz_actual:
-            cadena = "n"+str(raiz_actual.cadena)+"[label= \""+str(raiz_actual.carnet)+"\"];\n"
-            cadena += self.listar(raiz_actual.izquierda)
-            cadena += self.listar(raiz_actual.derecha)
-            return cadena
-        else:
-            return ""
-    
-    def enlazar(self,raiz_actual):
-        cadena =""
-        if raiz_actual:
-            if raiz_actual.izquierda:
-                cadena+= "n"+str(raiz_actual.carnet)+" -> n"+str(raiz_actual.izquierda.carnet)+"\n"
-            if raiz_actual.derecha:
-                cadena+= "n"+str(raiz_actual.carnet)+" -> n"+str(raiz_actual.derecha.carnet)+"\n"
-
-            cadena += self.enlazar(raiz_actual.izquierda)
-            cadena += self.enlazar(raiz_actual.derecha)
-        
-        return cadena
-    
-    def graph(self):
-        s = Digraph('structs', filename='tree.gv', node_attr={'shape': 'record'})
-        current = self.raiz
-        stack = []  # initialize stack
-        done = 0
-        s.attr(rankdir='TB')
+        d = Digraph('arbolavl', filename='ArbolAVL.gv',
+                    node_attr={'shape': 'box'})
+        cu_nodo = self.raiz
+        pila = []
+        d.attr(rankdir='TB')
         while True:
-            if current is not None:
-                stack.append(current)
-                current = current.izquierda
-            elif stack:
-                current = stack.pop()
-                user = ""
-                user += str(current.carnet) + "\n" + str(current.DPI) + "\n" + current.nombre
-                s.node(str(current.carnet), label=user)
-                if current.izquierda is not None:
-                    s.edge(str(current.carnet), str(current.izquierda.carnet))
-                if current.derecha is not None:
-                    s.edge(str(current.carnet), str(current.derecha.carnet))
-                current = current.derecha
+            if cu_nodo is not None:
+                pila.append(cu_nodo)
+                cu_nodo = cu_nodo.izquierda
+            elif pila:
+                cu_nodo = pila.pop()
+                estudiante = ""
+                estudiante += str(cu_nodo.carnet) + "\n" + \
+                    str(cu_nodo.nombre) + "\n" + cu_nodo.carrera
+                d.node(str(cu_nodo.carnet), label=estudiante)
+                if cu_nodo.izquierda is not None:
+                    d.edge(str(cu_nodo.carnet), str(cu_nodo.izquierda.carnet))
+                if cu_nodo.derecha is not None:
+                    d.edge(str(cu_nodo.carnet), str(cu_nodo.derecha.carnet))
+                cu_nodo = cu_nodo.derecha
             else:
                 break
-        s.view()
+        d.view()

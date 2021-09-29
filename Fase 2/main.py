@@ -40,14 +40,12 @@ if __name__ == '__main__':
     f.close()
     # parser.parse('¿ Elements ? ¿Element type = "task"?  ¿item Carnet = "201901425" $? ¿$Element? ¿ $Elements ?')
     parser.parse(mensaje)
-
-    user_list.getList()
-    print("------------------------")
-    task_list.getList()
-    print("------------------------")
-    arbolAVL.inorden(arbolAVL.raiz)
-    print("------------------------")
-
     
-
-
+    #user_list.getList()
+    #print("------------------------")
+    #task_list.getList()
+    #print("------------------------")
+    arbolAVL.inOrden(arbolAVL.raiz)
+    arbolAVL.graficar()
+    print("------------------------")
+    

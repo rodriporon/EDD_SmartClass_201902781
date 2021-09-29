@@ -40,17 +40,42 @@ def p_elementos_group(t):
 
 def p_elemento(t):
     'elemento : LQUESTION TELEMENT  tipoElemento RQUESTION items LQUESTION DOLAR TELEMENT RQUESTION'
-
+    global Matriz,Matriz2
+    global Carnet
     if t[3] == "user":
         user_list.insertValue(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Password,
                               element_node.Creditos, element_node.Edad, element_node.Correo, element_node.Descripcion, element_node.Materia,
                               element_node.Fecha, element_node.Hora, element_node.Estado)
-        arbolAVL.insertar(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Correo, element_node.Password, element_node.Creditos, element_node.Edad)
-        arbolAVL.insert_años(arbolAVL.raiz, element_node.Carnet, años())
-    else:
-        task_list.insertValue(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Password,
+        Matriz = arbolAVL.insertar(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Correo, element_node.Password, element_node.Creditos, element_node.Edad)
+        #Año
+        año = element_node.Carnet[0:4]
+        a = int(año)
+        for i in range(a,2022):
+            Matriz2 = Matriz.años.insertar(i)
+            
+        Carnet = element_node.Carnet
+    if t[3] =="task":
+            CarnetT = element_node.Carnet
+            Fecha = element_node.Fecha[3:5]
+            #Auxiliares para fecha
+            aux1 = element_node.Fecha[6:10]
+            aux2= Carnet[0:4]
+            #Convercion a enteros
+            añoTarea = int(aux1)
+            añoEstud = int(aux2)
+            #Calcular el mes
+            if (Carnet == CarnetT):
+                for i in range(añoEstud,2022):
+                    #Calcular la posicion
+                    if i == añoTarea:
+                        Matriz2.meses.insertar(Fecha)
+                        
+            
+            #Aqui deviria de ingresar las tareas a la dispersa y enlazarla con los meses
+            task_list.insertValue(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Password,
                               element_node.Creditos, element_node.Edad, element_node.Correo, element_node.Descripcion, element_node.Materia,
                               element_node.Fecha, element_node.Hora, element_node.Estado)
+            
     element_node.clean_values()
 
 def p_tipoElemento(t):
