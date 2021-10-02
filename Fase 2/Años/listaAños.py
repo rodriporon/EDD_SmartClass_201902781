@@ -5,7 +5,6 @@ class ListaAños:
     def __init__(self):
         self.nodo_inicial = None
 
-
     def insertar(self, valor):
         if self.nodo_inicial is None:
             nuevo_nodo = NodoAños(valor)
@@ -20,7 +19,6 @@ class ListaAños:
             nuevo_nodo.anterior = aux
             return nuevo_nodo
     
-    
     def showAños(self):
         if self.nodo_inicial is None:
             print("      "+'Empty list')
@@ -28,8 +26,25 @@ class ListaAños:
             aux = self.nodo_inicial
             while aux is not None:
                 print("      "+str(aux.valor), " ")
-                print(aux.meses.MostrarAños())
+                print(aux.meses.mostrarMeses())
                 aux = aux.siguiente
+
+    def buscar(self, año, mes):
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                if str(aux.valor) == str(año):
+                    aux.meses.buscar(mes)
+                aux = aux.siguiente
+
+    def insertar_matriz_años(self, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux):
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                if str(aux.valor) == str(año):
+                    aux.meses.insertar_matriz_meses(carnet, nombre, descripcion, materia, fecha, hora, estado, mes, dia, hora_aux)
+                aux = aux.siguiente
+
 
     def graficar(self):
         d = Digraph('listaAños', filename='ListaAños.gv',

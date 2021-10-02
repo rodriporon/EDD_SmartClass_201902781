@@ -36,6 +36,9 @@ def reporte():
         año = data['año']
         mes = data['mes']
 
+        arbolAVL.buscar(arbolAVL.raiz, carnet, año, mes)
+        #print('entró a tipo 1')
+
     elif tipo == 2:
         carnet = data['carnet']
         año = data['año']

@@ -3,12 +3,15 @@ from Analizadores.Lexico import tokens
 from Estructuras.Lista import Lista
 from Estructuras.Nodo import Nodo
 from ArbolAVL.arbolAVL import ArbolAVL
+from Tareas.matrizTareas import Matriz
 
 # Lists for save the information about users and tasks
 user_list = Lista()
 task_list = Lista()
 #Incersión de Estudiantes
 arbolAVL = ArbolAVL()
+#Matriz de Tareas
+matriz_tareas = Matriz()
 
 # This node allows to store information about one user or task
 element_node = Nodo()
@@ -54,13 +57,22 @@ def p_elemento(t):
             Matriz2 = Matriz.años.insertar(i)
             
         Carnet = element_node.Carnet
-    if t[3] =="task":
+    if t[3] == "task":
+
+            #variable hora matriz dispersa
+            hora = element_node.Hora
+            #variable dia matriz dispersa
+            dia = element_node.Fecha[0:2]
+
             CarnetT = element_node.Carnet
             Fecha = element_node.Fecha[3:5]
+            
             #Auxiliares para fecha
             aux1 = element_node.Fecha[6:10]
             aux2= Carnet[0:4]
-            #Convercion a enteros
+            fecha_mes = element_node.Fecha[3:5]
+
+            #Conversión a enteros
             añoTarea = int(aux1)
             añoEstud = int(aux2)
             #Calcular el mes
@@ -68,15 +80,52 @@ def p_elemento(t):
                 for i in range(añoEstud,2022):
                     #Calcular la posicion
                     if i == añoTarea:
-                        Matriz2.meses.insertar(Fecha)
+                        nodo_mes = Matriz2.meses.insertar(Fecha)
+                        #print(f'el nodo mes es: {nodo_mes}')
+                        #incersión matriz dispersa:
+                        """ for x in range(12):
+                            if x <= 9:
+                                comparar_mes = '0'+str(x)
+                            else:
+                                comparar_mes = str(x)
+                            #print(comparar_mes)
+                            if str(comparar_mes) == str(fecha_mes):
+                                print(f'dia: {dia}, hora: {hora}, en el mes: {nodo_mes.valor} y en el año: {i}') """
+                        
                         
             
-            #Aqui deviria de ingresar las tareas a la dispersa y enlazarla con los meses
-            task_list.insertValue(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Password,
+            #Aqui debería de ingresar las tareas a la dispersa y enlazarla con los meses
+            """ task_list.insertValue(element_node.Carnet, element_node.DPI, element_node.Nombre, element_node.Carrera, element_node.Password,
                               element_node.Creditos, element_node.Edad, element_node.Correo, element_node.Descripcion, element_node.Materia,
-                              element_node.Fecha, element_node.Hora, element_node.Estado)
+                              element_node.Fecha, element_node.Hora, element_node.Estado) """
+
+    if t[3] == "task":
+        #variable hora matriz dispersa
+        aux = element_node.Hora.split(':')
+        hora = aux[0]
+        #variable dia matriz dispersa
+        dia = element_node.Fecha[0:2]
+
+        CarnetT = element_node.Carnet
+        Fecha = element_node.Fecha[3:5]
+        
+        #Auxiliares para fecha
+        aux1 = element_node.Fecha[6:10]
+        aux2= Carnet[0:4]
+        fecha_mes = element_node.Fecha[3:5]
+
+        #Conversión a enteros
+        añoTarea = int(aux1)
+        añoEstud = int(aux2)
+
+        arbolAVL.insertar_matriz(arbolAVL.raiz, element_node.Carnet, element_node.Nombre, element_node.Descripcion, element_node.Materia,
+                            element_node.Fecha, element_node.Hora, element_node.Estado, añoTarea, Fecha, dia, hora)
+
+
             
     element_node.clean_values()
+
+
 
 def p_tipoElemento(t):
     """tipoElemento : TTYPE EQUALS NORMSTRING

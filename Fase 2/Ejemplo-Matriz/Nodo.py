@@ -1,11 +1,8 @@
-from Tareas.Tarea.Lista_T import Tarea
-
 class NodoMatriz:
-    def __init__(self, dia = None, hora = None, Cantidad = None, arriba=None,abajo=None,izquierda=None,derecha=None):
-        self.dia = dia
-        self.hora = hora
-        self.Cantidad = Cantidad
-        self.Tarea = Tarea()#Dato
+    def __init__(self, x = None, y = None, dato = None,arriba=None,abajo=None,izquierda=None,derecha=None):
+        self.x=x
+        self.y=y
+        self.dato=dato
         self.arriba=arriba
         self.abajo=abajo
         self.izquierda= izquierda

@@ -65,6 +65,24 @@ class ArbolAVL:
 
             self.inOrden(cu_raiz.derecha)
 
+    def buscar(self, cu_raiz, carnet, año, mes):
+        if cu_raiz is not None:
+            self.buscar(cu_raiz.izquierda, carnet, año, mes)
+            if str(cu_raiz.carnet) == str(carnet):
+                #print(cu_raiz.carnet)
+                cu_raiz.años.buscar(año, mes) #buscar año
+                return cu_raiz
+            self.buscar(cu_raiz.derecha, carnet, año, mes)
+
+    def insertar_matriz(self, cu_raiz, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux):
+        if cu_raiz is not None:
+            self.insertar_matriz(cu_raiz.izquierda, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)
+            if str(cu_raiz.carnet) == str(carnet):
+                cu_raiz.años.insertar_matriz_años(carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)                
+                return cu_raiz
+            self.insertar_matriz(cu_raiz.derecha, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)
+
+
     def verAltura(self, nodo):
         if nodo:
             return nodo.altura

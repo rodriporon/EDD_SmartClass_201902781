@@ -1,9 +1,9 @@
-from Tareas.Nodo_D import NodoMatriz
-from Tareas.Nodo_D import NodoCabecera
-from Tareas.Nodo_D import NodoRaiz
+from Nodo import NodoMatriz
+from Nodo import NodoCabecera
+from Nodo import NodoRaiz
 
 
-class Matriz:
+class Matriz_ortogonal:
     def __init__(self):
         self.NodoRaiz=None
         
@@ -24,7 +24,6 @@ class Matriz:
                 current = current.derecha
             nodo.derecha = current.derecha
             current.derecha = nodo
-            
     def insertar_nodo_col(self,nodo):
         temporalcol = self.NodoRaiz.NodoColumnas 
         while(temporalcol.indice!=nodo.x): 
@@ -42,7 +41,6 @@ class Matriz:
                 current = current.abajo
             nodo.abajo = current.abajo
             current.abajo = nodo    
-            
     def insertar_cabercera(self,nodo,indice,tipo):
         temporalfila=nodo
         if temporalfila.indice > indice: 
@@ -58,8 +56,8 @@ class Matriz:
                 nuevaCabecera.siguiente = current.siguiente
                 current.siguiente = nuevaCabecera
                 
-    def insertar(self,x,y,Cant):
-        nodoN = NodoMatriz(x=x,y=y,Cantidad=Cant)
+    def insertar(self,x,y,informacion):
+        nodoN = NodoMatriz(x=x,y=y,dato=informacion)
         if  self.NodoRaiz is None:
             self.NodoRaiz= NodoRaiz()
             self.NodoRaiz.NodoColumnas=NodoCabecera(tipo="Columna",indice=x) 
@@ -75,7 +73,6 @@ class Matriz:
             self.insertar_cabercera(Nodotemporal.NodoColumnas,x,"Columna")
             self.insertar_nodo_fila(nodo=nodoN)
             self.insertar_nodo_col(nodo=nodoN)
-            
     def buscar(self,x,y):
         nodo = self.NodoRaiz.NodoFilas
         while(nodo is not None):
@@ -86,3 +83,7 @@ class Matriz:
                 nodo_temp=nodo_temp.derecha
             nodo=nodo.siguiente
         return False
+
+
+
+
