@@ -834,7 +834,7 @@
 		¿item Nombre = "Practica 2 de Sistemas de Bases de Datos 2" $?
 		¿item Descripcion = "Entregar la Practica 2 de Sistemas de Bases de Datos 2" $?
 		¿item Materia = "Sistemas de Bases de Datos 2" $?
-		¿item Fecha = "16/09/2021" $?
+		¿item Fecha = "02/08/2021" $?
 		¿item Hora = "15:00" $?
 		¿item Estado = "Realizado" $?
 	¿$element?
@@ -889,8 +889,8 @@
 		¿item Nombre = "Examen de Sistemas de Bases de Datos 1" $?
 		¿item Descripcion = "Realizar el Examen de Sistemas de Bases de Datos 1" $?
 		¿item Materia = "Sistemas de Bases de Datos 1" $?
-		¿item Fecha = "22/07/2021" $?
-		¿item Hora = "14:00" $?
+		¿item Fecha = "17/07/2021" $?
+		¿item Hora = "16:00" $?
 		¿item Estado = "Pendiente" $?
 	¿$element?
 	¿element type="task"?
@@ -1183,8 +1183,8 @@
 		¿item Nombre = "Corto de Sistemas de Bases de Datos 1" $?
 		¿item Descripcion = "Entregar el Corto de Sistemas de Bases de Datos 1" $?
 		¿item Materia = "Sistemas de Bases de Datos 1" $?
-		¿item Fecha = "01/08/2021" $?
-		¿item Hora = "8:00" $?
+		¿item Fecha = "18/07/2021" $?
+		¿item Hora = "12:00" $?
 		¿item Estado = "Incumplido" $?
 	¿$element?
 	¿element type="task"?

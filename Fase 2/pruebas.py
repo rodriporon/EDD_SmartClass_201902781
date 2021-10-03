@@ -1,122 +1,75 @@
-class Node:
-    def __init__(self, value):
-        self.value  = value
-        self.left   = None
-        self.right  = None
-        self.height = 0
+import os
 
-class AVLTree:
+class NodoTareas:
+    def __init__(self, carnet, nombre, descripcion, materia, fecha, hora, estado):
+        self.carnet = carnet
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.materia = materia
+        self.fecha = fecha
+        self.hora = hora
+        self.estado = estado
+        self.siguiente = None
+
+    
+
+class ListaTareas:
+
     def __init__(self):
-        self.root = None
+        self.cabeza = None
+        self.cola = None
 
-    #add
-        
-    def add(self, value):
-        self.root = self._add(value, self.root)
-    
-    def _add(self, value, tmp):
-        if tmp is None:
-            return Node(value)        
-        elif value>tmp.value:
-            tmp.right=self._add(value, tmp.right)
-            if (self.height(tmp.right)-self.height(tmp.left))==2:
-                if value>tmp.right.value:
-                    tmp = self.srr(tmp)
-                else:
-                    tmp = self.drr(tmp)
+    def insertar(self, carnet, nombre, descripcion, materia, fecha, hora, estado):
+        if self.cabeza is None:
+            nuevo_nodo = NodoTareas(carnet, nombre, descripcion, materia, fecha, hora, estado)
+            self.cabeza = nuevo_nodo
+            return nuevo_nodo
         else:
-            tmp.left=self._add(value, tmp.left)
-            if (self.height(tmp.left)-self.height(tmp.right))==2:
-                if value<tmp.left.value:
-                    tmp = self.srl(tmp)
-                else:
-                    tmp = self.drl(tmp)
-        r = self.height(tmp.right)
-        l = self.height(tmp.left)
-        m = self.maxi(r, l)
-        tmp.height = m+1
-        return tmp
+            aux = self.cabeza
+            while aux.siguiente is not None:
+                aux = aux.siguiente
+            nuevo_nodo = NodoTareas(carnet, nombre, descripcion, materia, fecha, hora, estado)
+            aux.siguiente = nuevo_nodo
+            self.cola = nuevo_nodo
+            return nuevo_nodo
 
-    def height(self, tmp):
-        if tmp is None:
-            return -1
+    def recorrer(self):
+        if self.cabeza is None:
+            print("      "+'Empty list')
         else:
-            return tmp.height
-        
-    def maxi(self, r, l):
-        return (l,r)[r>l]   
+            aux = self.cabeza
+            while aux is not None:
+                print("                          "+str(aux.nombre), " ")
+                aux = aux.siguiente
 
-    #rotations
+    def graficarListaTareas(self):
+        archivo = open("C:\\Users\\rodri\\Desktop\\Reportes_F2\\Grafica_Lista_Tareas.dot", "w")
+        archivo.write("Digraph G {\nrankdir=LR;\n")
+        aux = self.cabeza
+        contador = 0
 
-    def srl(self, t1):
-        t2 = t1.left
-        t1.left = t2.right
-        t2.right = t1
-        t1.height = self.maxi(self.heigh(t1.left), self.height(t1.right))+1
-        t2.height = self.maxi(self.heigh(t2.left), t1.height)+1
-        return t2
+        while aux.siguiente is not None:
+            aux_carnet = aux.carnet.replace("\"", "")
+            aux_nombre = aux.nombre.replace("\"", "")
 
-    def srr(self, t1):
-        t2 = t1.right
-        t1.right = t2.left
-        t2.left = t1
-        t1.height = self.maxi(self.height(t1.left), self.height(t1.right))+1
-        t2.height = self.maxi(self.height(t2.left), t1.height)+1
-        return t2
-    
-    def drl(self, tmp):
-        tmp.left = self.srr(tmp.left)
-        return self.srl(tmp)
-    
-    def drr(self, tmp):
-        tmp.right = self.srl(tmp.right)
-        return self.srr(tmp)
+            archivo.write("\"Node" + str(contador) + "\" -> \"Node" + str(contador + 1) + "\" [constrain=false]; \n")
+            archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\"]\n")
 
-    #traversals
+            contador += 1
+            aux = aux.siguiente
+        aux_carnet = aux.carnet.replace("\"", "")
+        aux_nombre = aux.nombre.replace("\"", "")
 
-    def preorder(self):
-        self._preorder(self.root)
+        #archivo.write("\"Node" + str(contador) + "\" -> \"Node" + str(0) + "\" [constrain=false]; \n")
+        archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\"]\n")
+        archivo.write("}")
+        archivo.close()
+        os.system("dot -Tpng C:\\Users\\rodri\\Desktop\\Reportes_F2\\Grafica_Lista_Tareas.dot -o C:\\Users\\rodri\\Desktop\\Reportes_F2\\Grafica_Lista_Tareas.png")
 
-    def _preorder(self, tmp):
-        if tmp:
-            print(tmp.value,end = ' ')
-            self._preorder(tmp.left)            
-            self._preorder(tmp.right)
+l = ListaTareas()
+l.insertar('201902781', 'Rodrigo', 'Hacer tarea', 'Orga', '34234', '4234', 'Incumplida')
+""" l.insertar('234234', 'Rodrigoo', 'Hacer tarea', 'Orga', '34234', '4234', 'Incumplida')
+l.insertar('234234244', 'Rodrigooo', 'Hacer tarea', 'Orga', '34234', '4234', 'Incumplida')
+l.insertar('2019234234202781', 'Rodrigooo', 'Hacer tarea', 'Orga', '34234', '4234', 'Incumplida') """
 
-    def inorder(self):
-        self._inorder(self.root)
-
-    def _inorder(self, tmp):
-        if tmp:
-            self._inorder(tmp.left)
-            print(tmp.value,end = ' ')
-            self._inorder(tmp.right)
-
-    def postorder(self):
-        self._postorder(self.root)
-
-    def _postorder(self, tmp):
-        if tmp:
-            self._postorder(tmp.left)            
-            self._postorder(tmp.right)
-            print(tmp.value,end = ' ')
-           
-
-#init
-t = AVLTree()
-
-#add
-t.add(5)
-t.add(10)
-t.add(20)
-t.add(25)
-t.add(30)
-t.add(35)
-t.add(50)
-
-#print traversals
-t.preorder()
-print()
-t.inorder()
-print()
-t.postorder()
+l.graficarListaTareas()

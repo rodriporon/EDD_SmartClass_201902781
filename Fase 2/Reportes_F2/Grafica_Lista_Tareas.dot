@@ -1,0 +1,8 @@
+Digraph G {
+rankdir=TB;
+"Node0" -> "Node0" [constrain=false]; 
+"Node0" -> "Node0" [dir=back, constrain=false]; 
+
+ 	 "Node0"[shape=box, style=filled, color=skyblue, label=" Carnet: 201825364
+Nombre: Tarea 2 de IPC1"]
+}

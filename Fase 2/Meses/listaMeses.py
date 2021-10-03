@@ -43,18 +43,29 @@ class ListaMeses:
                 aux = aux.siguiente
 
     def buscar(self, mes):
-        print('entró al buscar de listaMeses')
+        #print('entró al buscar de listaMeses')
         if self.nodo_inicial is not None:
             aux = self.nodo_inicial
             while aux is not None:
                 if str(aux.valor) == str(mes):
-                    print('entró al if de comparar')
+                    #print('entró al if de comparar')
                     #aux.matriz_dispersa.recorrer(aux.matriz_dispersa)
-                    aux.matriz_dispersa.graficar(aux.matriz_dispersa)
+                    aux.matriz_dispersa.mostrar()
+                aux = aux.siguiente
+
+    def graficarListaTareas(self, mes, dia, hora):
+        #print('entró al graficar de listaMeses')
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                if str(aux.valor) == str(mes):
+                    #print('entró al if de comparar')
+                    #aux.matriz_dispersa.recorrer(aux.matriz_dispersa)
+                    aux.matriz_dispersa.graficarListaTareas(dia, hora)
                 aux = aux.siguiente
 
     def insertar_matriz_meses(self, carnet, nombre, descripcion, materia, fecha, hora, estado, mes, dia, hora_aux):
-        print('entró al buscar de listaMeses')
+        #print('entró al buscar de listaMeses')
         if self.nodo_inicial is not None:
             aux = self.nodo_inicial
             while aux is not None:
@@ -62,4 +73,5 @@ class ListaMeses:
                     #aux.matriz_dispersa.recorrer(aux.matriz_dispersa)
                     nodo_matriz_dispersa = aux.matriz_dispersa.insertar(dia, hora_aux, 1)
                     nodo_matriz_dispersa.tareas.insertar(carnet, nombre, descripcion, materia, fecha, hora, estado)
+                    
                 aux = aux.siguiente

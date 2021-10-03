@@ -17,7 +17,7 @@ class Matriz:
             temporalfila.derecha = nodo
         else:
             current = temporalfila.derecha
-            while(current.derecha is not None and current.derecha.dia < nodo.x):
+            while(current.derecha is not None and current.derecha.dia < nodo.dia):
                 current = current.derecha
             nodo.derecha = current.derecha
             current.derecha = nodo
@@ -67,15 +67,14 @@ class Matriz:
             self.NodoRaiz.NodoFilas.derecha = nodoN
             return nodoN
         else:
-            print('entró a else')
+            #print('entró a else')
             Nodotemporal = self.NodoRaiz
-            if self.existe(dia, hora) is False:
-                self.insertar_cabercera(Nodotemporal.NodoFilas, hora, "Fila")
-                Nodotemporal = self.NodoRaiz
-                self.insertar_cabercera(Nodotemporal.NodoColumnas, dia, "Columna")
-                self.insertar_nodo_fila(nodo=nodoN)
-                self.insertar_nodo_col(nodo=nodoN)
-                return nodoN
+            self.existe(dia, hora)
+            self.insertar_cabercera(Nodotemporal.NodoFilas, hora, "Fila")
+            Nodotemporal = self.NodoRaiz
+            self.insertar_cabercera(Nodotemporal.NodoColumnas, dia, "Columna")
+            self.insertar_nodo_fila(nodo=nodoN)
+            self.insertar_nodo_col(nodo=nodoN)
             return nodoN
 
     def buscar(self, dia, hora):
@@ -90,18 +89,19 @@ class Matriz:
         return False
 
     def existe(self, dia, hora):
-        print('entró a existe')
+        #print('entró a existe')
         nodo = self.NodoRaiz.NodoFilas
         while(nodo is not None):
             nodo_temp = nodo.derecha
             while(nodo_temp is not None):
-                if nodo_temp.dia == dia and nodo_temp.hora == hora:
+                if str(nodo_temp.dia) == str(dia) and str(nodo_temp.hora) == str(hora):
                     nodo_temp.cantidad_tareas += 1
-                    print('entró a true')
+                    
+                    #print('entró a true')
                     return True
                 nodo_temp = nodo_temp.derecha
             nodo = nodo.siguiente
-        print('entró a false')
+        #print('entró a false')
         return False
 
     def mostrar(self):
@@ -111,6 +111,19 @@ class Matriz:
             while(nodo_temp is not None):
                 print("                 x:  "+str(nodo_temp.dia)+ ", y:  "+str(nodo_temp.hora) +", "  + str(nodo_temp.cantidad_tareas))
                 nodo_temp.tareas.recorrer()
+                nodo_temp=nodo_temp.derecha
+            nodo=nodo.siguiente
+
+    def graficarListaTareas(self, dia, hora):
+        #print("entró a la matriz de tareas")
+        nodo = self.NodoRaiz.NodoFilas
+        while(nodo is not None):
+            nodo_temp = nodo.derecha
+            while(nodo_temp is not None):
+                if str(nodo_temp.dia) == str(dia) and str(nodo_temp.hora) == str(hora):
+                    print("                 dia:  "+str(nodo_temp.dia)+ ", hora:  "+str(nodo_temp.hora) +", cantidad tareas"  + str(nodo_temp.cantidad_tareas))
+                    nodo_temp.tareas.graficarListaTareas()
+                    nodo_temp.tareas.recorrer()
                 nodo_temp=nodo_temp.derecha
             nodo=nodo.siguiente
 

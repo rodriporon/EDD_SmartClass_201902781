@@ -37,6 +37,15 @@ class ListaAños:
                     aux.meses.buscar(mes)
                 aux = aux.siguiente
 
+    def graficarListaTareas(self, año, mes, dia, hora):
+        #print('entró a graficar de Años')
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                if str(aux.valor) == str(año):
+                    aux.meses.graficarListaTareas(mes, dia, hora)
+                aux = aux.siguiente
+
     def insertar_matriz_años(self, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux):
         if self.nodo_inicial is not None:
             aux = self.nodo_inicial

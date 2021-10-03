@@ -59,9 +59,9 @@ class ArbolAVL:
             print(cu_raiz.password)
             print(cu_raiz.creditos)
             print(cu_raiz.edad)
-            print("... Lista años")
+            print("---------- Listas Años --------------")
             print(cu_raiz.años.showAños())
-            print(".....................................")
+            print("-------------------------------------")
 
             self.inOrden(cu_raiz.derecha)
 
@@ -74,6 +74,16 @@ class ArbolAVL:
                 return cu_raiz
             self.buscar(cu_raiz.derecha, carnet, año, mes)
 
+    def graficarListaTareas(self, cu_raiz, carnet, año, mes, dia, hora):
+        #print('entró a graficar de arbolAVL')
+        if cu_raiz is not None:
+            self.graficarListaTareas(cu_raiz.izquierda, carnet, año, mes, dia, hora)
+            if str(cu_raiz.carnet) == str(carnet):
+                #print(cu_raiz.carnet)
+                cu_raiz.años.graficarListaTareas(año, mes, dia, hora) #buscar año
+                return cu_raiz
+            self.graficarListaTareas(cu_raiz.derecha, carnet, año, mes, dia, hora)
+
     def insertar_matriz(self, cu_raiz, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux):
         if cu_raiz is not None:
             self.insertar_matriz(cu_raiz.izquierda, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)
@@ -81,6 +91,32 @@ class ArbolAVL:
                 cu_raiz.años.insertar_matriz_años(carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)                
                 return cu_raiz
             self.insertar_matriz(cu_raiz.derecha, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)
+
+    def modificarEstudiante(self, cu_raiz, carnet, DPI, nombre, carrera, correo, password, creditos, edad):
+        if cu_raiz is not None:
+            self.modificarEstudiante(cu_raiz.izquierda, carnet, DPI, nombre, carrera, correo, password, creditos, edad)
+            if str(cu_raiz.carnet) == str(carnet):
+                cu_raiz.carnet = carnet
+                cu_raiz.DPI = DPI
+                cu_raiz.nombre = nombre
+                cu_raiz.carrera = carrera
+                cu_raiz.password = password
+                cu_raiz.creditos = creditos
+                cu_raiz.edad = edad
+            self.modificarEstudiante(cu_raiz.derecha, carnet, DPI, nombre, carrera, correo, password, creditos, edad)
+
+    def obtenerEstudiante(self, cu_raiz, carnet):
+        if cu_raiz is not None:
+            self.obtenerEstudiante(cu_raiz.izquierda, carnet)
+            if str(cu_raiz.carnet) == str(carnet):
+                print('------------------------------------')
+                print(f'Los datos del carnet: {cu_raiz.carnet} son:')
+                print(f'DPI: {cu_raiz.DPI}, nombre: {cu_raiz.nombre}, carrera: {cu_raiz.carrera}')
+                print(f'correo: {cu_raiz.correo}, password: {cu_raiz.password}, creditos: {cu_raiz.creditos}, edad: {cu_raiz.edad}')
+                print('------------------------------------')
+            self.obtenerEstudiante(cu_raiz.derecha, carnet)
+        
+
 
 
     def verAltura(self, nodo):
@@ -119,7 +155,7 @@ class ArbolAVL:
 
 
     def graficar(self):
-        d = Digraph('arbolavl', filename='ArbolAVL.gv',
+        d = Digraph('arbolavl', filename='C:\\Users\\rodri\\Desktop\\Reportes_F2\\ArbolAVL.gv',
                     node_attr={'shape': 'box'})
         cu_nodo = self.raiz
         pila = []

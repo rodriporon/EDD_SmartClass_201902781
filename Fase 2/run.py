@@ -19,7 +19,7 @@ def carga():
         mensaje = f.read()
         f.close()
         parser.parse(mensaje)
-        arbolAVL.inOrden(arbolAVL.raiz)
+        #arbolAVL.inOrden(arbolAVL.raiz)
     return (f'Carga Masiva. Tipo: {tipo}, path: {path}')
 
 
@@ -45,9 +45,55 @@ def reporte():
         mes = data['mes']
         dia = data['dia']
         hora = data['hora']
+        arbolAVL.graficarListaTareas(arbolAVL.raiz, carnet, año, mes, dia, hora)
 
-    
+        
     return (f'Reporte de tipo: {tipo}')
+
+@app.route('/estudiante', methods=['POST'])
+def crearEstudiante():
+    data = request.get_json()
+    carnet = data['carnet']
+    DPI = data['DPI']
+    nombre = data['nombre']
+    carrera = data['carrera']
+    correo = data['correo']
+    password = data['password']
+    creditos = data['creditos']
+    edad = data['edad']
+
+    arbolAVL.insertar(carnet, DPI, nombre, carrera, correo, password, creditos, edad)
+
+    return (f'Se creó el estudiante: {nombre}')
+
+@app.route('/estudiante', methods=['PUT'])
+def modificarEstudiante():
+    data = request.get_json()
+    carnet = data['carnet']
+    DPI = data['DPI']
+    nombre = data['nombre']
+    carrera = data['carrera']
+    correo = data['correo']
+    password = data['password']
+    creditos = data['creditos']
+    edad = data['edad']
+
+    arbolAVL.modificarEstudiante(arbolAVL.raiz, carnet, DPI, nombre, carrera, correo, password, creditos, edad)
+
+    return (f'Se modificó al estudiante: {nombre}')
+
+@app.route('/estudiante', methods=['GET'])
+def obtenerEstudiante():
+    data = request.get_json()
+    carnet = data['carnet']
+
+    arbolAVL.obtenerEstudiante(arbolAVL.raiz, carnet)
+
+    return ('Se envió la solicitud')
+
+
+
+
 
 
 
