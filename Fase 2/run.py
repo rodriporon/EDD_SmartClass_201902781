@@ -31,11 +31,12 @@ def reporte():
     if tipo == 0:
         arbolAVL.graficar()
 
+    #Tipo 1, grafica matriz dispersa
     elif tipo == 1:
         carnet = data['carnet']
         año = data['año']
         mes = data['mes']
-
+    #Método del AVL que se conecta con las demás estructuras hasta encontrar la matriz a graficar
         arbolAVL.buscar(arbolAVL.raiz, carnet, año, mes)
         #print('entró a tipo 1')
 

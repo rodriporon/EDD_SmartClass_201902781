@@ -42,14 +42,15 @@ class ListaMeses:
                 aux.matriz_dispersa.mostrar()
                 aux = aux.siguiente
 
+    #método que busca la matriz a graficar
     def buscar(self, mes):
         #print('entró al buscar de listaMeses')
         if self.nodo_inicial is not None:
             aux = self.nodo_inicial
             while aux is not None:
                 if str(aux.valor) == str(mes):
-                    #print('entró al if de comparar')
-                    #aux.matriz_dispersa.recorrer(aux.matriz_dispersa)
+                    #METODO QUE GRAFICA LA MATRIZ DISPERSA
+                    aux.matriz_dispersa.graficar(aux.matriz_dispersa)
                     aux.matriz_dispersa.mostrar()
                 aux = aux.siguiente
 

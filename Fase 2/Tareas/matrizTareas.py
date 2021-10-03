@@ -129,43 +129,6 @@ class Matriz:
                 nodo_temp=nodo_temp.derecha
             nodo=nodo.siguiente
 
+    #Método para graficar la matriz dispersa
     def graficar(self, nueva_matriz):
-        grafo = "digraph"
-        grafo+=str("{\nnode[shape=record];\n")
-        grafo+=str("graph[pencolor=transparent];\n")
-        grafo+=str("node [style=filled];\n")
-        nodo = nueva_matriz.NodoRaiz.NodoFilas
-
-        for y in range(1, 11):
-            nodo_temp = nodo.derecha
-            for x in range(1, 11):
-                if(nueva_matriz.buscar(x,y)):
-                    grafo+=str("p"+str(x)+str(y)+"[label=\"{<data>"+str(x)+","+str(y)+"|<next>}\" pos=\""+str(x)+","+str(10-y)+"!\"];\n")
-                    if(nodo_temp.derecha!=None): 
-                        nodo_2=nodo_temp
-                        nodo_temp=nodo_temp.derecha
-                        grafo+=str("p"+str(nodo_2.dia)+str(nodo_2.hora)+"->"+"p"+str(nodo_temp.dia)+str(nodo_temp.hora)+"[dir=both];\n")
-                else:
-                    pass
-                if nodo.siguiente!=None:
-                    if nodo.siguiente.indice==y+1:
-                        nodo=nodo.siguiente    
-        nodo = nueva_matriz.NodoRaiz.NodoColumnas
-        for x in range(1, 11):
-            nodo_temp = nodo.abajo
-            for y in range(1, 11):
-                if(nueva_matriz.buscar(x,y)):
-                    if(nodo_temp.abajo!=None):
-                        nodo_2=nodo_temp
-                        nodo_temp=nodo_temp.abajo
-                        grafo+=str("p"+str(nodo_2.dia)+str(nodo_2.hora)+"->"+"p"+str(nodo_temp.dia)+str(nodo_temp.hora)+"[dir=both];\n")
-                else:
-                    pass
-                if nodo.siguiente!=None:
-                    if nodo.siguiente.indice==x+1:
-                        nodo=nodo.siguiente         
-        grafo+=str("}\n")
-        f= open("ejemplo.dot","w+")
-        f.write(grafo)
-        f.close() 
-        print("********* Se realizo Grafica *********  ")
+        pass

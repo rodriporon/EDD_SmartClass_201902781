@@ -29,6 +29,7 @@ class ListaAños:
                 print(aux.meses.mostrarMeses())
                 aux = aux.siguiente
 
+    #metodo que busca la matriz a graficar
     def buscar(self, año, mes):
         if self.nodo_inicial is not None:
             aux = self.nodo_inicial

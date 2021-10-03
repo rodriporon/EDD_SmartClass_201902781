@@ -64,7 +64,8 @@ class ArbolAVL:
             print("-------------------------------------")
 
             self.inOrden(cu_raiz.derecha)
-
+    
+    #metodo que buscar la matriz dispersa a graficar
     def buscar(self, cu_raiz, carnet, año, mes):
         if cu_raiz is not None:
             self.buscar(cu_raiz.izquierda, carnet, año, mes)
