@@ -5,6 +5,7 @@ class Matriz:
     def __init__(self):
         self.NodoRaiz = None
 
+    #Se insertan nodos de tipo fila
     def insertar_nodo_fila(self, nodo):
         temporalfila = self.NodoRaiz.NodoFilas
         while(temporalfila.indice != nodo.hora):
@@ -22,6 +23,7 @@ class Matriz:
             nodo.derecha = current.derecha
             current.derecha = nodo
 
+    #Se insertan nodos tipo columna
     def insertar_nodo_col(self, nodo):
         temporalcol = self.NodoRaiz.NodoColumnas
         while(temporalcol.indice != nodo.dia):
@@ -54,13 +56,13 @@ class Matriz:
                 nuevaCabecera.siguiente = current.siguiente
                 current.siguiente = nuevaCabecera
 
-    def insertar(self, dia, hora, cantidad_tareas):
+    def insertar(self, dia, hora_aux, cantidad_tareas, carnet, nombre, descripcion, materia, fecha, hora, estado):
         #print('entró a insertar')
-        nodoN = NodoMatriz(dia=dia, hora=hora, cantidad_tareas=cantidad_tareas)
+        nodoN = NodoMatriz(dia=dia, hora=hora_aux, cantidad_tareas=cantidad_tareas)
         if self.NodoRaiz is None:
             self.NodoRaiz = NodoRaiz()
             self.NodoRaiz.NodoColumnas = NodoCabecera(tipo="Columna", indice=dia)
-            self.NodoRaiz.NodoFilas = NodoCabecera(tipo="Fila", indice=hora)
+            self.NodoRaiz.NodoFilas = NodoCabecera(tipo="Fila", indice=hora_aux)
             self.NodoRaiz.NodoColumnas.siguiente = None
             self.NodoRaiz.NodoFilas.siguiente = None
             self.NodoRaiz.NodoColumnas.abajo = nodoN
@@ -69,12 +71,12 @@ class Matriz:
         else:
             #print('entró a else')
             Nodotemporal = self.NodoRaiz
-            self.existe(dia, hora)
-            self.insertar_cabercera(Nodotemporal.NodoFilas, hora, "Fila")
-            Nodotemporal = self.NodoRaiz
-            self.insertar_cabercera(Nodotemporal.NodoColumnas, dia, "Columna")
-            self.insertar_nodo_fila(nodo=nodoN)
-            self.insertar_nodo_col(nodo=nodoN)
+            if self.existe(dia, hora_aux, carnet, nombre, descripcion, materia, fecha, hora, estado) is False:
+                self.insertar_cabercera(Nodotemporal.NodoFilas, hora_aux, "Fila")
+                Nodotemporal = self.NodoRaiz
+                self.insertar_cabercera(Nodotemporal.NodoColumnas, dia, "Columna")
+                self.insertar_nodo_fila(nodo=nodoN)
+                self.insertar_nodo_col(nodo=nodoN)
             return nodoN
 
     def buscar(self, dia, hora):
@@ -88,15 +90,15 @@ class Matriz:
             nodo = nodo.siguiente
         return False
 
-    def existe(self, dia, hora):
+    def existe(self, dia, hora_aux, carnet, nombre, descripcion, materia, fecha, hora, estado):
         #print('entró a existe')
         nodo = self.NodoRaiz.NodoFilas
         while(nodo is not None):
             nodo_temp = nodo.derecha
             while(nodo_temp is not None):
-                if str(nodo_temp.dia) == str(dia) and str(nodo_temp.hora) == str(hora):
+                if str(nodo_temp.dia) == str(dia) and str(nodo_temp.hora) == str(hora_aux):
                     nodo_temp.cantidad_tareas += 1
-                    
+                    nodo_temp.tareas.insertar(carnet, nombre, descripcion, materia, fecha, hora, estado)
                     #print('entró a true')
                     return True
                 nodo_temp = nodo_temp.derecha
@@ -121,7 +123,7 @@ class Matriz:
             nodo_temp = nodo.derecha
             while(nodo_temp is not None):
                 if str(nodo_temp.dia) == str(dia) and str(nodo_temp.hora) == str(hora):
-                    print("                 dia:  "+str(nodo_temp.dia)+ ", hora:  "+str(nodo_temp.hora) +", cantidad tareas"  + str(nodo_temp.cantidad_tareas))
+                    print("                 dia:  "+str(nodo_temp.dia)+ ", hora:  "+str(nodo_temp.hora) +", cantidad tareas: "  + str(nodo_temp.cantidad_tareas))
                     nodo_temp.tareas.graficarListaTareas()
                     nodo_temp.tareas.recorrer()
                 nodo_temp=nodo_temp.derecha

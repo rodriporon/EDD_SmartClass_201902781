@@ -71,7 +71,7 @@ class ListaMeses:
             while aux is not None:
                 if str(aux.valor) == str(mes):
                     #aux.matriz_dispersa.recorrer(aux.matriz_dispersa)
-                    nodo_matriz_dispersa = aux.matriz_dispersa.insertar(dia, hora_aux, 1)
+                    nodo_matriz_dispersa = aux.matriz_dispersa.insertar(dia, hora_aux, 1, carnet, nombre, descripcion, materia, fecha, hora, estado)
                     nodo_matriz_dispersa.tareas.insertar(carnet, nombre, descripcion, materia, fecha, hora, estado)
                     
                 aux = aux.siguiente
