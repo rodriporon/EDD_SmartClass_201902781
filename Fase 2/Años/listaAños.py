@@ -38,6 +38,22 @@ class ListaAños:
                     aux.meses.buscar(mes)
                 aux = aux.siguiente
 
+    def obtenerRecordatorio(self, fecha, hora):
+        año = fecha[6:10]
+        mes = fecha[3:5]
+
+        #print(f'{año}, {mes}')
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                #print(aux.valor)
+                if str(aux.valor) == str(año):
+                    #print('entró if listaAños')
+                    aux.meses.obtenerRecordatorio(mes, hora)
+                aux = aux.siguiente
+
+    
+
     def graficarListaTareas(self, año, mes, dia, hora):
         #print('entró a graficar de Años')
         if self.nodo_inicial is not None:

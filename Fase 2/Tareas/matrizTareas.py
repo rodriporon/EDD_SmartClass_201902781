@@ -8,6 +8,7 @@ class Matriz:
     #Se insertan nodos de tipo fila
     def insertar_nodo_fila(self, nodo):
         temporalfila = self.NodoRaiz.NodoFilas
+        #Se recorren toda la fila
         while(temporalfila.indice != nodo.hora):
             temporalfila = temporalfila.siguiente
         if temporalfila.derecha is None:
@@ -60,6 +61,7 @@ class Matriz:
         #print('entró a insertar')
         nodoN = NodoMatriz(dia=dia, hora=hora_aux, cantidad_tareas=cantidad_tareas)
         if self.NodoRaiz is None:
+            #Si la raiz está vacía se crea un nodo nuevo
             self.NodoRaiz = NodoRaiz()
             self.NodoRaiz.NodoColumnas = NodoCabecera(tipo="Columna", indice=dia)
             self.NodoRaiz.NodoFilas = NodoCabecera(tipo="Fila", indice=hora_aux)
@@ -79,6 +81,7 @@ class Matriz:
                 self.insertar_nodo_col(nodo=nodoN)
             return nodoN
 
+    #Función para buscar un nodo en específico
     def buscar(self, dia, hora):
         nodo = self.NodoRaiz.NodoFilas
         while(nodo is not None):
@@ -111,8 +114,27 @@ class Matriz:
         while(nodo is not None):
             nodo_temp = nodo.derecha
             while(nodo_temp is not None):
-                print("                 x:  "+str(nodo_temp.dia)+ ", y:  "+str(nodo_temp.hora) +", "  + str(nodo_temp.cantidad_tareas))
+                print('--------------------------------------------------------')
+                print(f'                día: {nodo_temp.dia}, hora: {nodo_temp.hora}, cantidad de tareas: {nodo_temp.cantidad_tareas}')
                 nodo_temp.tareas.recorrer()
+                print('--------------------------------------------------------')
+                nodo_temp=nodo_temp.derecha
+            nodo=nodo.siguiente
+
+    def obtenerRecordatorio(self, hora):
+        aux = hora.split(':')
+        hora_aux = aux[0]
+
+        nodo = self.NodoRaiz.NodoFilas
+        while(nodo is not None):
+            nodo_temp = nodo.derecha
+            while(nodo_temp is not None):
+                #print(f'hora_m: {nodo_temp.hora}, hora: {hora}')
+                if str(nodo_temp.hora) == str(hora_aux):
+                    print('----------------Información de Tarea--------------------------')
+                    print(f'                día: {nodo_temp.dia}, hora: {nodo_temp.hora}, cantidad de tareas: {nodo_temp.cantidad_tareas}')
+                    nodo_temp.tareas.recorrer()
+                    print('--------------------------------------------------------')
                 nodo_temp=nodo_temp.derecha
             nodo=nodo.siguiente
 

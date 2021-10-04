@@ -54,6 +54,17 @@ class ListaMeses:
                     aux.matriz_dispersa.mostrar()
                 aux = aux.siguiente
 
+    def obtenerRecordatorio(self, mes, hora):
+        #print(f'mes: {mes}, hora: {hora}')
+        if self.nodo_inicial is not None:
+            aux = self.nodo_inicial
+            while aux is not None:
+                #print(aux.valor)
+                if str(aux.valor) == str(mes):
+                    #print('entró if listaMeses')
+                    aux.matriz_dispersa.obtenerRecordatorio(hora)
+                aux = aux.siguiente
+
     def graficarListaTareas(self, mes, dia, hora):
         #print('entró al graficar de listaMeses')
         if self.nodo_inicial is not None:

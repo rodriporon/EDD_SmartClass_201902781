@@ -55,12 +55,19 @@ class ArbolAVL:
             #Función recursiva para mostrar todos los nodos izquierdos
             self.inOrden(cu_raiz.izquierda)
             print('-------------------------------------')
+            #Carnet
             print(cu_raiz.carnet)
+            #DPI
             print(cu_raiz.DPI)
+            #Nombre
             print(cu_raiz.nombre)
+            #Correo
             print(cu_raiz.correo)
+            #Password
             print(cu_raiz.password)
+            #Creditos
             print(cu_raiz.creditos)
+            #Edad
             print(cu_raiz.edad)
             print("---------- Listas Años --------------")
             print(cu_raiz.años.showAños())
@@ -95,6 +102,16 @@ class ArbolAVL:
                 cu_raiz.años.insertar_matriz_años(carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)                
                 return cu_raiz
             self.insertar_matriz(cu_raiz.derecha, carnet, nombre, descripcion, materia, fecha, hora, estado, año, mes, dia, hora_aux)
+
+    def obtenerRecordatorio(self, cu_raiz, carnet, fecha, hora):
+        #print('Entra AVL')
+        if cu_raiz is not None:
+            self.obtenerRecordatorio(cu_raiz.izquierda, carnet, fecha, hora)
+            if str(cu_raiz.carnet) == str(carnet):
+                #print('Entró if AVL')
+                cu_raiz.años.obtenerRecordatorio(fecha, hora)                
+                return cu_raiz
+            self.obtenerRecordatorio(cu_raiz.derecha, carnet, fecha, hora)
 
     def modificarEstudiante(self, cu_raiz, carnet, DPI, nombre, carrera, correo, password, creditos, edad):
         if cu_raiz is not None:

@@ -19,7 +19,7 @@ def carga():
         mensaje = f.read()
         f.close()
         parser.parse(mensaje)
-        #arbolAVL.inOrden(arbolAVL.raiz)
+        arbolAVL.inOrden(arbolAVL.raiz)
     return (f'Carga Masiva. Tipo: {tipo}, path: {path}')
 
 
@@ -119,6 +119,31 @@ def crearRecordatorio():
     arbolAVL.crearRecordatorio(arbolAVL.raiz, Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux)
 
     return (f'Se creó el recordatorio')
+
+@app.route('/recordatorios', methods=['PUT'])
+def modificarRecordatorio():
+    data = request.get_json()
+    Carnet = data['Carnet']
+    Nombre = data['Nombre']
+    Descripcion = data['Descripcion']
+    Materia = data['Materia']
+    Fecha = data['Fecha']
+    Hora = data['Hora']
+    Estado = data['Estado']
+
+    return (f'Se modificó el recordatorio')
+
+@app.route('/recordatorios', methods=['GET'])
+def obtenerRecordatorio():
+    data = request.get_json()
+    Carnet = data['Carnet']
+    Fecha = data['Fecha']
+    Hora = data['Hora']
+
+    arbolAVL.obtenerRecordatorio(arbolAVL.raiz, Carnet, Fecha, Hora)
+    
+
+    return (f'Se envió la solicitud')
 
 
 
