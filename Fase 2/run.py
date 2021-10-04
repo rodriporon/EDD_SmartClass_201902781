@@ -92,6 +92,19 @@ def obtenerEstudiante():
 
     return ('Se envió la solicitud')
 
+@app.route('/recordatorios', methods=['POST'])
+def crearRecordatorio():
+    data = request.get_json()
+    Carnet = data['Carnet']
+    Nombre = data['Nombre']
+    Descripcion = data['Descripcion']
+    Materia = data['Materia']
+    Fecha = data['Fecha']
+    Hora = data['Hora']
+    Estado = data['Estado']
+
+    return (f'Se creó el recordatorio')
+
 
 
 

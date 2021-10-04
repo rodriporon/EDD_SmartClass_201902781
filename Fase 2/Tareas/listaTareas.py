@@ -41,17 +41,27 @@ class ListaTareas:
         while aux != self.cola:
             aux_carnet = aux.carnet.replace("\"", "")
             aux_nombre = aux.nombre.replace("\"", "")
+            aux_descripcion = aux.descripcion.replace("\"", "")
+            aux_materia = aux.materia.replace("\"", "")
+            aux_fecha = aux.fecha.replace("\"", "")
+            aux_hora = aux.hora.replace("\"", "")
+            aux_estado = aux.estado.replace("\"", "")
 
             archivo.write("\"Node" + str(contador) + "\" -> \"Node" + str(contador + 1) + "\" [constrain=false]; \n")
-            archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\"]\n")
+            archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\n" + "Descripcion: " + str(aux_descripcion) + "\n" + "Materia: " + str(aux_materia) + "\n" + "Fecha: " + str(aux_fecha) + "\n" + "Hora: " + str(aux_hora) + "\n" + "Estado: " + str(aux_estado) + "\"]\n")
 
             contador += 1
             aux = aux.siguiente
         aux_carnet = aux.carnet.replace("\"", "")
         aux_nombre = aux.nombre.replace("\"", "")
+        aux_descripcion = aux.descripcion.replace("\"", "")
+        aux_materia = aux.materia.replace("\"", "")
+        aux_fecha = aux.fecha.replace("\"", "")
+        aux_hora = aux.hora.replace("\"", "")
+        aux_estado = aux.estado.replace("\"", "")
 
         #archivo.write("\"Node" + str(contador) + "\" -> \"Node" + str(0) + "\" [constrain=false]; \n")
-        archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\"]\n")
+        archivo.write("\n \t \"Node" + str(contador) + "\"[shape=box, style=filled, color=skyblue, label=\" Carnet: " + str(aux_carnet) + "\n" + "Nombre: " + str(aux_nombre) + "\n" + "Descripcion: " + str(aux_descripcion) + "\n" + "Materia: " + str(aux_materia) + "\n" + "Fecha: " + str(aux_fecha) + "\n" + "Hora: " + str(aux_hora) + "\n" + "Estado: " + str(aux_estado) + "\"]\n")
         archivo.write("}")
         archivo.close()
         os.system("dot -Tpng C:\\Users\\rodri\\Desktop\\Reportes_F2\\Grafica_Lista_Tareas.dot -o C:\\Users\\rodri\\Desktop\\Reportes_F2\\Grafica_Lista_Tareas.png")

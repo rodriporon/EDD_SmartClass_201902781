@@ -1,5 +1,0 @@
-digraph{
-node[shape=record];
-graph[pencolor=transparent];
-node [style=filled];
-}
