@@ -49,9 +49,12 @@ class ArbolAVL:
             return a
         return b
 
+    #Mostrar en recorrido inOrden la estructura del ArbolAVL
     def inOrden(self, cu_raiz):
         if cu_raiz is not None:
+            #Función recursiva para mostrar todos los nodos izquierdos
             self.inOrden(cu_raiz.izquierda)
+            print('-------------------------------------')
             print(cu_raiz.carnet)
             print(cu_raiz.DPI)
             print(cu_raiz.nombre)
@@ -62,7 +65,7 @@ class ArbolAVL:
             print("---------- Listas Años --------------")
             print(cu_raiz.años.showAños())
             print("-------------------------------------")
-
+            #Función recursiva para mostrar todos los nodos derechos
             self.inOrden(cu_raiz.derecha)
     
     #metodo que buscar la matriz dispersa a graficar
@@ -117,6 +120,16 @@ class ArbolAVL:
                 print('------------------------------------')
             self.obtenerEstudiante(cu_raiz.derecha, carnet)
         
+    def crearRecordatorio(self, cu_raiz, Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux):
+        #print('entró a graficar de arbolAVL')
+        if cu_raiz is not None:
+            self.crearRecordatorio(cu_raiz.izquierda, Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux )
+            if str(cu_raiz.carnet) == str(Carnet):
+                #print(cu_raiz.carnet)
+                cu_raiz.años.insertar_matriz_años(Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux) 
+                return cu_raiz
+            self.crearRecordatorio(cu_raiz.derecha, Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux)
+
 
 
 

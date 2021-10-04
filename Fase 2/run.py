@@ -103,6 +103,21 @@ def crearRecordatorio():
     Hora = data['Hora']
     Estado = data['Estado']
 
+    aux = Hora.split(':')
+    hora_aux = aux[0]
+
+    #Auxiliares para fecha
+    aux1 = Fecha[6:10]
+    
+    mes = Fecha[3:5]
+
+    dia = Fecha[0:2]
+
+    #Conversión a enteros
+    año = int(aux1)
+
+    arbolAVL.crearRecordatorio(arbolAVL.raiz, Carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado, año, mes, dia, hora_aux)
+
     return (f'Se creó el recordatorio')
 
 
