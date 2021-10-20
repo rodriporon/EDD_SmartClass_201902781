@@ -1,29 +1,37 @@
 import { useCallback, useContext } from 'react'
 import Context from '../context/UserContext'
 import loginService from '../services/login'
+import { useLocation } from 'wouter'
 
 export default function useUser() {
-  const { jwt, setJWT } = useContext(Context)
+  const { user, setUser, admin, setAdmin } = useContext(Context)
+  const [, navigate] = useLocation()
 
   const login = useCallback(
-    ({ username, password }) => {
-      loginService({ username, password })
-        .then((username) => {
-          setJWT(username)
+    ({ carnet, password }) => {
+      loginService({ carnet, password })
+        .then((carnet) => {
+          if (carnet === 'admin') {
+            setAdmin(carnet)
+          }
+          setUser(carnet)
         })
         .catch((err) => {
           console.error(err)
         })
     },
-    [setJWT]
+    [setUser, setAdmin]
   )
 
   const logout = useCallback(() => {
-    setJWT(null)
-  }, [setJWT])
+    setUser(null)
+    setAdmin(null)
+    navigate('/')
+  }, [setUser, setAdmin, navigate])
 
   return {
-    isLogged: Boolean(jwt),
+    isLogged: Boolean(user),
+    isAdmin: Boolean(admin),
     login,
     logout,
   }

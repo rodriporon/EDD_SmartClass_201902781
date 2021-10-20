@@ -8,28 +8,28 @@ users = {
     "data":
     [
         {
-            "username": "admin",
+            "carnet": "admin",
             "password": "admin",
             "id": 0
         },
                 {
-            "username": "rodri",
+            "carnet": "rodri",
             "password": "rodri",
             "id": 1
         },
                 {
-            "username": "admin2",
+            "carnet": "admin2",
             "password": "admin2",
             "id": 2
         }
     ]
 }
 
-#users["data"].append({"username": "rodri", "password": "rodri", "id": 1})
+#users["data"].append({"carnet": "rodri", "password": "rodri", "id": 1})
 #print(users["data"])
 
 """ for user in users["data"]:
-    if user["username"] == "rodri":
+    if user["carnet"] == "rodri":
         print(f'password is: {user["password"]}') """
     
 
@@ -40,15 +40,20 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
 
-    username_request = request.json.get("username", None)
+    carnet_request = request.json.get("carnet", None)
     password_request = request.json.get("password", None)
 
     for user in users["data"]:
-        print(f'username: {user["username"]}')
-        if str(username_request) == str(user["username"]) and str(password_request) == str(user["password"]):
-            return jsonify({"username": user["username"]})
+        print(f'carnet: {user["carnet"]}')
+        if str(carnet_request) == str(user["carnet"]) and str(password_request) == str(user["password"]):
+            return jsonify({"carnet": user["carnet"]})
 
-    return jsonify({"msg": "Bad username or password"}), 401
+    return jsonify({"msg": "Bad carnet or password"}), 401
+
+@app.route('/register', methods=['POST'])
+def register():
+
+    return jsonify({"msg": "register"})
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)

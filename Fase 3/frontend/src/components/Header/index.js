@@ -13,14 +13,23 @@ export default function Header() {
   }
 
   return (
-    <header className="gf-header">
-      {isLogged ? (
-        <button className="bt-header" onClick={handleClick}>
-          Logout
-        </button>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
-    </header>
+    <>
+      <header className="gf-header">
+        {isLogged ? (
+          <button className="bt-header" onClick={handleClick}>
+            Logout
+          </button>
+        ) : (
+          <div>
+            <Link className="lk-header" to="/login">
+              Login
+            </Link>
+            <Link className="lk-header" to="/register">
+              Register
+            </Link>
+          </div>
+        )}
+      </header>
+    </>
   )
 }

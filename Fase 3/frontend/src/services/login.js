@@ -1,20 +1,23 @@
 const ENDPOINT = 'http://localhost:3000'
 
-export default function login({ username, password }) {
+export default function login({ carnet, password }) {
   return fetch(`${ENDPOINT}/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ carnet, password }),
   })
     .then((res) => {
-      if (!res.ok) throw new Error('Response is not OK')
+      if (!res.ok) {
+        alert('Carnet o Password incorrecto')
+        throw new Error('Response is not OK')
+      }
       return res.json()
     })
     .then((res) => {
-      const { username } = res
-      console.log(username)
-      return username
+      const { carnet } = res
+      console.log(carnet)
+      return carnet
     })
 }

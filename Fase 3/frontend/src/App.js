@@ -6,6 +6,7 @@ import './App.css'
 import Header from './components/Header'
 import Login from './pages/Login'
 import { UserContextProvider } from './context/UserContext'
+import Register from './pages/Register'
 
 function App() {
   /* useEffect(function () {
@@ -19,6 +20,7 @@ function App() {
           <Header />
           <Route component={Home} path="/" />
           <Route component={Login} path="/login" />
+          <Route component={Register} path="/register" />
         </section>
       </div>
     </UserContextProvider>

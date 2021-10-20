@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+form {
+  width: 300px;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+form label {
+  width: 72px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+form input[type='submit'] {
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 32px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: block;
+  color: #fff;
+  background-color: #000;
+}
