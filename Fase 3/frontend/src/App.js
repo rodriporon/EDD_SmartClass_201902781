@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import getUser from './services/getUser'
+import React from 'react'
+//import getUser from './services/getUser'
 import { Route } from 'wouter'
 import Home from './components/Home'
 import './App.css'
@@ -8,9 +8,10 @@ import Login from './pages/Login'
 import { UserContextProvider } from './context/UserContext'
 
 function App() {
-  useEffect(function () {
+  /* useEffect(function () {
     getUser()
-  }, [])
+  }, []) */
+
   return (
     <UserContextProvider>
       <div className="App">

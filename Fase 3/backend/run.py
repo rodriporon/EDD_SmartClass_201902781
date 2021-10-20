@@ -1,6 +1,5 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-from werkzeug.wrappers import UserAgentMixin
 
 app = Flask(__name__)
 CORS(app)
@@ -12,6 +11,16 @@ users = {
             "username": "admin",
             "password": "admin",
             "id": 0
+        },
+                {
+            "username": "rodri",
+            "password": "rodri",
+            "id": 1
+        },
+                {
+            "username": "admin2",
+            "password": "admin2",
+            "id": 2
         }
     ]
 }
@@ -30,9 +39,16 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    
 
-    return jsonify(users)
+    username_request = request.json.get("username", None)
+    password_request = request.json.get("password", None)
+
+    for user in users["data"]:
+        print(f'username: {user["username"]}')
+        if str(username_request) == str(user["username"]) and str(password_request) == str(user["password"]):
+            return jsonify({"username": user["username"]})
+
+    return jsonify({"msg": "Bad username or password"}), 401
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
