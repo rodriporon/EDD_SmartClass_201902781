@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import useRegister from '../../hooks/useRegister'
 
 export default function Register() {
   const [carnet, setCarnet] = useState('')
@@ -9,8 +10,11 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [edad, setEdad] = useState('')
 
+  const { register } = useRegister()
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    register({ carnet, DPI, nombre, carrera, correo, password, edad })
   }
   return (
     <form onSubmit={handleSubmit}>

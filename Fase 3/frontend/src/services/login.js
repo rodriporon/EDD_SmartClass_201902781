@@ -17,7 +17,7 @@ export default function login({ carnet, password }) {
     })
     .then((res) => {
       const { carnet } = res
-      console.log(carnet)
+      console.log(`${carnet} inicio sesion`)
       return carnet
     })
 }
