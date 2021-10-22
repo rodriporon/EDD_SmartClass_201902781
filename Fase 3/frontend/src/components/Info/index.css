@@ -1,0 +1,6 @@
+.dv-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+}

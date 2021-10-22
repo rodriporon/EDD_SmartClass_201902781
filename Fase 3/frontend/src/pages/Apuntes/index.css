@@ -1,16 +1,17 @@
-.ul {
+.ul-apuntes {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #002f6c;
+  background-color: #4f83cc;
+  font-size: 16px;
 }
 
-.li {
+.li-apuntes {
   float: left;
 }
 
-.li-a {
+.li-a-apuntes {
   display: block;
   color: white;
   text-align: center;
@@ -18,7 +19,7 @@
   text-decoration: none;
 }
 
-.li-a:hover:not(.active) {
+.li-a-apuntes:hover:not(.active) {
   background-color: #111;
 }
 
@@ -34,4 +35,10 @@
 
 .lg-header {
   float: right;
+}
+
+.dv-apuntes {
+  display: flex;
+  padding: 5px;
+  width: 20%;
 }

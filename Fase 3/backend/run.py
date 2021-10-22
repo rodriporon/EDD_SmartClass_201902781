@@ -18,7 +18,7 @@ users = {
             "nombre": "Rodrigo Poron",
             "carrera": "Ingenieria en Ciencias y Sistemas",
             "correo": "rodriporon2@gmail.com",
-            "password": "123",
+            "password": "1244",
             "edad": "22"
         }
     ]
@@ -45,7 +45,7 @@ def login():
     for user in users["data"]:
         print(f'carnet: {user["carnet"]}')
         if str(carnet_request) == str(user["carnet"]) and str(password_request) == str(user["password"]):
-            return jsonify({"carnet": user["carnet"]})
+            return jsonify(user)
 
     return jsonify({"msg": "Bad carnet or password"}), 401
 

@@ -8,12 +8,12 @@ export default function Login() {
   const [carnet, setCarnet] = useState('')
   const [password, setPassword] = useState('')
   const [, navigate] = useLocation()
-  const { login, isLogged, isAdmin } = useUser()
+  const { login, isUser, isAdmin } = useUser()
 
   useEffect(() => {
     if (isAdmin) navigate('/admin')
-    if (isLogged) navigate('/')
-  }, [isLogged, isAdmin, navigate])
+    if (isUser) navigate('/usuario')
+  }, [isUser, isAdmin, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -16,8 +16,8 @@ export default function login({ carnet, password }) {
       return res.json()
     })
     .then((res) => {
-      const { carnet } = res
-      console.log(`${carnet} inicio sesion`)
-      return carnet
+      //const { carnet } = res
+      console.log(`${JSON.stringify(res)}} inicio sesion`)
+      return res
     })
 }

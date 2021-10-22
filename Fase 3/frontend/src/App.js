@@ -7,6 +7,8 @@ import Header from './components/Header'
 import Login from './pages/Login'
 import { UserContextProvider } from './context/UserContext'
 import Register from './pages/Register'
+import Admin from './pages/Admin'
+import Apuntes from './pages/Apuntes'
 
 function App() {
   /* useEffect(function () {
@@ -16,11 +18,13 @@ function App() {
   return (
     <UserContextProvider>
       <div className="App">
+        <Header />
         <section className="App-content">
-          <Header />
           <Route component={Home} path="/" />
           <Route component={Login} path="/login" />
           <Route component={Register} path="/register" />
+          <Route component={Admin} path="/admin" />
+          <Route component={Apuntes} path="/apuntes" />
         </section>
       </div>
     </UserContextProvider>
