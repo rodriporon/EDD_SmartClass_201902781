@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'wouter'
-
+import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
 import useUser from '../../hooks/useUser'
-import './index.css'
 
 export default function Header() {
   const { isUser, isAdmin, logout } = useUser()
@@ -15,55 +16,71 @@ export default function Header() {
   if (isUser) {
     return (
       <>
-        <ul>
-          <li>
-            <Link to="/">Inicio</Link>
-          </li>
-          <li>
-            <Link to="/apuntes">Apuntes</Link>
-          </li>
-          <li>
-            <Link to="/tareas">Tareas</Link>
-          </li>
-          <li>
-            <Link to="/redcursos">Red de Cursos</Link>
-          </li>
-
-          <li className="lg-header">
-            <a href="/#" className="active" onClick={handleClick}>
-              Logout
-            </a>
-          </li>
-        </ul>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+            <Navbar.Brand>
+              <Link to="/">Inicio</Link>
+            </Navbar.Brand>
+            <Nav className="me-auto">
+              <Nav.Link>
+                <Link to="/apuntes">Apuntes</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/tareas">Tareas</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/red-cursos">Red de Cursos</Link>
+              </Nav.Link>
+            </Nav>
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                <a href="/#" onClick={handleClick}>
+                  Logout
+                </a>
+              </Navbar.Text>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     )
   } else if (isAdmin) {
     return (
       <>
-        <ul>
-          <li className="lg-header">
-            <a href="/#" className="active" onClick={handleClick}>
-              Logout
-            </a>
-          </li>
-        </ul>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+            <Navbar.Brand>
+              <Link className="p5" to="/">
+                Inicio
+              </Link>
+            </Navbar.Brand>
+            <Nav className="me-auto"></Nav>
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                <a href="/#" onClick={handleClick}>
+                  Logout
+                </a>
+              </Navbar.Text>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     )
   } else {
     return (
       <>
-        <ul>
-          <li className="lg-header">
-            <Link className="lk-header" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="lg-header">
-            <Link className="lk-header" to="/register">
-              Register
-            </Link>
-          </li>
-        </ul>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+            <Nav className="me-auto"></Nav>
+            <Navbar.Collapse className="justify-content-end">
+              <Nav.Link>
+                <Link to="/login">Login</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/register">Register</Link>
+              </Nav.Link>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     )
   }
