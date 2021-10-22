@@ -15,26 +15,18 @@ export default function Header() {
   if (isUser) {
     return (
       <>
-        <ul className="ul">
-          <li className="li">
-            <Link className="li-a" to="/">
-              Inicio
-            </Link>
+        <ul>
+          <li>
+            <Link to="/">Inicio</Link>
           </li>
-          <li className="li">
-            <Link className="li-a" to="/apuntes">
-              Apuntes
-            </Link>
+          <li>
+            <Link to="/apuntes">Apuntes</Link>
           </li>
-          <li className="li">
-            <Link className="li-a" to="/tareas">
-              Tareas
-            </Link>
+          <li>
+            <Link to="/tareas">Tareas</Link>
           </li>
-          <li className="li">
-            <Link className="li-a" to="/redcursos">
-              Red de Cursos
-            </Link>
+          <li>
+            <Link to="/redcursos">Red de Cursos</Link>
           </li>
 
           <li className="lg-header">
