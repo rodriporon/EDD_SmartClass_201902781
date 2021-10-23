@@ -37,22 +37,24 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-
     carnet_request = request.json.get("carnet", None)
     password_request = request.json.get("password", None)
     print(carnet_request)
     print(password_request)
 
-    if (str(carnet_request) == "admin" and str(password_request) == "password"):
+    if (str(carnet_request) == "admin" and str(password_request) == "admin"):
         return jsonify({"carnet": "admin", "DPI": "admin", "nombre": "admin", "carrera": "admin", "correo": "admin", "password": "admin", "edad": "admin"})
 
     else:
         user = users.buscar(users.raiz, carnet_request, password_request)
+        print(user)
 
-    if user:
-        return jsonify(carnet=user.carnet, DPI=user.DPI, nombre=user.nombre, carrera=user.carrera, correo=user.correo, password=user.password, edad=user.edad)
-    else:
-        return jsonify({"msg": "Bad carnet or password"}), 401
+        if str(user["carnet"]) == str(carnet_request) and str(user["password"]) and str(password_request):
+            return jsonify(user)
+        else:
+            return jsonify({"msg": "Bad carnet or password"}), 401
+
+        
 
 @app.route('/register', methods=['POST'])
 def register():
