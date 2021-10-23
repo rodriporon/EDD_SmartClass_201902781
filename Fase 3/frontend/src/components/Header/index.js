@@ -18,18 +18,18 @@ export default function Header() {
       <>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand>
-              <Link to="/">Inicio</Link>
+            <Navbar.Brand as={Link} to="/">
+              Inicio
             </Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/apuntes">Apuntes</Link>
+              <Nav.Link as={Link} to="/apuntes">
+                Apuntes
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/tareas">Tareas</Link>
+              <Nav.Link as={Link} to="/tareas">
+                Tareas
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/red-cursos">Red de Cursos</Link>
+              <Nav.Link as={Link} to="/red-cursos">
+                Red de Cursos
               </Nav.Link>
             </Nav>
             <Navbar.Collapse className="justify-content-end">
@@ -48,10 +48,8 @@ export default function Header() {
       <>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand>
-              <Link className="p5" to="/">
-                Inicio
-              </Link>
+            <Navbar.Brand as={Link} to="/">
+              Inicio
             </Navbar.Brand>
             <Nav className="me-auto"></Nav>
             <Navbar.Collapse className="justify-content-end">
@@ -72,11 +70,11 @@ export default function Header() {
           <Container>
             <Nav className="me-auto"></Nav>
             <Navbar.Collapse className="justify-content-end">
-              <Nav.Link>
-                <Link to="/login">Login</Link>
+              <Nav.Link as={Link} to="/login">
+                Login
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/register">Register</Link>
+              <Nav.Link as={Link} to="/register">
+                Register
               </Nav.Link>
             </Navbar.Collapse>
           </Container>

@@ -15,6 +15,13 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault()
     register({ carnet, DPI, nombre, carrera, correo, password, edad })
+    setCarnet('')
+    setDPI('')
+    setNombre('')
+    setCarrera('')
+    setCorreo('')
+    setPassword('')
+    setEdad('')
   }
   return (
     <form onSubmit={handleSubmit}>

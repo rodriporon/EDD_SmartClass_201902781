@@ -1,10 +1,16 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from estructuras.ArbolAVL.arbolAVL import ArbolAVL
 
 app = Flask(__name__)
 CORS(app)
 
-users = {
+users = ArbolAVL()
+users.insertar("admin", "-1", "-1", "-1", "-1", "admin", "-1")
+users.inOrden(users.raiz)
+
+
+users_json = {
     "data":
     [
         {
@@ -24,12 +30,6 @@ users = {
     ]
 }
 
-#users["data"].append({"carnet": "rodri", "password": "rodri", "id": 1})
-#print(users["data"])
-
-""" for user in users["data"]:
-    if user["carnet"] == "rodri":
-        print(f'password is: {user["password"]}') """
     
 
 @app.route('/')
@@ -41,13 +41,15 @@ def login():
 
     carnet_request = request.json.get("carnet", None)
     password_request = request.json.get("password", None)
+    print(carnet_request)
+    print(password_request)
 
-    for user in users["data"]:
-        print(f'carnet: {user["carnet"]}')
-        if str(carnet_request) == str(user["carnet"]) and str(password_request) == str(user["password"]):
-            return jsonify(user)
+    user = users.buscar(users.raiz, carnet_request, password_request)
 
-    return jsonify({"msg": "Bad carnet or password"}), 401
+    if user:
+        return jsonify(carnet=user.carnet, DPI=user.DPI, nombre=user.nombre, carrera=user.carrera, correo=user.correo, password=user.password, edad=user.edad)
+    else:
+        return jsonify({"msg": "Bad carnet or password"}), 401
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -64,13 +66,8 @@ def register():
     edad_request = request.json.get("edad")
     id_request += 1
 
-    print(f'CARNET_REQUEST: {carnet_request}')
-    print()
-    print()
-
-    users["data"].append({"carnet": carnet_request, "DPI": DPI_request, "nombre": nombre_request, "carrera": carrera_request, "correo": correo_request, "password": password_request, "edad": edad_request, "id": id_request})
-
-    print(users)
+    users.insertar(carnet_request, DPI_request, nombre_request, carrera_request, correo_request, password_request, edad_request)
+    users.inOrden(users.raiz)
 
     return jsonify({"carnet": carnet_request})
 
