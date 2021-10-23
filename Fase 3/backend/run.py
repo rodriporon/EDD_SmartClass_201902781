@@ -6,8 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 users = ArbolAVL()
-users.insertar("admin", "-1", "-1", "-1", "-1", "admin", "-1")
-users.inOrden(users.raiz)
+users.datosDesencriptados(users.raiz)
 
 
 users_json = {
@@ -44,7 +43,11 @@ def login():
     print(carnet_request)
     print(password_request)
 
-    user = users.buscar(users.raiz, carnet_request, password_request)
+    if (str(carnet_request) == "admin" and str(password_request) == "password"):
+        return jsonify({"carnet": "admin", "DPI": "admin", "nombre": "admin", "carrera": "admin", "correo": "admin", "password": "admin", "edad": "admin"})
+
+    else:
+        user = users.buscar(users.raiz, carnet_request, password_request)
 
     if user:
         return jsonify(carnet=user.carnet, DPI=user.DPI, nombre=user.nombre, carrera=user.carrera, correo=user.correo, password=user.password, edad=user.edad)
@@ -54,10 +57,11 @@ def login():
 @app.route('/register', methods=['POST'])
 def register():
 
+
+
     id_request = 0
 
     carnet_request = request.json.get("carnet")
-   
     DPI_request = request.json.get("DPI")
     nombre_request = request.json.get("nombre")
     carrera_request = request.json.get("carrera")
@@ -66,10 +70,26 @@ def register():
     edad_request = request.json.get("edad")
     id_request += 1
 
+
     users.insertar(carnet_request, DPI_request, nombre_request, carrera_request, correo_request, password_request, edad_request)
-    users.inOrden(users.raiz)
+    print()
+    print('----AVL encriptado----')
+    users.datosEncriptados(users.raiz)
+    print()
+
+    print()
+    print('----AVL Desencriptado----')
+    users.datosDesencriptados(users.raiz)
+    print()
+    
 
     return jsonify({"carnet": carnet_request})
+
+@app.route('/password-maestro', methods=['POST'])
+def passwordMaestro():
+    password_maestro = request.json.get("password_maestro")
+
+
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)

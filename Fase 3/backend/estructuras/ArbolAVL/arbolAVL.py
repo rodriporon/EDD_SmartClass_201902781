@@ -1,8 +1,13 @@
-from flask.globals import current_app
 from estructuras.ArbolAVL.nodoAVL import NodoAVL
+from cryptography.fernet import Fernet
 from graphviz import Digraph
 
+key = Fernet.generate_key()
+
+f = Fernet(key)
+
 user_login = None
+
 
 class ArbolAVL:
     def __init__(self):
@@ -10,8 +15,17 @@ class ArbolAVL:
         self.raiz = None
 
     def insertar(self, carnet, DPI, nombre, carrera, correo, password, edad):
-        nuevo_nodo = NodoAVL(carnet, DPI, nombre, carrera,
-                        correo, password, edad)
+
+        carnet_encrypt = f.encrypt(carnet.encode())
+        DPI_encrypt = f.encrypt(DPI.encode())
+        nombre_encrypt = f.encrypt(nombre.encode())
+        carrera_encrypt = f.encrypt(carrera.encode())
+        correo_encrypt = f.encrypt(correo.encode())
+        password_encrypt = f.encrypt(password.encode())
+        edad_encrypt = f.encrypt(edad.encode())
+
+        nuevo_nodo = NodoAVL(carnet_encrypt, DPI_encrypt, nombre_encrypt,
+                             carrera_encrypt, correo_encrypt, password_encrypt, edad_encrypt)
         if self.raiz is None:
             self.raiz = nuevo_nodo
             return nuevo_nodo
@@ -21,20 +35,20 @@ class ArbolAVL:
 
     def _insertar(self, new_nodo, cu_raiz):
         if cu_raiz is not None:
-            if cu_raiz.carnet > new_nodo.carnet:
+            if int(f.decrypt(cu_raiz.carnet).decode()) > int(f.decrypt(new_nodo.carnet).decode()):
                 cu_raiz.izquierda = self._insertar(
                     new_nodo, cu_raiz.izquierda)
                 if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == -2):
-                    if (new_nodo.carnet < cu_raiz.izquierda.carnet):
+                    if (str(new_nodo.carnet) < str(cu_raiz.izquierda.carnet)):
                         cu_raiz = self.RI(cu_raiz)
                     else:
                         cu_raiz = self.RID(cu_raiz)
 
-            elif cu_raiz.carnet < new_nodo.carnet:
+            elif int(f.decrypt(cu_raiz.carnet).decode()) < int(f.decrypt(new_nodo.carnet).decode()):
                 cu_raiz.derecha = self._insertar(
                     new_nodo, cu_raiz.derecha)
                 if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == 2):
-                    if new_nodo.carnet > cu_raiz.derecha.carnet:
+                    if str(new_nodo.carnet) > str(cu_raiz.derecha.carnet):
                         cu_raiz = self.RD(cu_raiz)
                     else:
                         cu_raiz = self.RDI(cu_raiz)
@@ -51,31 +65,56 @@ class ArbolAVL:
             return a
         return b
 
-    #Mostrar en recorrido inOrden la estructura del ArbolAVL
-    def inOrden(self, cu_raiz):
+    # Mostrar en recorrido inOrden la estructura del ArbolAVL
+    def datosEncriptados(self, cu_raiz):
         if cu_raiz is not None:
-            #Función recursiva para mostrar todos los nodos izquierdos
-            self.inOrden(cu_raiz.izquierda)
+            # Función recursiva para mostrar todos los nodos izquierdos
+            self.datosEncriptados(cu_raiz.izquierda)
             print('-------------------------------------')
-            #Carnet
-            print(cu_raiz.carnet)
-            #DPI
+            # Carnet
+            print(f.decrypt(cu_raiz.carnet).decode())
+            print(type(f.decrypt(cu_raiz.carnet).decode()))
+            # DPI
+            print(f.decrypt(cu_raiz.DPI).decode())
+            # Nombre
+            print(f.decrypt(cu_raiz.nombre).decode())
+            # Carrera
+            print(f.decrypt(cu_raiz.carrera).decode())
+            # Correo
+            print(f.decrypt(cu_raiz.correo).decode())
+            # Password
+            print(f.decrypt(cu_raiz.password).decode())
+            # Edad
+            print(f.decrypt(cu_raiz.edad).decode())
+            # Función recursiva para mostrar todos los nodos derechos
+            self.datosEncriptados(cu_raiz.derecha)
+
+    def datosDesencriptados(self, cu_raiz):
+        if cu_raiz is not None:
+            # Función recursiva para mostrar todos los nodos izquierdos
+            self.datosDesencriptados(cu_raiz.izquierda)
+            print('-------------------------------------')
+            # Carnet
+            print(f.decrypt(cu_raiz.carnet))
+            # DPI
             print(cu_raiz.DPI)
-            #Nombre
+            # Nombre
             print(cu_raiz.nombre)
-            #Correo
+            # Carrera
+            print(cu_raiz.carrera)
+            # Correo
             print(cu_raiz.correo)
-            #Password
+            # Password
             print(cu_raiz.password)
-            #Edad
+            # Edad
             print(cu_raiz.edad)
-            #Función recursiva para mostrar todos los nodos derechos
-            self.inOrden(cu_raiz.derecha)
-    
+            # Función recursiva para mostrar todos los nodos derechos
+            self.datosDesencriptados(cu_raiz.derecha)
+
     def getMinValueNode(self, root):
         if root is None or root.izquierda is None:
             return root
- 
+
         return self.getMinValueNode(root.izquierda)
 
     def buscar(self, cu_raiz, carnet, password):
@@ -86,8 +125,6 @@ class ArbolAVL:
                 user_login = cu_raiz
             self.buscar(cu_raiz.derecha, carnet, password)
         return user_login
-            
-
 
     def verAltura(self, nodo):
         if nodo:
@@ -95,34 +132,35 @@ class ArbolAVL:
         else:
             return -1
 
-    def RI(self, nodo): #Rotación por la izquierda
+    def RI(self, nodo):  # Rotación por la izquierda
         aux = nodo.izquierda
         nodo.izquierda = aux.derecha
         aux.derecha = nodo
         nodo.altura = self.datoMayor(self.verAltura(nodo.derecha),
-                               self.verAltura(nodo.izquierda)) + 1
-        aux.altura = self.datoMayor(nodo.altura, self.verAltura(nodo.izquierda)) + 1
+                                     self.verAltura(nodo.izquierda)) + 1
+        aux.altura = self.datoMayor(
+            nodo.altura, self.verAltura(nodo.izquierda)) + 1
         return aux
 
-    def RD(self, nodo): #Rotación por la derecha
+    def RD(self, nodo):  # Rotación por la derecha
         aux = nodo.derecha
         nodo.derecha = aux.izquierda
         aux.izquierda = nodo
         nodo.altura = self.datoMayor(self.verAltura(nodo.derecha),
-                               self.verAltura(nodo.izquierda)) + 1
-        aux.altura = self.datoMayor(nodo.altura, self.verAltura(nodo.derecha)) + 1
+                                     self.verAltura(nodo.izquierda)) + 1
+        aux.altura = self.datoMayor(
+            nodo.altura, self.verAltura(nodo.derecha)) + 1
         return aux
 
-    def RID(self, nodo): #Rotación izquierda-derecha
+    def RID(self, nodo):  # Rotación izquierda-derecha
         nodo.izquierda = self.RD(nodo.izquierda)
         aux = self.RI(nodo)
         return aux
 
-    def RDI(self, nodo): #Rotación derecha-izquierda
+    def RDI(self, nodo):  # Rotación derecha-izquierda
         nodo.derecha = self.RI(nodo.derecha)
         aux = self.RD(nodo)
         return aux
-
 
     def graficar(self):
         d = Digraph('arbolavl', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\ArbolAVL.gv',
