@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import useRegister from '../../hooks/useRegister'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 export default function Register() {
   const [carnet, setCarnet] = useState('')
@@ -24,45 +29,86 @@ export default function Register() {
     setEdad('')
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Registro</h3>
-      <input
-        placeholder="Carnet"
-        onChange={(e) => setCarnet(e.target.value)}
-        value={carnet}
-      />
-      <input
-        placeholder="DPI"
-        onChange={(e) => setDPI(e.target.value)}
-        value={DPI}
-      />
-      <input
-        placeholder="Nombre"
-        onChange={(e) => setNombre(e.target.value)}
-        value={nombre}
-      />
-      <input
-        placeholder="Carrera"
-        onChange={(e) => setCarrera(e.target.value)}
-        value={carrera}
-      />
-      <input
-        placeholder="Correo"
-        onChange={(e) => setCorreo(e.target.value)}
-        value={correo}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <input
-        placeholder="Edad"
-        onChange={(e) => setEdad(e.target.value)}
-        value={edad}
-      />
-      <button>Register</button>
-    </form>
+    <Container>
+      <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Carnet</Form.Label>
+              <Form.Control
+                onChange={(e) => setCarnet(e.target.value)}
+                type="text"
+                placeholder="Carnet"
+                value={carnet}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>DPI</Form.Label>
+              <Form.Control
+                onChange={(e) => setDPI(e.target.value)}
+                type="text"
+                placeholder="DPI"
+                value={DPI}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                onChange={(e) => setNombre(e.target.value)}
+                type="text"
+                placeholder="Nombre"
+                value={nombre}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Carrera</Form.Label>
+              <Form.Control
+                onChange={(e) => setCarrera(e.target.value)}
+                type="text"
+                placeholder="Carrera"
+                value={carrera}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Correo</Form.Label>
+              <Form.Control
+                onChange={(e) => setCorreo(e.target.value)}
+                type="text"
+                placeholder="Correo"
+                value={correo}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Password"
+                value={password}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Edad</Form.Label>
+              <Form.Control
+                onChange={(e) => setEdad(e.target.value)}
+                type="text"
+                placeholder="Edad"
+                value={edad}
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   )
 }
