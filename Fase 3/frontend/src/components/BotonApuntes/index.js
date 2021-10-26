@@ -8,17 +8,21 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import useUser from '../../hooks/useUser'
 import useNuevoApunte from '../../hooks/useNuevoApunte'
+import getApuntes from '../../services/getApuntes'
 
 export default function BotonApuntes() {
-  const [verApuntes, setVerApuntes] = useState(true)
+  const [verApuntes, setVerApuntes] = useState(false)
   const [titulo, setTitulo] = useState('')
   const [contenido, setContenido] = useState('')
+  const [apuntes, setApuntes] = useState([])
 
   const { carnet } = useUser()
   const { nuevoApunte } = useNuevoApunte()
 
   const handleVerApuntes = () => {
     setVerApuntes(true)
+    getApuntes({ carnet }).then((apuntes) => setApuntes(apuntes))
+    console.log(apuntes)
   }
 
   const handleNuevoApunte = () => {
@@ -59,7 +63,7 @@ export default function BotonApuntes() {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Disabled select menu</Form.Label>
-              <Form.Select disabled>
+              <Form.Select>
                 <option>Disabled select</option>
               </Form.Select>
             </Form.Group>

@@ -8,6 +8,7 @@ class TablaHash:
         self.lista_hash = [None, None, None, None, None, None, None]
         self.colisiones = 0
         self.bucle_exploracion = 0
+        self.data = {"data": []}
 
         for i in range(self.tamaño_lista_hash):
             nuevo_nodo = NodoHash('')
@@ -24,7 +25,6 @@ class TablaHash:
             else:
                 cadena += '\n'
         return print(cadena)
-                    
 
     def insertar(self, carnet):
         posicion = self.metodoDivision(int(carnet))
@@ -104,7 +104,18 @@ class TablaHash:
         for i in range(self.tamaño_lista_hash):
             if str(self.lista_hash[i].carnet) == str(carnet):
                 self.lista_hash[i].id_apunte += 1
-                nodo_apunte = NodoApunte(self.lista_hash[i].id_apunte, titulo, contenido)
+                nodo_apunte = NodoApunte(
+                    self.lista_hash[i].id_apunte, titulo, contenido)
                 self.lista_hash[i].apuntes.append(nodo_apunte)
             else:
                 pass
+
+    def obtenerApuntes(self, carnet):
+        for i in range(self.tamaño_lista_hash):
+            if len(self.lista_hash[i].apuntes) > 0:
+                for j in range(len(self.lista_hash[i].apuntes)):
+                    if str(self.lista_hash[i].carnet) == str(carnet):  
+                        self.data['data'].append({"id": self.lista_hash[i].apuntes[j].id, "titulo": self.lista_hash[i].apuntes[j].titulo,
+                                            "contenido": self.lista_hash[i].apuntes[j].contenido})
+
+        return self.data

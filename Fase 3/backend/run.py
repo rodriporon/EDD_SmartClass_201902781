@@ -1,5 +1,5 @@
 from types import MethodDescriptorType, TracebackType
-from flask import Flask, jsonify, request
+from flask import Flask, json, jsonify, request
 from flask_cors import CORS
 from estructuras.ArbolAVL.arbolAVL import ArbolAVL
 from estructuras.TablaHash.tablaHash import TablaHash
@@ -113,6 +113,18 @@ def nuevoApunte():
     tabla_hash.obtenerTabla()
 
     return jsonify({"titulo": titulo_request})
+
+@app.route('/obtener-apuntes/<carnet>', methods=['GET'])
+def obtenerApuntes(carnet):
+    data = tabla_hash.obtenerApuntes(carnet)
+    print(data)
+    if data:
+        print(data)
+        return jsonify(data)
+    else:
+        return jsonify({"msg": "Error en la consulta al server"}), 401
+
+
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
