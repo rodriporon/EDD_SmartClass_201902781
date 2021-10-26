@@ -19,7 +19,7 @@ class TablaHash:
             cadena += f'{i}) {self.lista_hash[i].carnet}'
             if len(self.lista_hash[i].apuntes) > 0:
                 for j in range(len(self.lista_hash[i].apuntes)):
-                    cadena += f' - {self.lista_hash[i].apuntes[j].titulo} '
+                    cadena += f' id: {self.lista_hash[i].apuntes[j].id} - {self.lista_hash[i].apuntes[j].titulo} '
                 cadena += '\n'
             else:
                 cadena += '\n'
@@ -100,10 +100,11 @@ class TablaHash:
 
         return contador/self.tamaño_lista_hash
 
-    def insertarApunte(self, carnet, id, titulo, contenido):
+    def insertarApunte(self, carnet, titulo, contenido):
         for i in range(self.tamaño_lista_hash):
             if str(self.lista_hash[i].carnet) == str(carnet):
-                nodo_apunte = NodoApunte(id, titulo, contenido)
+                self.lista_hash[i].id_apunte += 1
+                nodo_apunte = NodoApunte(self.lista_hash[i].id_apunte, titulo, contenido)
                 self.lista_hash[i].apuntes.append(nodo_apunte)
             else:
                 pass

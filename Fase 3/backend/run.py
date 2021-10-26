@@ -107,6 +107,11 @@ def nuevoApunte():
     titulo_request = request.json.get("titulo")
     contenido_request = request.json.get("contenido")
 
+    tabla_hash.insertarApunte(carnet_request, titulo_request, contenido_request)
+
+    print('------Tabla Hash--------')
+    tabla_hash.obtenerTabla()
+
     return jsonify({"titulo": titulo_request})
 
 if __name__ == "__main__":

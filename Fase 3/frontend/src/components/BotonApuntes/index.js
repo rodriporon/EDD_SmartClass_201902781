@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -6,6 +7,7 @@ import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import useUser from '../../hooks/useUser'
+import useNuevoApunte from '../../hooks/useNuevoApunte'
 
 export default function BotonApuntes() {
   const [verApuntes, setVerApuntes] = useState(true)
@@ -13,6 +15,7 @@ export default function BotonApuntes() {
   const [contenido, setContenido] = useState('')
 
   const { carnet } = useUser()
+  const { nuevoApunte } = useNuevoApunte()
 
   const handleVerApuntes = () => {
     setVerApuntes(true)
@@ -20,6 +23,11 @@ export default function BotonApuntes() {
 
   const handleNuevoApunte = () => {
     setVerApuntes(false)
+  }
+
+  const handleSubmitApunte = (e) => {
+    e.preventDefault()
+    nuevoApunte({ carnet, titulo, contenido })
   }
 
   return (
@@ -65,30 +73,32 @@ export default function BotonApuntes() {
           <Container>
             <Row>
               <Col md={{ span: 6, offset: 3 }}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Carnet</Form.Label>
-                  <Form.Control placeholder={carnet} disabled />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Titulo</Form.Label>
-                </Form.Group>
-                <Form.Control
-                  onChange={(e) => setTitulo(e.target.value)}
-                  placeholder="Titulo"
-                  value={titulo}
-                />
-                <Form.Group className="mb-3">
-                  <Form.Label>Contenido del Apunte</Form.Label>
+                <Form onSubmit={handleSubmitApunte}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Carnet</Form.Label>
+                    <Form.Control placeholder={carnet} disabled />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Titulo</Form.Label>
+                  </Form.Group>
                   <Form.Control
-                    as="textarea"
-                    rows={3}
-                    onChange={(e) => setContenido(e.target.value)}
-                    value={contenido}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    placeholder="Titulo"
+                    value={titulo}
                   />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Enviar
-                </Button>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Contenido del Apunte</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      onChange={(e) => setContenido(e.target.value)}
+                      value={contenido}
+                    />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Enviar
+                  </Button>
+                </Form>
               </Col>
             </Row>
           </Container>
