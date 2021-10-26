@@ -9,6 +9,8 @@ import useUser from '../../hooks/useUser'
 
 export default function BotonApuntes() {
   const [verApuntes, setVerApuntes] = useState(true)
+  const [titulo, setTitulo] = useState('')
+  const [contenido, setContenido] = useState('')
 
   const { carnet } = useUser()
 
@@ -69,11 +71,20 @@ export default function BotonApuntes() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Titulo</Form.Label>
-                  <Form.Control placeholder="Titulo" />
                 </Form.Group>
+                <Form.Control
+                  onChange={(e) => setTitulo(e.target.value)}
+                  placeholder="Titulo"
+                  value={titulo}
+                />
                 <Form.Group className="mb-3">
                   <Form.Label>Contenido del Apunte</Form.Label>
-                  <Form.Control as="textarea" rows={3} />
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    onChange={(e) => setContenido(e.target.value)}
+                    value={contenido}
+                  />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Enviar

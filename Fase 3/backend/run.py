@@ -1,12 +1,18 @@
+from types import MethodDescriptorType, TracebackType
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from estructuras.ArbolAVL.arbolAVL import ArbolAVL
+from estructuras.TablaHash.tablaHash import TablaHash
 
 app = Flask(__name__)
 CORS(app)
 
+#----------Instanciación Arbol AVL----------#
 users = ArbolAVL()
 users.datosDesencriptados(users.raiz)
+
+#----------Instanciación Tabla Hash----------#
+tabla_hash = TablaHash()
 
 
 users_json = {
@@ -41,6 +47,8 @@ def login():
     password_request = request.json.get("password", None)
     print(carnet_request)
     print(password_request)
+
+    print(tabla_hash.obtenerTabla())
 
     if (str(carnet_request) == "admin" and str(password_request) == "admin"):
         return jsonify({"carnet": "admin", "DPI": "admin", "nombre": "admin", "carrera": "admin", "correo": "admin", "password": "admin", "edad": "admin"})
@@ -83,6 +91,8 @@ def register():
     print('----AVL Desencriptado----')
     users.datosDesencriptados(users.raiz)
     print()
+
+    tabla_hash.insertar(carnet_request)
     
 
     return jsonify({"carnet": carnet_request})
@@ -91,7 +101,13 @@ def register():
 def passwordMaestro():
     password_maestro = request.json.get("password_maestro")
 
+@app.route('/nuevo-apunte', methods=['POST'])
+def nuevoApunte():
+    carnet_request = request.json.get("carnet")
+    titulo_request = request.json.get("titulo")
+    contenido_request = request.json.get("contenido")
 
+    return jsonify({"titulo": titulo_request})
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
