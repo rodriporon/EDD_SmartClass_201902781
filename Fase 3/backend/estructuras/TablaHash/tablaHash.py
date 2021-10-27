@@ -111,6 +111,7 @@ class TablaHash:
                 pass
 
     def obtenerApuntes(self, carnet):
+        self.data = {"data": []}
         for i in range(self.tamaño_lista_hash):
             if len(self.lista_hash[i].apuntes) > 0:
                 for j in range(len(self.lista_hash[i].apuntes)):

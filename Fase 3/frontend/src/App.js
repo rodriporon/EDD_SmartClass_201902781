@@ -9,6 +9,7 @@ import { UserContextProvider } from './context/UserContext'
 import Register from './pages/Register'
 import Admin from './pages/Admin'
 import Apuntes from './pages/Apuntes'
+import NuevoApunte from './pages/NuevoApunte'
 
 function App() {
   /* useEffect(function () {
@@ -25,6 +26,7 @@ function App() {
           <Route component={Register} path="/register" />
           <Route component={Admin} path="/admin" />
           <Route component={Apuntes} path="/apuntes" />
+          <Route component={NuevoApunte} path="/nuevo-apunte" />
         </section>
       </div>
     </UserContextProvider>
