@@ -91,8 +91,6 @@ def register():
     print('----AVL Desencriptado----')
     users.datosDesencriptados(users.raiz)
     print()
-
-    tabla_hash.insertar(carnet_request)
     
 
     return jsonify({"carnet": carnet_request})
@@ -107,7 +105,7 @@ def nuevoApunte():
     titulo_request = request.json.get("titulo")
     contenido_request = request.json.get("contenido")
 
-    tabla_hash.insertarApunte(carnet_request, titulo_request, contenido_request)
+    tabla_hash.insertar(carnet_request, titulo_request, contenido_request)
 
     print('------Tabla Hash--------')
     tabla_hash.obtenerTabla()
