@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'wouter'
 import BotonApuntes from '../../components/BotonApuntes'
 import Info from '../../components/Info'
 import Card from 'react-bootstrap/Card'
@@ -28,11 +29,16 @@ export default function Apuntes() {
         {apuntes.map((apunte) => {
           return (
             <Card bg="dark" key={apunte.id}>
-              <Card.Header as="h5">{apunte.id}</Card.Header>
               <Card.Body>
                 <Card.Title>{apunte.titulo}</Card.Title>
                 <Card.Text>{apunte.contenido}</Card.Text>
-                <Button variant="light">Ver</Button>
+                <Button
+                  as={Link}
+                  to={`/apunte/${carnet}/${apunte.id}`}
+                  variant="light"
+                >
+                  Ver
+                </Button>
               </Card.Body>
             </Card>
           )

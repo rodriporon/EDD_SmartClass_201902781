@@ -120,3 +120,12 @@ class TablaHash:
                                                   "contenido": self.lista_hash[i].apuntes[j].contenido})
 
         return self.data
+
+    def obtenerApunte(self, carnet, id):
+        for i in range(self.tamaño_lista_hash):
+            if len(self.lista_hash[i].apuntes) > 0:
+                for j in range(len(self.lista_hash[i].apuntes)):
+                    print(f'carnet: {self.lista_hash[i].carnet} = {carnet} | id: {self.lista_hash[i].apuntes[j].id} = {id}')
+                    if str(self.lista_hash[i].carnet) == str(carnet) and str(self.lista_hash[i].apuntes[j].id) == str(id):
+                        
+                        return {"titulo": self.lista_hash[i].apuntes[j].titulo, "contenido": self.lista_hash[i].apuntes[j].contenido}

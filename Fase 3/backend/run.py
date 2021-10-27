@@ -124,6 +124,15 @@ def obtenerApuntes(carnet):
     else:
         return jsonify({"msg": "Error en la consulta al server"}), 401
 
+@app.route('/apunte/<carnet>/<id>', methods=['GET'])
+def obtenerApunte(carnet, id):
+    apunte = tabla_hash.obtenerApunte(carnet, id)
+    if apunte:
+        print(apunte)
+        return jsonify(apunte)
+    else:
+       return jsonify({"msg": "Error en la consulta al server"}), 401 
+
 
 
 if __name__ == "__main__":

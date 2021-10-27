@@ -10,6 +10,7 @@ import Register from './pages/Register'
 import Admin from './pages/Admin'
 import Apuntes from './pages/Apuntes'
 import NuevoApunte from './pages/NuevoApunte'
+import Apunte from './pages/Apunte'
 
 function App() {
   /* useEffect(function () {
@@ -27,6 +28,7 @@ function App() {
           <Route component={Admin} path="/admin" />
           <Route component={Apuntes} path="/apuntes" />
           <Route component={NuevoApunte} path="/nuevo-apunte" />
+          <Route component={Apunte} path="/apunte/:carnet/:id" />
         </section>
       </div>
     </UserContextProvider>
