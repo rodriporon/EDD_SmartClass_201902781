@@ -26,12 +26,20 @@ class TablaHash:
                 cadena += '\n'
         return print(cadena)
 
-    def insertar(self, carnet):
+    def insertar(self, carnet, titulo, contenido):
         posicion = self.metodoDivision(int(carnet))
         if self.porcentajeUso() <= 0.50:
-            if self.lista_hash[posicion].carnet == '':
+            if str(self.lista_hash[posicion].carnet) == str(carnet):
+                self.lista_hash[posicion].id_apunte += 1
+                nodo_apunte = NodoApunte(
+                    self.lista_hash[posicion].id_apunte, titulo, contenido)
+                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+            elif self.lista_hash[posicion].carnet == '':
                 nuevo_nodo = NodoHash(carnet)
+                nodo_apunte = NodoApunte(
+                    self.lista_hash[posicion].id_apunte, titulo, contenido)
                 self.lista_hash[posicion] = nuevo_nodo
+                self.lista_hash[posicion].apuntes.append(nodo_apunte)
             else:
                 while True:
                     self.bucle_exploracion += 1
@@ -41,9 +49,17 @@ class TablaHash:
                         posicion = posicion + (self.colisiones*self.colisiones)
                         print(posicion)
                     if posicion < self.tamaño_lista_hash - 1:
-                        if self.lista_hash[posicion].carnet == '':
+                        if str(self.lista_hash[posicion].carnet) == str(carnet):
+                            self.lista_hash[posicion].id_apunte += 1
+                            nodo_apunte = NodoApunte(
+                                self.lista_hash[posicion].id_apunte, titulo, contenido)
+                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                        elif self.lista_hash[posicion].carnet == '':
                             nuevo_nodo = NodoHash(carnet)
+                            nodo_apunte = NodoApunte(
+                                self.lista_hash[posicion].id_apunte, titulo, contenido)
                             self.lista_hash[posicion] = nuevo_nodo
+                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
                             break
                     else:
                         posicion = 0
@@ -58,9 +74,17 @@ class TablaHash:
                 self.lista_hash.append(nuevo_nodo)
 
             self.tamaño_lista_hash = primo_proximo
-            if self.lista_hash[posicion].carnet == '':
+            if str(self.lista_hash[posicion].carnet) == str(carnet):
+                self.lista_hash[posicion].id_apunte += 1
+                nodo_apunte = NodoApunte(
+                    self.lista_hash[posicion].id_apunte, titulo, contenido)
+                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+            elif self.lista_hash[posicion].carnet == '':
                 nuevo_nodo = NodoHash(carnet)
+                nodo_apunte = NodoApunte(
+                    self.lista_hash[posicion].id_apunte, titulo, contenido)
                 self.lista_hash[posicion] = nuevo_nodo
+                self.lista_hash[posicion].apuntes.append(nodo_apunte)
             else:
                 while True:
                     self.bucle_exploracion += 1
@@ -70,10 +94,18 @@ class TablaHash:
                         posicion = posicion + (self.colisiones*self.colisiones)
 
                     if posicion < self.tamaño_lista_hash:
+                        if str(self.lista_hash[posicion].carnet) == str(carnet):
+                            self.lista_hash[posicion].id_apunte += 1
+                            nodo_apunte = NodoApunte(
+                            self.lista_hash[posicion].id_apunte, titulo, contenido)
+                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
 
-                        if self.lista_hash[posicion].carnet == '':
+                        elif self.lista_hash[posicion].carnet == '':
                             nuevo_nodo = NodoHash(carnet)
+                            nodo_apunte = NodoApunte(
+                                self.lista_hash[posicion].id_apunte, titulo, contenido)
                             self.lista_hash[posicion] = nuevo_nodo
+                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
                             break
                     else:
                         self.colisiones = 0
