@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import BotonApuntes from '../../components/BotonApuntes'
 import Info from '../../components/Info'
-import Form from 'react-bootstrap/Form'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/esm/Container'
 import getApuntes from '../../services/getApuntes'
 import useUser from '../../hooks/useUser'
@@ -24,19 +25,18 @@ export default function Apuntes() {
       <Info />
       <BotonApuntes />
       <Container>
-        <Form.Group className="mb-3">
-          <Form.Label>Apuntes</Form.Label>
-          <Form.Control placeholder="Disabled input" disabled />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Disabled select menu</Form.Label>
-          <Form.Select>
-            <option>Disabled select</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Check type="checkbox" label="Can't check this" disabled />
-        </Form.Group>
+        {apuntes.map((apunte) => {
+          return (
+            <Card bg="dark" key={apunte.id}>
+              <Card.Header as="h5">{apunte.id}</Card.Header>
+              <Card.Body>
+                <Card.Title>{apunte.titulo}</Card.Title>
+                <Card.Text>{apunte.contenido}</Card.Text>
+                <Button variant="light">Ver</Button>
+              </Card.Body>
+            </Card>
+          )
+        })}
       </Container>
     </>
   )

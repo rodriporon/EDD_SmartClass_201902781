@@ -12,7 +12,10 @@ export default function getApuntes({ carnet }) {
     .then((res) => {
       const { data = [] } = res
       if (Array.isArray(data)) {
-        const apuntes = data.map((apunte) => apunte.titulo)
+        const apuntes = data.map((apunte) => {
+          const { id, titulo, contenido } = apunte
+          return { id, titulo, contenido }
+        })
         return apuntes
       }
     })

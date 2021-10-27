@@ -115,8 +115,8 @@ class TablaHash:
         for i in range(self.tamaño_lista_hash):
             if len(self.lista_hash[i].apuntes) > 0:
                 for j in range(len(self.lista_hash[i].apuntes)):
-                    if str(self.lista_hash[i].carnet) == str(carnet):  
+                    if str(self.lista_hash[i].carnet) == str(carnet):
                         self.data['data'].append({"id": self.lista_hash[i].apuntes[j].id, "titulo": self.lista_hash[i].apuntes[j].titulo,
-                                            "contenido": self.lista_hash[i].apuntes[j].contenido})
+                                                  "contenido": self.lista_hash[i].apuntes[j].contenido})
 
         return self.data
