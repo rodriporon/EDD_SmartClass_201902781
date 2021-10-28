@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 
 import cargaEstudiantesService from '../services/cargaEstudiantes'
+import cargaApuntesService from '../services/cargaApuntes'
 
 export default function useCargaEstudiantes() {
   const cargaEstudiantes = useCallback((archivo) => {
@@ -13,7 +14,18 @@ export default function useCargaEstudiantes() {
       })
   }, [])
 
+  const cargaApuntes = useCallback((archivo) => {
+    cargaApuntesService(archivo)
+      .then((msg) => {
+        console.log(msg)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return {
     cargaEstudiantes,
+    cargaApuntes,
   }
 }

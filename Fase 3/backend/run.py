@@ -147,12 +147,25 @@ def cargaEstudiantes():
 
         users.insertar(str(carnet), str(DPI), str(nombre), str(carrera), str(correo), str(password), str(edad))
 
-    
+    if data:
+        return jsonify({"msg": "Carga exitosa"})
+    return jsonify({"msg": "Error en la consulta al server"}), 400
+
+@app.route('/carga-apuntes', methods=['POST'])
+def cargaApuntes():
+    data = request.get_json()
+    usuarios = json.loads(data)
+
+    for usuario in usuarios["usuarios"]:
+        carnet = usuario['carnet']
+        apuntes = usuario['apuntes']
+        for apunte in apuntes:
+            print(apunte['Título'])
+            titulo = apunte['Título']
+            contenido = apunte['Contenido']
+            tabla_hash.insertar(carnet, titulo, contenido)
         
         
-        
-        
-    
 
     if data:
         return jsonify({"msg": "Carga exitosa"})
