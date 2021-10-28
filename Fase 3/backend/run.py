@@ -131,6 +131,32 @@ def obtenerApunte(carnet, id):
     else:
        return jsonify({"msg": "Error en la consulta al server"}), 401 
 
+@app.route('/carga-estudiantes', methods=['POST'])
+def cargaEstudiantes():
+    data = request.get_json()
+    estudiantes = json.loads(data)
+
+    for estudiante in estudiantes["estudiantes"]:
+        carnet = estudiante['carnet']
+        DPI = estudiante['DPI']
+        nombre = estudiante['nombre']
+        carrera = estudiante['carrera']
+        correo = estudiante['correo']
+        password = estudiante['password']
+        edad = estudiante['edad']
+
+        users.insertar(str(carnet), str(DPI), str(nombre), str(carrera), str(correo), str(password), str(edad))
+
+    
+        
+        
+        
+        
+    
+
+    if data:
+        return jsonify({"msg": "Carga exitosa"})
+    return jsonify({"msg": "Error en la consulta al server"}), 400
 
 
 if __name__ == "__main__":
