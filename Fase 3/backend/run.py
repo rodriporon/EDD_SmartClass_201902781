@@ -176,7 +176,10 @@ def reportes(tipo, seguridad):
         print('Entró a reporte estudiantes encriptado')
         users.graficarEncriptado()
 
-    print(tipo, seguridad)
+    elif str(tipo) == "estudiantes" and str(seguridad) == "desencriptado":
+        print('Entró a reporte estudiantes desencriptado')
+        users.graficarDesencriptado()
+
     return jsonify({"msg": "all ok"})
 
 if __name__ == "__main__":

@@ -9,11 +9,17 @@ import useReportes from '../../hooks/useReportes'
 
 export default function Header() {
   const { isUser, isAdmin, logout } = useUser()
-  const { reporteEstudiantesEncriptado } = useReportes()
+  const { reporteEstudiantesEncriptado, reporteEstudiantesDesencriptado } =
+    useReportes()
 
-  const handleReporteEstudiantes = (e) => {
+  const handleReporteEstudiantesEncriptado = (e) => {
     e.preventDefault()
     reporteEstudiantesEncriptado()
+  }
+
+  const handleReporteEstudiantesDesencriptado = (e) => {
+    e.preventDefault()
+    reporteEstudiantesDesencriptado()
   }
 
   const handleClick = (e) => {
@@ -64,8 +70,13 @@ export default function Header() {
                 Generar Llave
               </Nav.Link>
               <NavDropdown title="Reportes" id="basic-nav-dropdown">
-                <NavDropdown.Item onClick={handleReporteEstudiantes}>
-                  Estudiantes
+                <NavDropdown.Item onClick={handleReporteEstudiantesEncriptado}>
+                  Estudiantes Encriptado
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={handleReporteEstudiantesDesencriptado}
+                >
+                  Estudiantes Desencriptado
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/carga-apuntes">
                   Apuntes

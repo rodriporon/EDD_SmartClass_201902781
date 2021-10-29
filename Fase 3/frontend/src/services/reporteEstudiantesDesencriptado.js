@@ -1,7 +1,7 @@
 const ENDPOINT = 'http://localhost:3000'
 
-export default function ReporteEstudiantesEncriptado() {
-  return fetch(`${ENDPOINT}/reporte/estudiantes/encriptado`)
+export default function cargaEstudiantes() {
+  return fetch(`${ENDPOINT}/reporte/estudiantes/desencriptado`)
     .then((res) => {
       if (!res.ok) {
         alert('No se pudo generar el reporte')
