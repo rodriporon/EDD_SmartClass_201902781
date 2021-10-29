@@ -1,5 +1,5 @@
 from estructuras.TablaHash.nodoHash import NodoHash
-from estructuras.TablaHash.nodoApunte import NodoApunte
+
 
 
 class TablaHash:
@@ -15,31 +15,22 @@ class TablaHash:
             self.lista_hash[i] = nuevo_nodo
 
     def obtenerTabla(self):
-        cadena = ''
         for i in range(self.tamaño_lista_hash):
-            cadena += f'{i}) {self.lista_hash[i].carnet}'
-            if len(self.lista_hash[i].apuntes) > 0:
-                for j in range(len(self.lista_hash[i].apuntes)):
-                    cadena += f' id: {self.lista_hash[i].apuntes[j].id} - {self.lista_hash[i].apuntes[j].titulo} '
-                cadena += '\n'
+            if (str(self.lista_hash[i].carnet) != str('')):
+                print(f'{i}) {self.lista_hash[i].carnet} - Apuntes: {self.lista_hash[i].apuntes.obtenerListaApuntes()}')
             else:
-                cadena += '\n'
-        return print(cadena)
+                print(f'{i})  -   -   -')
 
     def insertar(self, carnet, titulo, contenido):
         posicion = self.metodoDivision(int(carnet))
         if self.porcentajeUso() <= 0.50:
             if str(self.lista_hash[posicion].carnet) == str(carnet):
                 self.lista_hash[posicion].id_apunte += 1
-                nodo_apunte = NodoApunte(
-                    self.lista_hash[posicion].id_apunte, titulo, contenido)
-                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
             elif self.lista_hash[posicion].carnet == '':
                 nuevo_nodo = NodoHash(carnet)
-                nodo_apunte = NodoApunte(
-                    self.lista_hash[posicion].id_apunte, titulo, contenido)
                 self.lista_hash[posicion] = nuevo_nodo
-                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
             else:
                 while True:
                     self.bucle_exploracion += 1
@@ -51,15 +42,11 @@ class TablaHash:
                     if posicion < self.tamaño_lista_hash - 1:
                         if str(self.lista_hash[posicion].carnet) == str(carnet):
                             self.lista_hash[posicion].id_apunte += 1
-                            nodo_apunte = NodoApunte(
-                                self.lista_hash[posicion].id_apunte, titulo, contenido)
-                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                            self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
                         elif self.lista_hash[posicion].carnet == '':
                             nuevo_nodo = NodoHash(carnet)
-                            nodo_apunte = NodoApunte(
-                                self.lista_hash[posicion].id_apunte, titulo, contenido)
                             self.lista_hash[posicion] = nuevo_nodo
-                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                            self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
                             break
                     else:
                         posicion = 0
@@ -76,15 +63,11 @@ class TablaHash:
             self.tamaño_lista_hash = primo_proximo
             if str(self.lista_hash[posicion].carnet) == str(carnet):
                 self.lista_hash[posicion].id_apunte += 1
-                nodo_apunte = NodoApunte(
-                    self.lista_hash[posicion].id_apunte, titulo, contenido)
-                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
             elif self.lista_hash[posicion].carnet == '':
                 nuevo_nodo = NodoHash(carnet)
-                nodo_apunte = NodoApunte(
-                    self.lista_hash[posicion].id_apunte, titulo, contenido)
                 self.lista_hash[posicion] = nuevo_nodo
-                self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
             else:
                 while True:
                     self.bucle_exploracion += 1
@@ -96,16 +79,12 @@ class TablaHash:
                     if posicion < self.tamaño_lista_hash:
                         if str(self.lista_hash[posicion].carnet) == str(carnet):
                             self.lista_hash[posicion].id_apunte += 1
-                            nodo_apunte = NodoApunte(
-                            self.lista_hash[posicion].id_apunte, titulo, contenido)
-                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                            self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
 
                         elif self.lista_hash[posicion].carnet == '':
                             nuevo_nodo = NodoHash(carnet)
-                            nodo_apunte = NodoApunte(
-                                self.lista_hash[posicion].id_apunte, titulo, contenido)
                             self.lista_hash[posicion] = nuevo_nodo
-                            self.lista_hash[posicion].apuntes.append(nodo_apunte)
+                            self.lista_hash[posicion].apuntes.insertar(self.lista_hash[posicion].id_apunte, titulo, contenido)
                             break
                     else:
                         self.colisiones = 0
@@ -132,32 +111,23 @@ class TablaHash:
 
         return contador/self.tamaño_lista_hash
 
-    def insertarApunte(self, carnet, titulo, contenido):
-        for i in range(self.tamaño_lista_hash):
-            if str(self.lista_hash[i].carnet) == str(carnet):
-                self.lista_hash[i].id_apunte += 1
-                nodo_apunte = NodoApunte(
-                    self.lista_hash[i].id_apunte, titulo, contenido)
-                self.lista_hash[i].apuntes.append(nodo_apunte)
-            else:
-                pass
 
     def obtenerApuntes(self, carnet):
         self.data = {"data": []}
         for i in range(self.tamaño_lista_hash):
-            if len(self.lista_hash[i].apuntes) > 0:
-                for j in range(len(self.lista_hash[i].apuntes)):
+            if self.lista_hash[i].apuntes.contador > 0:
+                for j in range(self.lista_hash[i].apuntes.contador):
                     if str(self.lista_hash[i].carnet) == str(carnet):
-                        self.data['data'].append({"id": self.lista_hash[i].apuntes[j].id, "titulo": self.lista_hash[i].apuntes[j].titulo,
-                                                  "contenido": self.lista_hash[i].apuntes[j].contenido})
+                        self.data['data'].append({"id": self.lista_hash[i].apuntes.obtenerId(j), "titulo": self.lista_hash[i].apuntes.obtenerTitulo(j),
+                                                  "contenido": self.lista_hash[i].apuntes.obtenerContenido(j)})
 
         return self.data
 
     def obtenerApunte(self, carnet, id):
         for i in range(self.tamaño_lista_hash):
-            if len(self.lista_hash[i].apuntes) > 0:
-                for j in range(len(self.lista_hash[i].apuntes)):
-                    print(f'carnet: {self.lista_hash[i].carnet} = {carnet} | id: {self.lista_hash[i].apuntes[j].id} = {id}')
-                    if str(self.lista_hash[i].carnet) == str(carnet) and str(self.lista_hash[i].apuntes[j].id) == str(id):
+            if self.lista_hash[i].apuntes.contador > 0:
+                for j in range(self.lista_hash[i].apuntes.contador):
+                    print(f'carnet: {self.lista_hash[i].carnet} = {carnet} | id: {self.lista_hash[i].apuntes.obtenerId(j)} = {id}')
+                    if str(self.lista_hash[i].carnet) == str(carnet) and str(self.lista_hash[i].apuntes.obtenerId(j)) == str(id):
                         
-                        return {"titulo": self.lista_hash[i].apuntes[j].titulo, "contenido": self.lista_hash[i].apuntes[j].contenido}
+                        return {"titulo": self.lista_hash[i].apuntes.obtenerTitulo(j), "contenido": self.lista_hash[i].apuntes.obtenerContenido(j)}
