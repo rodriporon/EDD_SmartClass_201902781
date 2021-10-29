@@ -173,8 +173,8 @@ class ArbolAVL:
         aux = self.RD(nodo)
         return aux
 
-    def graficar(self):
-        d = Digraph('arbolavl', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\ArbolAVL.gv',
+    def graficarDesencriptado(self):
+        d = Digraph('arbolavl', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\ArbolAVLDesencriptado.gv',
                     node_attr={'shape': 'box'})
         cu_nodo = self.raiz
         pila = []
@@ -186,13 +186,38 @@ class ArbolAVL:
             elif pila:
                 cu_nodo = pila.pop()
                 estudiante = ""
-                estudiante += str(cu_nodo.carnet) + "\n" + \
-                    str(cu_nodo.nombre) + "\n" + cu_nodo.carrera
-                d.node(str(cu_nodo.carnet), label=estudiante)
+                estudiante += str(f.decrypt(cu_nodo.carnet).decode()) + "\n" + \
+                    str(f.decrypt(cu_nodo.nombre).decode()) + "\n" + str(f.decrypt(cu_nodo.carrera).decode())
+                d.node(str(f.decrypt(cu_nodo.carnet).decode()), label=estudiante)
                 if cu_nodo.izquierda is not None:
-                    d.edge(str(cu_nodo.carnet), str(cu_nodo.izquierda.carnet))
+                    d.edge(str(f.decrypt(cu_nodo.carnet).decode()), str(f.decrypt(cu_nodo.izquierda.carnet).decode()))
                 if cu_nodo.derecha is not None:
-                    d.edge(str(cu_nodo.carnet), str(cu_nodo.derecha.carnet))
+                    d.edge(str(f.decrypt(cu_nodo.carnet).decode()), str(f.decrypt(cu_nodo.derecha.carnet).decode()))
+                cu_nodo = cu_nodo.derecha
+            else:
+                break
+        d.view()
+
+    def graficarEncriptado(self):
+        d = Digraph('arbolavl', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\ArbolAVLEncriptado.gv',
+                    node_attr={'shape': 'box'})
+        cu_nodo = self.raiz
+        pila = []
+        d.attr(rankdir='TB')
+        while True:
+            if cu_nodo is not None:
+                pila.append(cu_nodo)
+                cu_nodo = cu_nodo.izquierda
+            elif pila:
+                cu_nodo = pila.pop()
+                estudiante = ""
+                estudiante += str(cu_nodo.carnet.decode()) + "\n" + \
+                    str(cu_nodo.nombre.decode()) + "\n" + str(cu_nodo.carrera.decode())
+                d.node(str(cu_nodo.carnet.decode()), label=estudiante)
+                if cu_nodo.izquierda is not None:
+                    d.edge(str(cu_nodo.carnet.decode()), str(cu_nodo.izquierda.carnet.decode()))
+                if cu_nodo.derecha is not None:
+                    d.edge(str(cu_nodo.carnet.decode()), str(cu_nodo.derecha.carnet.decode()))
                 cu_nodo = cu_nodo.derecha
             else:
                 break

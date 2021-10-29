@@ -163,14 +163,21 @@ def cargaApuntes():
             print(apunte['Título'])
             titulo = apunte['Título']
             contenido = apunte['Contenido']
-            tabla_hash.insertar(carnet, titulo, contenido)
-        
-        
+            tabla_hash.insertar(carnet, titulo, contenido) 
 
     if data:
         return jsonify({"msg": "Carga exitosa"})
     return jsonify({"msg": "Error en la consulta al server"}), 400
 
+@app.route('/reporte/<tipo>/<seguridad>', methods=['GET'])
+def reportes(tipo, seguridad):
+
+    if str(tipo) == "estudiantes" and str(seguridad) == "encriptado":
+        print('Entró a reporte estudiantes encriptado')
+        users.graficarEncriptado()
+
+    print(tipo, seguridad)
+    return jsonify({"msg": "all ok"})
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)

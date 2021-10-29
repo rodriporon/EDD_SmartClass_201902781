@@ -5,9 +5,16 @@ import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Nav from 'react-bootstrap/Nav'
 import useUser from '../../hooks/useUser'
+import useReportes from '../../hooks/useReportes'
 
 export default function Header() {
   const { isUser, isAdmin, logout } = useUser()
+  const { reporteEstudiantesEncriptado } = useReportes()
+
+  const handleReporteEstudiantes = (e) => {
+    e.preventDefault()
+    reporteEstudiantesEncriptado()
+  }
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -56,8 +63,8 @@ export default function Header() {
               <Nav.Link as={Link} to="/generar-llave">
                 Generar Llave
               </Nav.Link>
-              <NavDropdown title="Cargas Masivas" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/carga-estudiantes">
+              <NavDropdown title="Reportes" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={handleReporteEstudiantes}>
                   Estudiantes
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/carga-apuntes">
