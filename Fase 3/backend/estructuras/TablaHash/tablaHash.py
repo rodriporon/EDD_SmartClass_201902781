@@ -134,7 +134,7 @@ class TablaHash:
                 print(f'{i})  -   -   -')
 
     def graficar(self):
-        f = open("C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.dot", "w")
+        f = open("C:\\Users\\rodri\\OneDrive\\Documents\\GitHub\\EDD_SmartClass_201902781\\Fase 3\\frontend\\src\\pages\\TablaHash\\TablaHash.dot", "w")
 
         f.write("digraph structs {\n rankdir=LR node[shape=record]; \n")
 
@@ -157,4 +157,4 @@ class TablaHash:
         f.write("\n}")
 
         f.close()
-        os.system(f"dot -Nfontname=Arial -Tsvg C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.dot -o C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.svg")
+        os.system(f"dot -Nfontname=Arial -Tpng \"C:\\Users\\rodri\\OneDrive\\Documents\\GitHub\\EDD_SmartClass_201902781\\Fase 3\\frontend\\src\\pages\\TablaHash\\TablaHash.dot\" -o \"C:\\Users\\rodri\\OneDrive\\Documents\\GitHub\\EDD_SmartClass_201902781\\Fase 3\\frontend\\src\\pages\\TablaHash\\TablaHash.png\"")

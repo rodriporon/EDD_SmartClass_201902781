@@ -6,9 +6,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Nav from 'react-bootstrap/Nav'
 import useUser from '../../hooks/useUser'
 import useReportes from '../../hooks/useReportes'
+import useTablaHash from '../../hooks/useTablaHash'
 
 export default function Header() {
   const { isUser, isAdmin, logout } = useUser()
+
+  const { graficarTablaHash } = useTablaHash()
   const { reporteEstudiantesEncriptado, reporteEstudiantesDesencriptado } =
     useReportes()
 
@@ -20,6 +23,11 @@ export default function Header() {
   const handleReporteEstudiantesDesencriptado = (e) => {
     e.preventDefault()
     reporteEstudiantesDesencriptado()
+  }
+
+  const handleTablaHash = (e) => {
+    e.preventDefault()
+    graficarTablaHash()
   }
 
   const handleClick = (e) => {
@@ -82,9 +90,7 @@ export default function Header() {
                   Apuntes
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={Link} to="/tareas">
-                Cargas Masivas
-              </Nav.Link>
+              <Nav.Link onClick={handleTablaHash}>Tabla Hash</Nav.Link>
               <Nav.Link as={Link} to="/red-cursos">
                 Red de Cursos
               </Nav.Link>

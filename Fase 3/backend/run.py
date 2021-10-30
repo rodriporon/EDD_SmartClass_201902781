@@ -182,5 +182,13 @@ def reportes(tipo, seguridad):
 
     return jsonify({"msg": "all ok"})
 
+@app.route('/graficar-tablahash', methods=['GET'])
+def graficarTablaHash():
+
+    tabla_hash.graficar()
+
+    return jsonify({"msg": "all ok"})
+    
+
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
