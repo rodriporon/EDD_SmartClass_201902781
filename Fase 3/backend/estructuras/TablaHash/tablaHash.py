@@ -1,5 +1,5 @@
 from estructuras.TablaHash.nodoHash import NodoHash
-
+import os
 
 
 class TablaHash:
@@ -13,13 +13,6 @@ class TablaHash:
         for i in range(self.tamaño_lista_hash):
             nuevo_nodo = NodoHash('')
             self.lista_hash[i] = nuevo_nodo
-
-    def obtenerTabla(self):
-        for i in range(self.tamaño_lista_hash):
-            if (str(self.lista_hash[i].carnet) != str('')):
-                print(f'{i}) {self.lista_hash[i].carnet} - Apuntes: {self.lista_hash[i].apuntes.obtenerListaApuntes()}')
-            else:
-                print(f'{i})  -   -   -')
 
     def insertar(self, carnet, titulo, contenido):
         posicion = self.metodoDivision(int(carnet))
@@ -131,3 +124,37 @@ class TablaHash:
                     if str(self.lista_hash[i].carnet) == str(carnet) and str(self.lista_hash[i].apuntes.obtenerId(j)) == str(id):
                         
                         return {"titulo": self.lista_hash[i].apuntes.obtenerTitulo(j), "contenido": self.lista_hash[i].apuntes.obtenerContenido(j)}
+
+    
+    def obtenerTabla(self):
+        for i in range(self.tamaño_lista_hash):
+            if (str(self.lista_hash[i].carnet) != str('')):
+                print(f'{i}) {self.lista_hash[i].carnet} - Apuntes: {self.lista_hash[i].apuntes.obtenerListaApuntes()}')
+            else:
+                print(f'{i})  -   -   -')
+
+    def graficar(self):
+        f = open("C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.dot", "w")
+
+        f.write("digraph structs {\n rankdir=LR node[shape=record]; \n")
+
+        f.write("struct1 [label=\"")
+        for i in range(self.tamaño_lista_hash):
+            if i == self.tamaño_lista_hash - 1:
+                f.write(f'<f{i}> {str(self.lista_hash[i].carnet)}')
+            else:
+                f.write(f'<f{i}> {str(self.lista_hash[i].carnet)}|')
+        f.write("\"];")
+
+        for i in range(self.tamaño_lista_hash):
+            for j in range(self.lista_hash[i].apuntes.contador):
+                f.write(f'n{i}{j} [shape=ellipse, label=\"{str(self.lista_hash[i].apuntes.obtenerTitulo(j))}\"] \n')
+                if self.lista_hash[i].apuntes.obtenerId(j) == 0:
+                    f.write(f'struct1:f{i} -> n{i}{0} \n')
+                else:
+                    f.write(f'n{i}{j-1} -> n{i}{j} \n')
+
+        f.write("\n}")
+
+        f.close()
+        os.system(f"dot -Nfontname=Arial -Tsvg C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.dot -o C:\\Users\\rodri\\Desktop\\Reportes_F3\\TablaHash.svg")

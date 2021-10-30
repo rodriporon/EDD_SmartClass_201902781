@@ -14,6 +14,12 @@ class ArbolAVL:
     def __init__(self):
 
         self.raiz = None
+        self.f = None
+        self.key = None
+
+    def generarKey(self):
+        self.key = Fernet.generate_key()
+        self.f = Fernet(key)
 
     def insertar(self, carnet, DPI, nombre, carrera, correo, password, edad):
 
