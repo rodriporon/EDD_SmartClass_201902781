@@ -1,15 +1,19 @@
-from types import MethodDescriptorType, TracebackType
 from flask import Flask, json, jsonify, request
 from flask_cors import CORS
 from estructuras.ArbolAVL.arbolAVL import ArbolAVL
 from estructuras.TablaHash.tablaHash import TablaHash
+from estructuras.AVLPensum.arbolPensum import ArbolPensum
 
 app = Flask(__name__)
 CORS(app)
 
-#----------Instanciación Arbol AVL----------#
+#----------Instanciación Arbol AVL estudiantes----------#
 users = ArbolAVL()
 users.datosDesencriptados(users.raiz)
+
+#----------Instanciación Arbol Pensum----------#
+arbol_pensum = ArbolPensum()
+arbol_pensum.inOrden(arbol_pensum.raiz)
 
 #----------Instanciación Tabla Hash----------#
 tabla_hash = TablaHash()
@@ -169,6 +173,25 @@ def cargaApuntes():
         return jsonify({"msg": "Carga exitosa"})
     return jsonify({"msg": "Error en la consulta al server"}), 400
 
+@app.route('/carga-pensum', methods=['POST'])
+def cargaPensum():
+    data = request.get_json()
+    cursos = json.loads(data)
+
+    for curso in cursos["Cursos"]:
+        codigo = curso['Codigo']
+        nombre = curso['Nombre']
+        creditos = curso['Creditos']
+        prerequisitos = curso['Prerequisitos']
+        obligatorio = curso['Obligatorio']
+        
+        arbol_pensum.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
+        arbol_pensum.inOrden(arbol_pensum.raiz)        
+
+    if data:
+        return jsonify({"msg": "Carga exitosa"})
+    return jsonify({"msg": "Error en la consulta al server"}), 400
+
 @app.route('/reporte/<tipo>/<seguridad>', methods=['GET'])
 def reportes(tipo, seguridad):
 
@@ -179,6 +202,7 @@ def reportes(tipo, seguridad):
     elif str(tipo) == "estudiantes" and str(seguridad) == "desencriptado":
         print('Entró a reporte estudiantes desencriptado')
         users.graficarDesencriptado()
+
 
     return jsonify({"msg": "all ok"})
 

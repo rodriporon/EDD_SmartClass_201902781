@@ -1,13 +1,11 @@
 digraph structs {
  rankdir=LR node[shape=record]; 
-struct1 [label="<f0> |<f1> |<f2> 20210000001|<f3> 201902781|<f4> 20210000003|<f5> 20210000004|<f6> "];n20 [shape=ellipse, label="pendientes"] 
+struct1 [label="<f0> |<f1> |<f2> 20210000001|<f3> |<f4> 20210000003|<f5> 20210000004|<f6> "];n20 [shape=ellipse, label="pendientes"] 
 struct1:f2 -> n20 
 n21 [shape=ellipse, label="block chain"] 
 n20 -> n21 
 n22 [shape=ellipse, label="tabla hash"] 
 n21 -> n22 
-n30 [shape=ellipse, label="Verificando"] 
-struct1:f3 -> n30 
 n40 [shape=ellipse, label="Lab edd -18/10"] 
 struct1:f4 -> n40 
 n41 [shape=ellipse, label="resumen primer parcial -fisica2"] 
