@@ -55,8 +55,8 @@ export default function Header() {
               <Nav.Link as={Link} to="/apuntes">
                 Apuntes
               </Nav.Link>
-              <Nav.Link as={Link} to="/tareas">
-                Tareas
+              <Nav.Link as={Link} to="/asignacion">
+                Asignarme
               </Nav.Link>
               <Nav.Link as={Link} to="/red-cursos">
                 Red de Cursos

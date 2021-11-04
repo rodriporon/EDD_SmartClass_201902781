@@ -12,6 +12,7 @@ import Apuntes from './pages/Apuntes'
 import NuevoApunte from './pages/NuevoApunte'
 import Apunte from './pages/Apunte'
 import TablaHash from './pages/TablaHash'
+import AsignarCurso from './pages/AsignarCurso'
 
 function App() {
   /* useEffect(function () {
@@ -28,6 +29,7 @@ function App() {
           <Route component={Register} path="/register" />
           <Route component={Admin} path="/admin" />
           <Route component={Apuntes} path="/apuntes" />
+          <Route component={AsignarCurso} path="/asignacion" />
           <Route component={NuevoApunte} path="/nuevo-apunte" />
           <Route component={Apunte} path="/apunte/:carnet/:id" />
           <Route component={TablaHash} path="/ver-tabla-hash" />

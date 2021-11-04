@@ -3,7 +3,7 @@ from graphviz import Digraph
 
 class ArbolPensum:
     def __init__(self):
-
+        self.nodo_curso = None
         self.raiz = None
 
     def insertar(self, codigo, nombre, creditos, prerequisitos, obligatorio):
@@ -67,15 +67,15 @@ class ArbolPensum:
             self.inOrden(cu_raiz.derecha)
     
     #metodo que buscar la matriz dispersa a graficar
-    def buscar(self, cu_raiz, carnet, año, mes):
+    def buscarCurso(self, cu_raiz, codigo):
         if cu_raiz is not None:
-            self.buscar(cu_raiz.izquierda, carnet, año, mes)
-            if str(cu_raiz.carnet) == str(carnet):
-                #print(cu_raiz.carnet)
-                cu_raiz.años.buscar(año, mes) #buscar año
-                return cu_raiz
-            self.buscar(cu_raiz.derecha, carnet, año, mes)
-
+            self.buscarCurso(cu_raiz.izquierda, codigo)
+            if str(cu_raiz.codigo) == str(codigo):
+                print(f'encontrado: {cu_raiz.codigo}')
+                self.nodo_curso = cu_raiz
+                return self.nodo_curso
+            self.buscarCurso(cu_raiz.derecha, codigo)
+        return self.nodo_curso
 
 
     def verAltura(self, nodo):

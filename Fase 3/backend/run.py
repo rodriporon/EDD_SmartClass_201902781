@@ -59,10 +59,12 @@ def login():
 
     else:
         user = users.buscar(users.raiz, carnet_request, password_request)
+        users.user_login = None
         print(user)
 
-        if str(user["carnet"]) == str(carnet_request) and str(user["password"]) and str(password_request):
-            return jsonify(user)
+        if user:
+            if str(user["carnet"]) == str(carnet_request) and str(user["password"]) and str(password_request):
+                return jsonify(user)
         else:
             return jsonify({"msg": "Bad carnet or password"}), 401
 
@@ -232,6 +234,7 @@ def reportes(tipo, seguridad):
         print('Entró a cursos asignados')
         nodo_estudiante = users.buscarEstudiante(users.raiz, seguridad)
         nodo_estudiante.cursos_asignados.graficar()
+        users.user_cursos = None
 
 
     return jsonify({"msg": "all ok"})
@@ -242,6 +245,20 @@ def graficarTablaHash():
     tabla_hash.graficar()
 
     return jsonify({"msg": "all ok"})
+
+@app.route('/asignar-curso/<carnet>', methods=['POST'])
+def asignarCurso(carnet):
+    codigo = request.json.get("codigo", None)
+    print(codigo)
+    nodo_curso_pensum = arbol_pensum.buscarCurso(arbol_pensum.raiz, codigo)
+    if nodo_curso_pensum:
+        nodo_estudiante = users.buscarEstudiante(users.raiz, carnet)
+        nodo_estudiante.cursos_asignados.insertar(nodo_curso_pensum.codigo, nodo_curso_pensum.nombre, nodo_curso_pensum.creditos, nodo_curso_pensum.prerequisitos, nodo_curso_pensum.obligatorio)
+        arbol_pensum.nodo_curso = None
+        return jsonify({"msg": "se asigno correctamente"})
+
+    return jsonify({"msg": "ocurrio un error"})
+    
     
 
 if __name__ == "__main__":

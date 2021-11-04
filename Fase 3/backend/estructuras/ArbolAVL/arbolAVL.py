@@ -7,14 +7,13 @@ key = Fernet.generate_key()
 
 f = Fernet(key)
 
-user_login = None
-user_cursos = None
-
 
 class ArbolAVL:
     def __init__(self):
 
         self.raiz = None
+        self.user_cursos = None
+        self.user_login = None
         self.f = None
         self.key = None
 
@@ -131,7 +130,7 @@ class ArbolAVL:
             if str(f.decrypt(cu_raiz.carnet).decode()) == str(carnet) and str(f.decrypt(cu_raiz.password).decode()) == str(password):
                 global user_login
                 print('ENCONTRADO')
-                user_login = {
+                self.user_login = {
                     "carnet": f.decrypt(cu_raiz.carnet).decode(),
                     "DPI": f.decrypt(cu_raiz.DPI).decode(),
                     "nombre": f.decrypt(cu_raiz.nombre).decode(),
@@ -140,9 +139,9 @@ class ArbolAVL:
                     "password": f.decrypt(cu_raiz.password).decode(),
                     "edad": f.decrypt(cu_raiz.edad).decode()
                 }
-                return user_login
+                return self.user_login
             self.buscar(cu_raiz.derecha, carnet, password)
-        return user_login
+        return self.user_login
 
     def buscarEstudiante(self, cu_raiz, carnet):
         if cu_raiz is not None:
@@ -150,9 +149,10 @@ class ArbolAVL:
             if str(f.decrypt(cu_raiz.carnet).decode()) == str(carnet):
                 global user_cursos
                 print('ENCONTRADO')
-                user_cursos = cu_raiz
-                return user_cursos
+                self.user_cursos = cu_raiz
+                return self.user_cursos
             self.buscarEstudiante(cu_raiz.derecha, carnet)
+        return self.user_cursos
 
     def verAltura(self, nodo):
         if nodo:
