@@ -8,6 +8,7 @@ key = Fernet.generate_key()
 f = Fernet(key)
 
 user_login = None
+user_cursos = None
 
 
 class ArbolAVL:
@@ -143,6 +144,16 @@ class ArbolAVL:
             self.buscar(cu_raiz.derecha, carnet, password)
         return user_login
 
+    def buscarEstudiante(self, cu_raiz, carnet):
+        if cu_raiz is not None:
+            self.buscarEstudiante(cu_raiz.izquierda, carnet)
+            if str(f.decrypt(cu_raiz.carnet).decode()) == str(carnet):
+                global user_cursos
+                print('ENCONTRADO')
+                user_cursos = cu_raiz
+                return user_cursos
+            self.buscarEstudiante(cu_raiz.derecha, carnet)
+
     def verAltura(self, nodo):
         if nodo:
             return nodo.altura
@@ -192,8 +203,8 @@ class ArbolAVL:
             elif pila:
                 cu_nodo = pila.pop()
                 estudiante = ""
-                estudiante += str(f.decrypt(cu_nodo.carnet).decode()) + "\n" + \
-                    str(f.decrypt(cu_nodo.nombre).decode()) + "\n" + str(f.decrypt(cu_nodo.carrera).decode())
+                estudiante += f'carnet: {str(f.decrypt(cu_nodo.carnet).decode())}' + "\n" + \
+                    f'nombre: {str(f.decrypt(cu_nodo.nombre).decode())}' + "\n" + f'password: {str(f.decrypt(cu_nodo.password).decode())}' + "\n" + f'correo: {str(f.decrypt(cu_nodo.correo).decode())}'
                 d.node(str(f.decrypt(cu_nodo.carnet).decode()), label=estudiante)
                 if cu_nodo.izquierda is not None:
                     d.edge(str(f.decrypt(cu_nodo.carnet).decode()), str(f.decrypt(cu_nodo.izquierda.carnet).decode()))
@@ -217,8 +228,8 @@ class ArbolAVL:
             elif pila:
                 cu_nodo = pila.pop()
                 estudiante = ""
-                estudiante += str(cu_nodo.carnet.decode()) + "\n" + \
-                    str(cu_nodo.nombre.decode()) + "\n" + str(cu_nodo.carrera.decode())
+                estudiante += f'carnet: {str(cu_nodo.carnet.decode())}' + "\n" + \
+                    f'nombre: {str(cu_nodo.nombre.decode())}' + "\n" + f'password: {str(cu_nodo.password.decode())}' + "\n" + f'correo: {str(cu_nodo.correo.decode())}'
                 d.node(str(cu_nodo.carnet.decode()), label=estudiante)
                 if cu_nodo.izquierda is not None:
                     d.edge(str(cu_nodo.carnet.decode()), str(cu_nodo.izquierda.carnet.decode()))

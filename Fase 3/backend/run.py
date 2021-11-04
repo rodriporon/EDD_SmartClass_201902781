@@ -192,6 +192,31 @@ def cargaPensum():
         return jsonify({"msg": "Carga exitosa"})
     return jsonify({"msg": "Error en la consulta al server"}), 400
 
+@app.route('/carga-cursos-estudiante', methods=['POST'])
+def cargaCursosEstudiante():
+    data = request.get_json()
+    estudiantes = json.loads(data)
+
+    for estudiante in estudiantes["Estudiantes"]:
+        carnet = estudiante['Carnet']
+        nodo_estudiante = users.buscarEstudiante(users.raiz, carnet)
+        for año in estudiante['Años']:
+            for semestre in año['Semestres']:
+                for curso in semestre['Cursos']:
+                    codigo = curso['Codigo']
+                    nombre = curso['Nombre']
+                    creditos = curso['Creditos']
+                    prerequisitos = curso['Prerequisitos']
+                    obligatorio = curso['Obligatorio']
+                    if nodo_estudiante:
+                        nodo_estudiante.cursos_asignados.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
+                    
+
+
+    if data:
+        return jsonify({"msg": "Carga exitosa"})
+    return jsonify({"msg": "Error en la consulta al server"}), 400
+
 @app.route('/reporte/<tipo>/<seguridad>', methods=['GET'])
 def reportes(tipo, seguridad):
 
@@ -202,6 +227,11 @@ def reportes(tipo, seguridad):
     elif str(tipo) == "estudiantes" and str(seguridad) == "desencriptado":
         print('Entró a reporte estudiantes desencriptado')
         users.graficarDesencriptado()
+
+    elif str(tipo) == "cursos-asignados":
+        print('Entró a cursos asignados')
+        nodo_estudiante = users.buscarEstudiante(users.raiz, seguridad)
+        nodo_estudiante.cursos_asignados.graficar()
 
 
     return jsonify({"msg": "all ok"})

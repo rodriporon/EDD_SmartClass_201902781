@@ -9,11 +9,14 @@ import useReportes from '../../hooks/useReportes'
 import useTablaHash from '../../hooks/useTablaHash'
 
 export default function Header() {
-  const { isUser, isAdmin, logout } = useUser()
+  const { carnet, isUser, isAdmin, logout } = useUser()
 
   const { graficarTablaHash } = useTablaHash()
-  const { reporteEstudiantesEncriptado, reporteEstudiantesDesencriptado } =
-    useReportes()
+  const {
+    reporteEstudiantesEncriptado,
+    reporteEstudiantesDesencriptado,
+    reporteCursosAsignados,
+  } = useReportes()
 
   const handleReporteEstudiantesEncriptado = (e) => {
     e.preventDefault()
@@ -23,6 +26,11 @@ export default function Header() {
   const handleReporteEstudiantesDesencriptado = (e) => {
     e.preventDefault()
     reporteEstudiantesDesencriptado()
+  }
+
+  const handleReporteCursosAsignados = (e) => {
+    e.preventDefault()
+    reporteCursosAsignados(carnet)
   }
 
   const handleTablaHash = (e) => {
@@ -53,6 +61,19 @@ export default function Header() {
               <Nav.Link as={Link} to="/red-cursos">
                 Red de Cursos
               </Nav.Link>
+              <NavDropdown title="Reportes" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={handleReporteCursosAsignados}>
+                  Cursos Asignados
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={handleReporteEstudiantesDesencriptado}
+                >
+                  Estudiantes Desencriptado
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/carga-apuntes">
+                  Apuntes
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
