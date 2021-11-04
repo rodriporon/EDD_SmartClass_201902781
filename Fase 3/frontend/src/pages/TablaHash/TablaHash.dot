@@ -1,20 +1,16 @@
 digraph structs {
  rankdir=LR node[shape=record]; 
-struct1 [label="<f0> |<f1> 20210000003|<f2> 20210000001|<f3> 201902781|<f4> 2020|<f5> 20210000003|<f6> |<f7> |<f8> 20210000001|<f9> 20210000004|<f10> |<f11> |<f12> |<f13> |<f14> 20210000001|<f15> |<f16> "];n10 [shape=ellipse, label="resumen primer parcial -fisica2"] 
-struct1:f1 -> n10 
-n20 [shape=ellipse, label="pendientes"] 
-struct1:f2 -> n20 
-n30 [shape=ellipse, label="holad"] 
-struct1:f3 -> n30 
-n40 [shape=ellipse, label="holax"] 
-struct1:f4 -> n40 
-n50 [shape=ellipse, label="Lab edd -18/10"] 
-struct1:f5 -> n50 
-n80 [shape=ellipse, label="block chain"] 
-struct1:f8 -> n80 
-n90 [shape=ellipse, label="tareas pendientes"] 
-struct1:f9 -> n90 
-n140 [shape=ellipse, label="tabla hash"] 
-struct1:f14 -> n140 
+struct1 [label="<f0> |<f1> |<f2> 20210000001|<f3> |<f4> 20210000003|<f5> 20210000004|<f6> " height=8];
+n20 [shape=ellipse, label="pendientes" pos="16, -2!"]struct1:f2 -> n20 
+
+n21 [shape=ellipse, label="block chain" pos="18, -2!"]n20 -> n21 
+
+n22 [shape=ellipse, label="tabla hash" pos="20, -2!"]n21 -> n22 
+
+n40 [shape=ellipse, label="Lab edd -18/10" pos="16, -4!"]struct1:f4 -> n40 
+
+n41 [shape=ellipse, label="resumen primer parcial -fisica2" pos="18, -4!"]n40 -> n41 
+
+n50 [shape=ellipse, label="tareas pendientes" pos="16, -5!"]struct1:f5 -> n50 
 
 }

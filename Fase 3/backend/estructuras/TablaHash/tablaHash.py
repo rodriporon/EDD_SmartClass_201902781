@@ -144,11 +144,11 @@ class TablaHash:
                 f.write(f'<f{i}> {str(self.lista_hash[i].carnet)}')
             else:
                 f.write(f'<f{i}> {str(self.lista_hash[i].carnet)}|')
-        f.write("\"];")
+        f.write("\" height=8];")
 
         for i in range(self.tamaño_lista_hash):
             for j in range(self.lista_hash[i].apuntes.contador):
-                f.write(f'n{i}{j} [shape=ellipse, label=\"{str(self.lista_hash[i].apuntes.obtenerTitulo(j))}\"] \n')
+                f.write(f'\nn{i}{j} [shape=ellipse, label=\"{str(self.lista_hash[i].apuntes.obtenerTitulo(j))}\" pos=\"{(j+8)*2}, {i*-1}!\"]')
                 if self.lista_hash[i].apuntes.obtenerId(j) == 0:
                     f.write(f'struct1:f{i} -> n{i}{0} \n')
                 else:

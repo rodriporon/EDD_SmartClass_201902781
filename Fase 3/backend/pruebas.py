@@ -3,7 +3,7 @@ from estructuras.TablaHash.tablaHash import TablaHash
 tabla_hash = TablaHash()
 
 
-tabla_hash.insertar(212,"Nota212", "que talxd")
+tabla_hash.insertar(20190278111,"Nota212", "que talxd")
 tabla_hash.insertar(212,"Nota212", "que talxd")
 tabla_hash.insertar(212,"Nota212", "que talxd")
 tabla_hash.insertar(212,"Nota212", "que talxd")
