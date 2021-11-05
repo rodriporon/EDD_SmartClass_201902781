@@ -1,11 +1,8 @@
-from flask.globals import current_app
 from estructuras.ArbolAVL.nodoAVL import NodoAVL
+from estructuras.SHA256.sha256 import generarHash
 from cryptography.fernet import Fernet
 from graphviz import Digraph
 
-key = Fernet.generate_key()
-
-f = Fernet(key)
 
 
 class ArbolAVL:
@@ -19,7 +16,7 @@ class ArbolAVL:
 
     def generarKey(self):
         self.key = Fernet.generate_key()
-        self.f = Fernet(key)
+        self.f = Fernet(self.key)
 
     def insertar(self, carnet, DPI, nombre, carrera, correo, password, edad):
 
@@ -28,7 +25,11 @@ class ArbolAVL:
         nombre_encrypt = self.f.encrypt(nombre.encode())
         carrera_encrypt = self.f.encrypt(carrera.encode())
         correo_encrypt = self.f.encrypt(correo.encode())
-        password_encrypt = self.f.encrypt(password.encode())
+
+        #Proceso de generacion de Hash para password
+        password_sha256 = generarHash(password.encode())
+        password_encrypt = self.f.encrypt(password_sha256.encode())
+
         edad_encrypt = self.f.encrypt(edad.encode())
 
         nuevo_nodo = NodoAVL(carnet_encrypt, DPI_encrypt, nombre_encrypt,
@@ -203,7 +204,7 @@ class ArbolAVL:
                 cu_nodo = pila.pop()
                 estudiante = ""
                 estudiante += f'carnet: {str(self.f.decrypt(cu_nodo.carnet).decode())}' + "\n" + \
-                    f'nombre: {str(self.f.decrypt(cu_nodo.nombre).decode())}' + "\n" + f'password: {str(self.f.decrypt(cu_nodo.password).decode())}' + "\n" + f'correo: {str(f.decrypt(cu_nodo.correo).decode())}'
+                    f'nombre: {str(self.f.decrypt(cu_nodo.nombre).decode())}' + "\n" + f'password: {str(self.f.decrypt(cu_nodo.password).decode())}' + "\n" + f'correo: {str(self.f.decrypt(cu_nodo.correo).decode())}'
                 d.node(str(self.f.decrypt(cu_nodo.carnet).decode()), label=estudiante)
                 if cu_nodo.izquierda is not None:
                     d.edge(str(self.f.decrypt(cu_nodo.carnet).decode()), str(self.f.decrypt(cu_nodo.izquierda.carnet).decode()))

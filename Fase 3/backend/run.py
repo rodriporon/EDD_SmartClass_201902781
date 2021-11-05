@@ -3,6 +3,7 @@ from flask_cors import CORS
 from estructuras.ArbolAVL.arbolAVL import ArbolAVL
 from estructuras.TablaHash.tablaHash import TablaHash
 from estructuras.AVLPensum.arbolPensum import ArbolPensum
+from estructuras.SHA256.sha256 import generarHash
 
 app = Flask(__name__)
 CORS(app)
@@ -58,12 +59,13 @@ def login():
         return jsonify({"carnet": "admin", "DPI": "admin", "nombre": "admin", "carrera": "admin", "correo": "admin", "password": "admin", "edad": "admin"})
 
     else:
-        user = users.buscar(users.raiz, carnet_request, password_request)
+        password_sha256 = generarHash(password_request.encode())
+        user = users.buscar(users.raiz, carnet_request, password_sha256)
         users.user_login = None
         print(user)
 
         if user:
-            if str(user["carnet"]) == str(carnet_request) and str(user["password"]) and str(password_request):
+            if str(user["carnet"]) == str(carnet_request) and str(user["password"]) == str(password_sha256):
                 return jsonify(user)
         else:
             return jsonify({"msg": "Bad carnet or password"}), 401
