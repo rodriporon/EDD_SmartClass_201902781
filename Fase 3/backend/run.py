@@ -258,6 +258,11 @@ def asignarCurso(carnet):
         return jsonify({"msg": "se asigno correctamente"})
 
     return jsonify({"msg": "ocurrio un error"})
+
+@app.route('/generar-llave', methods=['GET'])
+def generarLLave():
+    users.generarKey()
+    return jsonify({'msg': 'llave generada'})
     
     
 

@@ -23,13 +23,13 @@ class ArbolAVL:
 
     def insertar(self, carnet, DPI, nombre, carrera, correo, password, edad):
 
-        carnet_encrypt = f.encrypt(carnet.encode())
-        DPI_encrypt = f.encrypt(DPI.encode())
-        nombre_encrypt = f.encrypt(nombre.encode())
-        carrera_encrypt = f.encrypt(carrera.encode())
-        correo_encrypt = f.encrypt(correo.encode())
-        password_encrypt = f.encrypt(password.encode())
-        edad_encrypt = f.encrypt(edad.encode())
+        carnet_encrypt = self.f.encrypt(carnet.encode())
+        DPI_encrypt = self.f.encrypt(DPI.encode())
+        nombre_encrypt = self.f.encrypt(nombre.encode())
+        carrera_encrypt = self.f.encrypt(carrera.encode())
+        correo_encrypt = self.f.encrypt(correo.encode())
+        password_encrypt = self.f.encrypt(password.encode())
+        edad_encrypt = self.f.encrypt(edad.encode())
 
         nuevo_nodo = NodoAVL(carnet_encrypt, DPI_encrypt, nombre_encrypt,
                              carrera_encrypt, correo_encrypt, password_encrypt, edad_encrypt)
@@ -42,20 +42,20 @@ class ArbolAVL:
 
     def _insertar(self, new_nodo, cu_raiz):
         if cu_raiz is not None:
-            if str(f.decrypt(cu_raiz.carnet).decode()) > str(f.decrypt(new_nodo.carnet).decode()):
+            if str(self.f.decrypt(cu_raiz.carnet).decode()) > str(self.f.decrypt(new_nodo.carnet).decode()):
                 cu_raiz.izquierda = self._insertar(
                     new_nodo, cu_raiz.izquierda)
                 if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == -2):
-                    if (str(f.decrypt(new_nodo.carnet).decode()) < str(f.decrypt(cu_raiz.izquierda.carnet).decode())):
+                    if (str(self.f.decrypt(new_nodo.carnet).decode()) < str(self.f.decrypt(cu_raiz.izquierda.carnet).decode())):
                         cu_raiz = self.RI(cu_raiz)
                     else:
                         cu_raiz = self.RID(cu_raiz)
 
-            elif str(f.decrypt(cu_raiz.carnet).decode()) < str(f.decrypt(new_nodo.carnet).decode()):
+            elif str(self.f.decrypt(cu_raiz.carnet).decode()) < str(self.f.decrypt(new_nodo.carnet).decode()):
                 cu_raiz.derecha = self._insertar(
                     new_nodo, cu_raiz.derecha)
                 if (self.verAltura(cu_raiz.derecha)-self.verAltura(cu_raiz.izquierda) == 2):
-                    if (str(f.decrypt(new_nodo.carnet).decode()) > str(f.decrypt(cu_raiz.derecha.carnet).decode())):
+                    if (str(self.f.decrypt(new_nodo.carnet).decode()) > str(self.f.decrypt(cu_raiz.derecha.carnet).decode())):
                         cu_raiz = self.RD(cu_raiz)
                     else:
                         cu_raiz = self.RDI(cu_raiz)
@@ -79,20 +79,19 @@ class ArbolAVL:
             self.datosEncriptados(cu_raiz.izquierda)
             print('-------------------------------------')
             # Carnet
-            print(f.decrypt(cu_raiz.carnet).decode())
-            print(type(f.decrypt(cu_raiz.carnet).decode()))
+            print(self.f.decrypt(cu_raiz.carnet).decode())
             # DPI
-            print(f.decrypt(cu_raiz.DPI).decode())
+            print(self.f.decrypt(cu_raiz.DPI).decode())
             # Nombre
-            print(f.decrypt(cu_raiz.nombre).decode())
+            print(self.f.decrypt(cu_raiz.nombre).decode())
             # Carrera
-            print(f.decrypt(cu_raiz.carrera).decode())
+            print(self.f.decrypt(cu_raiz.carrera).decode())
             # Correo
-            print(f.decrypt(cu_raiz.correo).decode())
+            print(self.f.decrypt(cu_raiz.correo).decode())
             # Password
-            print(f.decrypt(cu_raiz.password).decode())
+            print(self.f.decrypt(cu_raiz.password).decode())
             # Edad
-            print(f.decrypt(cu_raiz.edad).decode())
+            print(self.f.decrypt(cu_raiz.edad).decode())
             # Función recursiva para mostrar todos los nodos derechos
             self.datosEncriptados(cu_raiz.derecha)
 
@@ -102,7 +101,7 @@ class ArbolAVL:
             self.datosDesencriptados(cu_raiz.izquierda)
             print('-------------------------------------')
             # Carnet
-            print(f.decrypt(cu_raiz.carnet))
+            print(self.f.decrypt(cu_raiz.carnet))
             # DPI
             print(cu_raiz.DPI)
             # Nombre
@@ -127,17 +126,17 @@ class ArbolAVL:
     def buscar(self, cu_raiz, carnet, password):
         if cu_raiz is not None:
             self.buscar(cu_raiz.izquierda, carnet, password)
-            if str(f.decrypt(cu_raiz.carnet).decode()) == str(carnet) and str(f.decrypt(cu_raiz.password).decode()) == str(password):
+            if str(self.f.decrypt(cu_raiz.carnet).decode()) == str(carnet) and str(self.f.decrypt(cu_raiz.password).decode()) == str(password):
                 global user_login
                 print('ENCONTRADO')
                 self.user_login = {
-                    "carnet": f.decrypt(cu_raiz.carnet).decode(),
-                    "DPI": f.decrypt(cu_raiz.DPI).decode(),
-                    "nombre": f.decrypt(cu_raiz.nombre).decode(),
-                    "carrera": f.decrypt(cu_raiz.carrera).decode(),
-                    "correo": f.decrypt(cu_raiz.correo).decode(),
-                    "password": f.decrypt(cu_raiz.password).decode(),
-                    "edad": f.decrypt(cu_raiz.edad).decode()
+                    "carnet": self.f.decrypt(cu_raiz.carnet).decode(),
+                    "DPI": self.f.decrypt(cu_raiz.DPI).decode(),
+                    "nombre": self.f.decrypt(cu_raiz.nombre).decode(),
+                    "carrera": self.f.decrypt(cu_raiz.carrera).decode(),
+                    "correo": self.f.decrypt(cu_raiz.correo).decode(),
+                    "password": self.f.decrypt(cu_raiz.password).decode(),
+                    "edad": self.f.decrypt(cu_raiz.edad).decode()
                 }
                 return self.user_login
             self.buscar(cu_raiz.derecha, carnet, password)
@@ -146,7 +145,7 @@ class ArbolAVL:
     def buscarEstudiante(self, cu_raiz, carnet):
         if cu_raiz is not None:
             self.buscarEstudiante(cu_raiz.izquierda, carnet)
-            if str(f.decrypt(cu_raiz.carnet).decode()) == str(carnet):
+            if str(self.f.decrypt(cu_raiz.carnet).decode()) == str(carnet):
                 global user_cursos
                 print('ENCONTRADO')
                 self.user_cursos = cu_raiz
@@ -203,13 +202,13 @@ class ArbolAVL:
             elif pila:
                 cu_nodo = pila.pop()
                 estudiante = ""
-                estudiante += f'carnet: {str(f.decrypt(cu_nodo.carnet).decode())}' + "\n" + \
-                    f'nombre: {str(f.decrypt(cu_nodo.nombre).decode())}' + "\n" + f'password: {str(f.decrypt(cu_nodo.password).decode())}' + "\n" + f'correo: {str(f.decrypt(cu_nodo.correo).decode())}'
-                d.node(str(f.decrypt(cu_nodo.carnet).decode()), label=estudiante)
+                estudiante += f'carnet: {str(self.f.decrypt(cu_nodo.carnet).decode())}' + "\n" + \
+                    f'nombre: {str(self.f.decrypt(cu_nodo.nombre).decode())}' + "\n" + f'password: {str(self.f.decrypt(cu_nodo.password).decode())}' + "\n" + f'correo: {str(f.decrypt(cu_nodo.correo).decode())}'
+                d.node(str(self.f.decrypt(cu_nodo.carnet).decode()), label=estudiante)
                 if cu_nodo.izquierda is not None:
-                    d.edge(str(f.decrypt(cu_nodo.carnet).decode()), str(f.decrypt(cu_nodo.izquierda.carnet).decode()))
+                    d.edge(str(self.f.decrypt(cu_nodo.carnet).decode()), str(self.f.decrypt(cu_nodo.izquierda.carnet).decode()))
                 if cu_nodo.derecha is not None:
-                    d.edge(str(f.decrypt(cu_nodo.carnet).decode()), str(f.decrypt(cu_nodo.derecha.carnet).decode()))
+                    d.edge(str(self.f.decrypt(cu_nodo.carnet).decode()), str(self.f.decrypt(cu_nodo.derecha.carnet).decode()))
                 cu_nodo = cu_nodo.derecha
             else:
                 break

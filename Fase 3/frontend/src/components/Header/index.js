@@ -7,9 +7,12 @@ import Nav from 'react-bootstrap/Nav'
 import useUser from '../../hooks/useUser'
 import useReportes from '../../hooks/useReportes'
 import useTablaHash from '../../hooks/useTablaHash'
+import useGenerarLlave from '../../hooks/useGenerarLlave'
 
 export default function Header() {
   const { carnet, isUser, isAdmin, logout } = useUser()
+
+  const { generarLlave } = useGenerarLlave()
 
   const { graficarTablaHash } = useTablaHash()
   const {
@@ -31,6 +34,11 @@ export default function Header() {
   const handleReporteCursosAsignados = (e) => {
     e.preventDefault()
     reporteCursosAsignados(carnet)
+  }
+
+  const handleGenerarLlave = (e) => {
+    e.preventDefault()
+    generarLlave()
   }
 
   const handleTablaHash = (e) => {
@@ -95,9 +103,7 @@ export default function Header() {
               Inicio
             </Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/generar-llave">
-                Generar Llave
-              </Nav.Link>
+              <Nav.Link onClick={handleGenerarLlave}>Generar Llave</Nav.Link>
               <NavDropdown title="Reportes" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={handleReporteEstudiantesEncriptado}>
                   Estudiantes Encriptado
