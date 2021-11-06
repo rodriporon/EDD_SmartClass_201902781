@@ -12,5 +12,3 @@ def generarHash(cadena):
         if re.match(patron, id_hash):
             return id_hash
         
-password = "ksjpopopop"        
-print("HASH OBTENIDO:", type(generarHash(password.encode())), generarHash(password.encode()))

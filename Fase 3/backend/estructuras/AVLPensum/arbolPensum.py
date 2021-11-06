@@ -1,10 +1,11 @@
 from estructuras.AVLPensum.nodoPensum import NodoPensum
 from graphviz import Digraph
-
+import os
 class ArbolPensum:
     def __init__(self):
         self.nodo_curso = None
         self.raiz = None
+        self.cadena = ''
 
     def insertar(self, codigo, nombre, creditos, prerequisitos, obligatorio):
         nuevo_nodo = NodoPensum(codigo, nombre, creditos, prerequisitos, obligatorio)
@@ -77,6 +78,27 @@ class ArbolPensum:
             self.buscarCurso(cu_raiz.derecha, codigo)
         return self.nodo_curso
 
+    def graficarPrerrequisitos(self, cu_raiz, codigo):
+        f = open("C:\\Users\\rodri\\Desktop\\Reportes_F3\\CursosPrerequisitos.dot", "w")
+        f.write("digraph G {\n rankdir=RL \n")
+        f.write(self.obtenerGrafica(cu_raiz, codigo))
+        f.write("\n}")
+
+        f.close()
+        os.system(f"dot -Nfontname=Arial -Tsvg \"C:\\Users\\rodri\\Desktop\\Reportes_F3\\CursosPrerequisitos.dot\" -o \"C:\\Users\\rodri\\Desktop\\Reportes_F3\\CursosPrerequisitos.svg\"")
+
+    def obtenerGrafica(self, cu_raiz, codigo):
+        if cu_raiz is not None:
+            if str(cu_raiz.codigo) == str(codigo):
+                self.cadena += f'\n n{cu_raiz.codigo} [label=\"{cu_raiz.nombre}\"]'
+                prerequisitos = cu_raiz.prerequisitos.split(',')
+                for prerequisito in prerequisitos:
+                    
+                    print(prerequisito)
+                
+            self.obtenerGrafica(cu_raiz.derecha, codigo)
+            self.obtenerGrafica(cu_raiz.izquierda, codigo)
+        return self.cadena
 
     def verAltura(self, nodo):
         if nodo:

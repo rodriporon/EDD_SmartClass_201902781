@@ -190,7 +190,7 @@ def cargaPensum():
         obligatorio = curso['Obligatorio']
         
         arbol_pensum.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
-        arbol_pensum.inOrden(arbol_pensum.raiz)        
+        
 
     if data:
         return jsonify({"msg": "Carga exitosa"})
