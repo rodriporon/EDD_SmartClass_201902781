@@ -111,9 +111,6 @@ export default function Header() {
                 >
                   Estudiantes Desencriptado
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/carga-apuntes">
-                  Apuntes
-                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link onClick={handleTablaHash}>Tabla Hash</Nav.Link>
               <Nav.Link onClick={handleRedCursos}>Red de Cursos</Nav.Link>
