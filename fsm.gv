@@ -1,0 +1,65 @@
+digraph finite_state_machine {
+	rankdir=LR size=5
+	"0799--Seminario de investigacion"
+	"0799--Seminario de investigacion" -> "0798--Seminario de sistemas 2" [label=3]
+	"0798--Seminario de sistemas 2"
+	"0798--Seminario de sistemas 2" -> "0797--Seminario de sistemas 1" [label=3]
+	"0797--Seminario de sistemas 1"
+	"0797--Seminario de sistemas 1" -> "0724--Teoria de sistemas 2" [label=5]
+	"0724--Teoria de sistemas 2"
+	"0724--Teoria de sistemas 2" -> "0722--Teoria de sistemas 1" [label=5]
+	"0724--Teoria de sistemas 2" -> "0601--Investigacion de operaciones 1" [label=5]
+	"0724--Teoria de sistemas 2" -> "0736--Analisis probabilistico" [label=4]
+	"0722--Teoria de sistemas 1"
+	"0722--Teoria de sistemas 1" -> "0732--Estadistica 1" [label=5]
+	"0722--Teoria de sistemas 1" -> "0772--Estructura de datos" [label=5]
+	"0722--Teoria de sistemas 1" -> "0116--Matematica aplicada 3" [label=5]
+	"0722--Teoria de sistemas 1" -> "0118--Matematica aplicada 1" [label=6]
+	"0601--Investigacion de operaciones 1"
+	"0601--Investigacion de operaciones 1" -> "0771--Introduccion a la programacion y computacion 2" [label=5]
+	"0601--Investigacion de operaciones 1" -> "0732--Estadistica 1" [label=5]
+	"0736--Analisis probabilistico"
+	"0736--Analisis probabilistico" -> "0732--Estadistica 1" [label=5]
+	"0732--Estadistica 1"
+	"0732--Estadistica 1" -> "0107--Matematica intermedia 1" [label=10]
+	"0732--Estadistica 1" -> "0005--Tecnicas de estudio y de investigacion" [label=3]
+	"0772--Estructura de datos"
+	"0772--Estructura de datos" -> "0771--Introduccion a la programacion y computacion 2" [label=5]
+	"0772--Estructura de datos" -> "0796--Lenguajes formales y de programacion" [label=3]
+	"0772--Estructura de datos" -> "0962--Matematica computo 2" [label=5]
+	"0116--Matematica aplicada 3"
+	"0116--Matematica aplicada 3" -> "0112--Matematica intermedia 2" [label=5]
+	"0116--Matematica aplicada 3" -> "0114--Matematica intermedia 3" [label=5]
+	"0118--Matematica aplicada 1"
+	"0118--Matematica aplicada 1" -> "0112--Matematica intermedia 2" [label=5]
+	"0118--Matematica aplicada 1" -> "0114--Matematica intermedia 3" [label=5]
+	"0771--Introduccion a la programacion y computacion 2"
+	"0771--Introduccion a la programacion y computacion 2" -> "0107--Matematica intermedia 1" [label=10]
+	"0771--Introduccion a la programacion y computacion 2" -> "0770--Introduccion a la programacion y computacion 1" [label=4]
+	"0771--Introduccion a la programacion y computacion 2" -> "0795--Logica de sistemas" [label=2]
+	"0771--Introduccion a la programacion y computacion 2" -> "0960--Matematica computo 1" [label=5]
+	"0107--Matematica intermedia 1"
+	"0107--Matematica intermedia 1" -> "0103--Matematica Basica 2" [label=7]
+	"0005--Tecnicas de estudio y de investigacion"
+	"0796--Lenguajes formales y de programacion"
+	"0796--Lenguajes formales y de programacion" -> "0770--Introduccion a la programacion y computacion 1" [label=4]
+	"0796--Lenguajes formales y de programacion" -> "0795--Logica de sistemas" [label=2]
+	"0796--Lenguajes formales y de programacion" -> "0960--Matematica computo 1" [label=5]
+	"0962--Matematica computo 2"
+	"0962--Matematica computo 2" -> "0770--Introduccion a la programacion y computacion 1" [label=4]
+	"0962--Matematica computo 2" -> "0795--Logica de sistemas" [label=2]
+	"0962--Matematica computo 2" -> "0960--Matematica computo 1" [label=5]
+	"0112--Matematica intermedia 2"
+	"0112--Matematica intermedia 2" -> "0107--Matematica intermedia 1" [label=10]
+	"0114--Matematica intermedia 3"
+	"0114--Matematica intermedia 3" -> "0107--Matematica intermedia 1" [label=10]
+	"0770--Introduccion a la programacion y computacion 1"
+	"0770--Introduccion a la programacion y computacion 1" -> "0103--Matematica Basica 2" [label=7]
+	"0795--Logica de sistemas"
+	"0795--Logica de sistemas" -> "0103--Matematica Basica 2" [label=7]
+	"0960--Matematica computo 1"
+	"0960--Matematica computo 1" -> "0103--Matematica Basica 2" [label=7]
+	"0103--Matematica Basica 2"
+	"0103--Matematica Basica 2" -> "0101--Matematica Basica 1" [label=7]
+	"0101--Matematica Basica 1"
+}

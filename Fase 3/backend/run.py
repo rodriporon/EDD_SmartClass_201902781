@@ -3,6 +3,7 @@ from flask_cors import CORS
 from estructuras.ArbolAVL.arbolAVL import ArbolAVL
 from estructuras.TablaHash.tablaHash import TablaHash
 from estructuras.AVLPensum.arbolPensum import ArbolPensum
+from estructuras.ListaPensum.listaPensum import ListaPensum
 from estructuras.SHA256.sha256 import generarHash
 
 app = Flask(__name__)
@@ -12,9 +13,8 @@ CORS(app)
 users = ArbolAVL()
 users.datosDesencriptados(users.raiz)
 
-#----------Instanciación Arbol Pensum----------#
-arbol_pensum = ArbolPensum()
-arbol_pensum.inOrden(arbol_pensum.raiz)
+#----------Instanciación Lista Pensum---------#
+lista_pensum = ListaPensum()
 
 #----------Instanciación Tabla Hash----------#
 tabla_hash = TablaHash()
@@ -189,7 +189,7 @@ def cargaPensum():
         prerequisitos = curso['Prerequisitos']
         obligatorio = curso['Obligatorio']
         
-        arbol_pensum.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
+        lista_pensum.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
         
 
     if data:
@@ -238,6 +238,10 @@ def reportes(tipo, seguridad):
         nodo_estudiante.cursos_asignados.graficar()
         users.user_cursos = None
 
+    elif str(tipo) == "red-cursos":
+        print('Entró a reporte Red Cursos')
+        lista_pensum.graficarRedCursos()
+
 
     return jsonify({"msg": "all ok"})
 
@@ -250,13 +254,12 @@ def graficarTablaHash():
 
 @app.route('/asignar-curso/<carnet>', methods=['POST'])
 def asignarCurso(carnet):
-    codigo = request.json.get("codigo", None)
-    print(codigo)
-    nodo_curso_pensum = arbol_pensum.buscarCurso(arbol_pensum.raiz, codigo)
+    aux_codigo = request.json.get("codigo", None)
+    codigo = str(aux_codigo)
+    nodo_curso_pensum = lista_pensum.buscar(codigo)
     if nodo_curso_pensum:
         nodo_estudiante = users.buscarEstudiante(users.raiz, carnet)
         nodo_estudiante.cursos_asignados.insertar(nodo_curso_pensum.codigo, nodo_curso_pensum.nombre, nodo_curso_pensum.creditos, nodo_curso_pensum.prerequisitos, nodo_curso_pensum.obligatorio)
-        arbol_pensum.nodo_curso = None
         return jsonify({"msg": "se asigno correctamente"})
 
     return jsonify({"msg": "ocurrio un error"})
@@ -265,6 +268,16 @@ def asignarCurso(carnet):
 def generarLLave():
     users.generarKey()
     return jsonify({'msg': 'llave generada'})
+
+@app.route('/ver-prerequisitos', methods=['POST'])
+def verPrerequisitos():
+    codigo_aux = request.json.get("codigo", None)
+    codigo = str(codigo_aux)
+    lista_pensum.graficarPrerequisitos(codigo)
+
+    return jsonify({'msg': 'grafo generado'})
+
+
     
     
 

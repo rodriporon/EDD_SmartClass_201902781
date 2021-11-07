@@ -19,6 +19,7 @@ export default function Header() {
     reporteEstudiantesEncriptado,
     reporteEstudiantesDesencriptado,
     reporteCursosAsignados,
+    reporteRedCursos,
   } = useReportes()
 
   const handleReporteEstudiantesEncriptado = (e) => {
@@ -44,6 +45,11 @@ export default function Header() {
   const handleTablaHash = (e) => {
     e.preventDefault()
     graficarTablaHash()
+  }
+
+  const handleRedCursos = (e) => {
+    e.preventDefault()
+    reporteRedCursos()
   }
 
   const handleClick = (e) => {
@@ -72,14 +78,6 @@ export default function Header() {
               <NavDropdown title="Reportes" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={handleReporteCursosAsignados}>
                   Cursos Asignados
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={handleReporteEstudiantesDesencriptado}
-                >
-                  Estudiantes Desencriptado
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/carga-apuntes">
-                  Apuntes
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
@@ -118,9 +116,7 @@ export default function Header() {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link onClick={handleTablaHash}>Tabla Hash</Nav.Link>
-              <Nav.Link as={Link} to="/red-cursos">
-                Red de Cursos
-              </Nav.Link>
+              <Nav.Link onClick={handleRedCursos}>Red de Cursos</Nav.Link>
             </Nav>
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
