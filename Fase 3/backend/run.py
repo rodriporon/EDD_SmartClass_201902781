@@ -238,6 +238,10 @@ def reportes(tipo, seguridad):
         nodo_estudiante.cursos_asignados.graficar()
         users.user_cursos = None
 
+    elif str(tipo) == "red-cursos":
+        print('Entró a reporte Red Cursos')
+        lista_pensum.graficarRedCursos()
+
 
     return jsonify({"msg": "all ok"})
 
@@ -250,7 +254,8 @@ def graficarTablaHash():
 
 @app.route('/asignar-curso/<carnet>', methods=['POST'])
 def asignarCurso(carnet):
-    codigo = request.json.get("codigo", None)
+    aux_codigo = request.json.get("codigo", None)
+    codigo = str(aux_codigo)
     nodo_curso_pensum = lista_pensum.buscar(codigo)
     if nodo_curso_pensum:
         nodo_estudiante = users.buscarEstudiante(users.raiz, carnet)
@@ -263,6 +268,16 @@ def asignarCurso(carnet):
 def generarLLave():
     users.generarKey()
     return jsonify({'msg': 'llave generada'})
+
+@app.route('/ver-prerequisitos', methods=['POST'])
+def verPrerequisitos():
+    codigo_aux = request.json.get("codigo", None)
+    codigo = str(codigo_aux)
+    lista_pensum.graficarPrerequisitos(codigo)
+
+    return jsonify({'msg': 'grafo generado'})
+
+
     
     
 

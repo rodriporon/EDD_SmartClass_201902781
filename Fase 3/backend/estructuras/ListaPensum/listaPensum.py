@@ -61,10 +61,10 @@ class ListaPensum:
     def graficarPrerequisitos(self, codigo):
         lista_adyacencia = self.obtenerListaAdyacencia(codigo)
         f = graphviz.Digraph('grafo_cursos_prerequisitos', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\GrafoCursosPrerequisitos.gv')
-        f.attr(rankdir='LR', size='5')
+        f.attr(rankdir='LR')
         
         for i in lista_adyacencia:
-            cadena = i.codigo+"--"+ i.nombre
+            cadena = i.codigo+" - "+ i.nombre
             f.node(cadena)
             prerequisitos = i.prerequisitos
             lista_prerequisitos = prerequisitos.split(',')
@@ -72,9 +72,38 @@ class ListaPensum:
                 for nodo in lista_adyacencia:
                     aux = nodo.codigo
                     if prerequisito == aux:
-                        textoB = aux+"--"+nodo.nombre
+                        textoB = aux+" - "+nodo.nombre
                         f.edge(cadena,textoB,label=str(nodo.creditos))
         f.view()
+
+    def redCursos(self):
+        aux = self.cabeza
+        cursos = []
+        while aux != None:
+            cursos.append(aux)
+            aux = aux.siguiente
+        return cursos
+
+    def graficarRedCursos(self):
+        lista_adyacencia = self.redCursos()
+        f = graphviz.Digraph('grafo_red_cursos', filename='C:\\Users\\rodri\\Desktop\\Reportes_F3\\GrafoRedCursos.gv')
+        f.attr(rankdir='LR')
+        
+        for i in lista_adyacencia:
+            cadena = i.codigo+" - "+ i.nombre
+            f.node(cadena)
+            prerequisitos = i.prerequisitos
+            lista_prerequisitos = prerequisitos.split(',')
+            for prerequisito in lista_prerequisitos:
+                for nodo in lista_adyacencia:
+                    aux = nodo.codigo
+                    if prerequisito == aux:
+                        textoB = aux+" - "+nodo.nombre
+                        f.edge(cadena,textoB,label=str(nodo.creditos))
+        f.view()
+
+        
+
             
 
 

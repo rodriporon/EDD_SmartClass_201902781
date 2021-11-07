@@ -436,4 +436,4 @@ for curso in cursos["Cursos"]:
 
     lista.insertar(codigo, nombre, creditos, prerequisitos, obligatorio)
 
-lista.graficarPrerequisitos('0799')
+lista.graficarRedCursos()

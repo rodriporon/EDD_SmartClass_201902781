@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import reporteEstudiantesEncriptadoService from '../services/reporteEstudiantesEncriptado'
 import reporteEstudiantesDesencriptadoService from '../services/reporteEstudiantesDesencriptado'
 import reporteCursosAsignadosService from '../services/reporteCursosAsignados'
+import reporteRedCursosService from '../services/reporteRedCursos'
 
 export default function useReportes() {
   const reporteEstudiantesEncriptado = useCallback(() => {
@@ -35,9 +36,20 @@ export default function useReportes() {
       })
   }, [])
 
+  const reporteRedCursos = useCallback(() => {
+    reporteRedCursosService()
+      .then((msg) => {
+        console.log(msg)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return {
     reporteEstudiantesEncriptado,
     reporteEstudiantesDesencriptado,
     reporteCursosAsignados,
+    reporteRedCursos,
   }
 }
